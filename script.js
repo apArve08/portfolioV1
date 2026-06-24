@@ -119,4 +119,66 @@
     }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
     timelineItems.forEach(function (i) { obs.observe(i); });
   }
+
+  // ---- Project timeline chart: click a bar to jump to its project card ----
+  document.querySelectorAll('.project-chart .chart-row').forEach(function (row) {
+    var code = row.getAttribute('data-project');
+    if (!code) return;
+    var targetCard = null;
+    document.querySelectorAll('.project-card .project-code').forEach(function (el) {
+      if (el.textContent.trim() === code && !targetCard) {
+        targetCard = el.closest('.project-card');
+      }
+    });
+    if (!targetCard) return;
+    row.style.cursor = 'pointer';
+    row.setAttribute('role', 'button');
+    row.setAttribute('tabindex', '0');
+    row.setAttribute('aria-label', 'Jump to project ' + code);
+    function jump() {
+      targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var trigger = targetCard.querySelector('.project-toggle');
+      if (trigger && trigger.getAttribute('aria-expanded') === 'false') {
+        trigger.click();
+      }
+      document.querySelectorAll('.project-card.is-flash').forEach(function (c) {
+        c.classList.remove('is-flash');
+      });
+      targetCard.classList.add('is-flash');
+      setTimeout(function () { targetCard.classList.remove('is-flash'); }, 1600);
+    }
+    row.addEventListener('click', jump);
+    row.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        jump();
+      }
+    });
+  });
+
+  // ---- Highlight chart row whose project is currently in view ----
+  if ('IntersectionObserver' in window) {
+    var cardByCode = {};
+    document.querySelectorAll('.project-card').forEach(function (card) {
+      var codeEl = card.querySelector('.project-code');
+      if (codeEl) cardByCode[codeEl.textContent.trim()] = card;
+    });
+    var rowByCode = {};
+    document.querySelectorAll('.project-chart .chart-row').forEach(function (row) {
+      var code = row.getAttribute('data-project');
+      if (code) rowByCode[code] = row;
+    });
+    var cardObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var codeEl = e.target.querySelector('.project-code');
+        if (!codeEl) return;
+        var code = codeEl.textContent.trim();
+        var row = rowByCode[code];
+        if (!row) return;
+        if (e.isIntersecting) row.classList.add('is-highlight');
+        else row.classList.remove('is-highlight');
+      });
+    }, { rootMargin: '-30% 0px -55% 0px', threshold: 0 });
+    Object.values(cardByCode).forEach(function (c) { cardObs.observe(c); });
+  }
 })();

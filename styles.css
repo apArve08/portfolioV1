@@ -331,6 +331,144 @@ ul { margin: 0; padding: 0; list-style: none; }
   border-radius: 999px;
 }
 
+/* ---------- Project timeline chart ---------- */
+.project-chart {
+  margin-bottom: 32px;
+  padding: 20px 22px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+}
+.chart-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.chart-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.chart-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fg-muted);
+}
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.legend-dot.dot-work { background: color-mix(in srgb, var(--fg) 70%, transparent); }
+.legend-dot.dot-personal { background: color-mix(in srgb, var(--fg) 25%, transparent); border: 1px solid var(--border); }
+
+.chart-axis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-muted);
+  letter-spacing: 0.04em;
+  padding: 0 0 8px;
+  border-bottom: 1px dashed var(--border);
+  margin-bottom: 10px;
+}
+.chart-axis span:first-child { text-align: left; }
+.chart-axis span:nth-child(2),
+.chart-axis span:nth-child(3) { text-align: center; }
+.chart-axis span:last-child { text-align: right; }
+
+.chart-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.chart-row {
+  position: relative;
+  height: 26px;
+  border-radius: 6px;
+  background: repeating-linear-gradient(
+    to right,
+    transparent 0,
+    transparent calc(25% - 1px),
+    var(--border) calc(25% - 1px),
+    var(--border) 25%
+  );
+  opacity: 0;
+  transform: translateX(-6px);
+  animation: chart-row-in .35s ease forwards;
+}
+.chart-row:nth-child(1) { animation-delay: .04s; }
+.chart-row:nth-child(2) { animation-delay: .08s; }
+.chart-row:nth-child(3) { animation-delay: .12s; }
+.chart-row:nth-child(4) { animation-delay: .16s; }
+.chart-row:nth-child(5) { animation-delay: .20s; }
+.chart-row:nth-child(6) { animation-delay: .24s; }
+.chart-row:nth-child(7) { animation-delay: .28s; }
+@keyframes chart-row-in {
+  to { opacity: 1; transform: translateX(0); }
+}
+.chart-row.is-highlight .chart-bar {
+  filter: brightness(1.05);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--fg) 35%, transparent);
+}
+.chart-bar {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: var(--start);
+  width: var(--width);
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 8px;
+  overflow: hidden;
+  transition: filter .15s ease, box-shadow .15s ease;
+  cursor: pointer;
+  border: none;
+}
+.chart-bar:hover,
+.chart-bar:focus-visible {
+  filter: brightness(1.1);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--fg) 50%, transparent);
+  outline: none;
+}
+.chart-bar.bar-work {
+  background: color-mix(in srgb, var(--fg) 70%, transparent);
+}
+.chart-bar.bar-personal {
+  background: color-mix(in srgb, var(--fg) 18%, transparent);
+  border: 1px solid var(--border);
+}
+.chart-bar-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+[data-theme="dark"] .chart-bar.bar-personal {
+  background: color-mix(in srgb, var(--fg) 12%, transparent);
+}
+[data-theme="dark"] .chart-bar-label {
+  color: var(--fg);
+}
+
 /* ---------- Projects ---------- */
 .projects-grid {
   display: grid;
@@ -348,6 +486,14 @@ ul { margin: 0; padding: 0; list-style: none; }
 .project-card:hover {
   border-color: color-mix(in srgb, var(--fg) 30%, var(--border));
   box-shadow: var(--shadow);
+}
+.project-card.is-flash {
+  animation: card-flash 1.5s ease;
+}
+@keyframes card-flash {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--fg) 60%, transparent); }
+  35%  { box-shadow: 0 0 0 4px color-mix(in srgb, var(--fg) 25%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--fg) 0%, transparent); }
 }
 .project-toggle {
   display: block;
