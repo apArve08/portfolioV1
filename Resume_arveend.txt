@@ -1,0 +1,104 @@
+ARVEEND PHRASEART MA NOON
+Taiping, Perak • 011-26806414 • apveend@gmail.com
+https://aparve08.github.io/portfolio2026/
+
+SUMMARY
+A detail-oriented software engineering graduate with hands on experience in developing and
+maintaining enterprise web applications, automation tools, and RESTful APIs. Experienced in PHP,
+C#, ASP.NET, React, Java and system integration within manufacturing and corporate
+environments. Strong foundation in backend development, system support and process
+automation.
+
+WORK EXPERIENCE
+IT Executive (Software), Toyo Tires
+
+March 2026 - Present
+
+Performed daily system monitoring and troubleshooting for MES and internal systems
+Developed and maintained MES features using VB.NET and C#
+Built and automated internal workflows using C#, Power Automate, and AI Builder, improving
+process efficiency
+
+IT Technician, YBS International Berhad
+
+July 2025 - March 2026
+
+Developed and maintained internal web applications including E-Appraisal, IT Request
+System Management, and IT Asset Management systems using PHP, MySQL, Rest APIs,
+Docker and Git.
+Designed database schemas and implemented CRUD workflows to support internal
+operations.
+Managed MES system for production line (PCB) and assisted in setting up the system and
+infrastructure.
+Provide comprehensive IT support across 3 manufacturing plants, ensuring minimal
+downtime and efficient issue resolution.
+Administered Windows Server, Active Directory, and Microsoft 365, including backups,
+patching, and access control.
+Provided IT and application support across 3 manufacturing plants, minimizing downtime and
+improve response efficiency
+
+Application Developer Intern, Spritzer Berhad
+
+Aug 2024 - Jan 2025
+
+Developed automation tools using React, TypeScript, ASP.NET, reducing manual workload
+Integrated ManageEngine API with C# and automated workflows using Power Automate
+Built reporting dashboards using Power BI and Excel
+Improved system efficiency by leveraging machine learning and C# to accurately predict and
+auto-complete missing or incorrect ticket fields, minimizing data inconsistencies.
+
+Freelance, Self - Employed (FlutterFlow)
+
+Jan 2023 - Jun 2024
+
+Developed a cross-platform application using FlutterFlow, integrating Firebase for backend
+functionality, including real-time database, authentication, and cloud functions.
+Sales Assistant, Sow Wing Moulding Company
+
+Jan 2020 - Dec 2020
+
+Dealing with customers, payment, inventory management and customer service.
+
+EDUCATION
+Bachelor of Computer Science (Software Engineering) with Honours
+University of Malaysia Terengganu
+CGPA: 3.40
+
+2021 - 2025
+
+Foundation in STeM
+University of Malaysia Terengganu
+CGPA: 3.96
+
+2020 - 2021
+
+SPM
+SMK Taman Tasik, Taiping
+8A 1B
+
+2015 - 2019
+
+ADDITIONAL INFORMATION
+Languages & Frameworks:
+PHP, C#, Java, Python, ASP.NET, Spring Boot, React, CodeIgniter, Flask
+Web & APIs:
+RESTful APIs, Postman, HTML, CSS, JavaScript
+Databases:
+MySQL, PostgreSQL, SQL, Firebase, SSMS
+DevOps & Tools:
+Docker, Git, GitHub, Power Automate, Power BI, Rector, Google Colab, scikit-learn, ml.net,
+Google AI Studio, Gemini API Integration, Microsoft AI Builder
+System & Platforms:
+Window Server, Active Directory, Microsoft 365
+
+Languages: English, Malay, Thai
+Certifications: Artificial Intelligence Fundamentals (IBM SkillsBuild), Data Fundamentals (IBM
+SkillsBuild)
+Awards/Activities:
+Top 10 Best Debater, "Debat Uniti Keluarga Malaysia, Piala YB Menteri Perpaduan 2022".
+Champion and Best Debater, UMT Vice Chancellor Cup Debate Competition 2022.
+Google Developer Fest, Georgetown [LangChain, Vertex AI, SQL and GenAI with Firebase
+Data, Fundamentals of Flutter]
+Endurance running, trail races, futsal
+
+
