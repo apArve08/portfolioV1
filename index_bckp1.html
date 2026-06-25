@@ -42,10 +42,10 @@
         </p>
         <div class="hero-cta">
           <a href="#projects" class="btn btn-primary">View Projects</a>
-          <a href="https://aparve08.github.io/portfolio2026/" target="_blank" rel="noopener" class="btn btn-ghost">Portfolio Site</a>
+          <a href="https://www.linkedin.com/in/arveend-phraseart-ma-noon-5942482a7/" target="_blank" rel="noopener" class="btn btn-ghost">Linkedin</a>
           <a href="Resume_arveend.pdf" download="Arveend_Resume.pdf" class="btn btn-ghost">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            <span>Resume</span>
+            <span> Resume</span>
           </a>
         </div>
       </div>
@@ -313,110 +313,12 @@
       <div class="container">
         <h2 class="section-title">Projects</h2>
 
-        <!-- Project Journey Timeline -->
-        <div class="journey" id="journey" aria-label="Project journey timeline">
-          <div class="journey-meta">
-            <span class="journey-label">PROJECT JOURNEY</span>
-            <span class="chart-legend">
-              <span class="legend-item"><span class="legend-dot dot-work"></span>Work</span>
-              <span class="legend-item"><span class="legend-dot dot-personal"></span>Personal</span>
-            </span>
-            <button id="journey-toggle" class="journey-toggle" type="button" aria-expanded="true" aria-controls="journey-body">
-              <span class="journey-toggle-label">Hide</span>
-              <span class="journey-toggle-chev" aria-hidden="true">–</span>
-            </button>
+        <!-- Project Timeline (auto-rendered from PROJECTS in script.js) -->
+        <div class="project-chart" aria-label="Project timeline">
+          <div class="chart-meta">
+            <span class="chart-label">PROJECT TIMELINE</span>
           </div>
-          <div class="journey-body" id="journey-body">
-
-          <div class="journey-axis" aria-hidden="true">
-            <span style="--at:0%">2023</span>
-            <span style="--at:33%">2024</span>
-            <span style="--at:66%">2025</span>
-            <span style="--at:100%">2026</span>
-          </div>
-
-          <div class="journey-track" id="journey-line">
-            <svg class="journey-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
-              <defs>
-                <linearGradient id="journey-grad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%"  stop-color="var(--border)"/>
-                  <stop offset="50%" stop-color="var(--fg-muted)"/>
-                  <stop offset="100%" stop-color="var(--border)"/>
-                </linearGradient>
-              </defs>
-              <!-- Path is drawn at runtime in script.js from the PROJECTS list. -->
-              <path id="journey-curve"
-                    d=""
-                    fill="none" stroke="url(#journey-grad)" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-
-            <ol class="journey-nodes">
-              <li class="journey-node" data-project="P4" data-year="Jan 2023 — Jun 2024" data-name="Cross-Platform Mobile App" style="--cx:8%; --cy:6%;">
-                <span class="journey-dot dot-personal" aria-hidden="true"></span>
-                <span class="journey-year">2023–24</span>
-                <div class="journey-card">
-                  <span class="journey-title">Cross-Platform Mobile App</span>
-                  <span class="journey-tag">P4 · Freelance</span>
-                </div>
-              </li>
-
-              <li class="journey-node" data-project="P5" data-year="4 weeks · 2026" data-name="Local AI Evaluator & RAG Pipeline" style="--cx:85%; --cy:20%;">
-                <span class="journey-dot dot-personal" aria-hidden="true"></span>
-                <span class="journey-year">2026</span>
-                <div class="journey-card">
-                  <span class="journey-title">Local AI Evaluator &amp; RAG</span>
-                  <span class="journey-tag">P5 · Personal</span>
-                </div>
-              </li>
-
-              <li class="journey-node" data-project="P6" data-year="4 weeks · 2026" data-name="Distributed Cache-Aside System" style="--cx:15%; --cy:34%;">
-                <span class="journey-dot dot-personal" aria-hidden="true"></span>
-                <span class="journey-year">2026</span>
-                <div class="journey-card">
-                  <span class="journey-title">Distributed Cache-Aside</span>
-                  <span class="journey-tag">P6 · Personal</span>
-                </div>
-              </li>
-
-              <li class="journey-node" data-project="P2" data-year="Aug 2024 — Jan 2025" data-name="IT Request System Management" style="--cx:78%; --cy:49%;">
-                <span class="journey-dot dot-work" aria-hidden="true"></span>
-                <span class="journey-year">2024–25</span>
-                <div class="journey-card">
-                  <span class="journey-title">IT Request System</span>
-                  <span class="journey-tag">P2 · Spritzer Berhad</span>
-                </div>
-              </li>
-
-              <li class="journey-node" data-project="P7" data-year="2026 — Present" data-name="RunTrack" style="--cx:12%; --cy:63%;">
-                <span class="journey-dot dot-personal" aria-hidden="true"></span>
-                <span class="journey-year">2026→</span>
-                <div class="journey-card">
-                  <span class="journey-title">RunTrack — Running Analytics</span>
-                  <span class="journey-tag">P7 · Personal · AI</span>
-                </div>
-              </li>
-
-              <li class="journey-node" data-project="P1" data-year="Jul 2025 — Mar 2026" data-name="E-Appraisal System" style="--cx:80%; --cy:77%;">
-                <span class="journey-dot dot-work" aria-hidden="true"></span>
-                <span class="journey-year">2025–26</span>
-                <div class="journey-card">
-                  <span class="journey-title">E-Appraisal System</span>
-                  <span class="journey-tag">P1 · YBS International</span>
-                </div>
-              </li>
-
-              <li class="journey-node" data-project="P3" data-year="Jul 2025 — Mar 2026" data-name="IT Asset Management System" style="--cx:18%; --cy:92%;">
-                <span class="journey-dot dot-work" aria-hidden="true"></span>
-                <span class="journey-year">2025–26</span>
-                <div class="journey-card">
-                  <span class="journey-title">IT Asset Management</span>
-                  <span class="journey-tag">P3 · YBS International</span>
-                </div>
-              </li>
-            </ol>
-          </div>
-          </div>
+          <ol class="ptimeline" id="ptimeline"></ol>
         </div>
 
         <div class="projects-grid">
@@ -445,9 +347,7 @@
               <div class="details-inner">
                 <div class="tab-bar" role="tablist">
                   <button class="tab-btn is-active" role="tab" aria-selected="true" data-tab="overview">Overview</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="architecture">Architecture</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="problem">Problem</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="solution">Solution</button>
+                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="arch">Architecture</button>
                   <button class="tab-btn" role="tab" aria-selected="false" data-tab="readme">README</button>
                 </div>
                 <div class="tab-panel is-active" data-panel="overview">
@@ -480,81 +380,7 @@
                     <li>Next.js</li><li>FastAPI</li><li>Supabase</li><li>Gemini Flash</li><li>Vercel</li><li>Mapbox</li><li>Leaflet</li><li>Strava API</li><li>Suunto API</li>
                   </ul>
                 </div>
-                <div class="tab-panel" data-panel="architecture" hidden>
-                  <h4>System Architecture</h4>
-                  <div class="arch-diagram">
-                    <svg viewBox="0 0 720 360" role="img" aria-label="RunTrack architecture diagram">
-                      <text class="arch-section-label" x="20" y="24">CLIENT</text>
-                      <text class="arch-section-label" x="20" y="124">BACKEND</text>
-                      <text class="arch-section-label" x="20" y="244">DATA / EXTERNAL</text>
-
-                      <rect class="arch-box" x="20" y="38" width="120" height="58" rx="6"/>
-                      <text class="arch-text" x="80" y="64" text-anchor="middle">Next.js SPA</text>
-                      <text class="arch-text-muted" x="80" y="80" text-anchor="middle">Vercel · Mapbox</text>
-
-                      <rect class="arch-box" x="160" y="38" width="120" height="58" rx="6"/>
-                      <text class="arch-text" x="220" y="64" text-anchor="middle">Mobile Browser</text>
-                      <text class="arch-text-muted" x="220" y="80" text-anchor="middle">Map · Charts</text>
-
-                      <rect class="arch-box" x="20" y="138" width="140" height="58" rx="6"/>
-                      <text class="arch-text" x="90" y="164" text-anchor="middle">FastAPI</text>
-                      <text class="arch-text-muted" x="90" y="180" text-anchor="middle">Ingestion · API</text>
-
-                      <rect class="arch-box" x="180" y="138" width="140" height="58" rx="6"/>
-                      <text class="arch-text" x="250" y="164" text-anchor="middle">Analysis Worker</text>
-                      <text class="arch-text-muted" x="250" y="180" text-anchor="middle">Gemini Flash prompts</text>
-
-                      <rect class="arch-box-soft" x="340" y="138" width="160" height="58" rx="6"/>
-                      <text class="arch-text" x="420" y="164" text-anchor="middle">Supabase Auth</text>
-                      <text class="arch-text-muted" x="420" y="180" text-anchor="middle">JWT · RLS</text>
-
-                      <rect class="arch-box" x="20" y="258" width="140" height="58" rx="6"/>
-                      <text class="arch-text" x="90" y="284" text-anchor="middle">Postgres</text>
-                      <text class="arch-text-muted" x="90" y="300" text-anchor="middle">activities · runs</text>
-
-                      <rect class="arch-box" x="180" y="258" width="140" height="58" rx="6"/>
-                      <text class="arch-text" x="250" y="284" text-anchor="middle">Object Storage</text>
-                      <text class="arch-text-muted" x="250" y="300" text-anchor="middle">GPX / FIT files</text>
-
-                      <rect class="arch-box" x="340" y="258" width="140" height="58" rx="6"/>
-                      <text class="arch-text" x="410" y="284" text-anchor="middle">Strava API</text>
-                      <text class="arch-text-muted" x="410" y="300" text-anchor="middle">OAuth · webhooks</text>
-
-                      <rect class="arch-box" x="500" y="258" width="140" height="58" rx="6"/>
-                      <text class="arch-text" x="570" y="284" text-anchor="middle">Suunto API</text>
-                      <text class="arch-text-muted" x="570" y="300" text-anchor="middle">OAuth · pull</text>
-
-                      <line class="arch-arrow" x1="80" y1="96" x2="90" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="220" y1="96" x2="170" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="160" y1="167" x2="340" y2="167" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="90" y1="196" x2="90" y2="258" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="250" y1="196" x2="250" y2="258" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="160" y1="287" x2="180" y2="287" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="320" y1="287" x2="340" y2="287" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="480" y1="287" x2="500" y2="287" marker-end="url(#arch-arrow-head)"/>
-                    </svg>
-                  </div>
-                </div>
-                <div class="tab-panel" data-panel="problem" hidden>
-                  <div class="callout">
-                    <span class="callout-label">Problem</span>
-                    <span class="callout-title">Raw activity data without actionable training insight</span>
-                    <div class="callout-body">
-                      <p>Strava and Suunto produce rich streams of pace, heart rate, elevation and cadence — but their built-in analytics stop at charts and segments. Runners who actually want to train smarter (not just log miles) are left stitching together their own interpretations across multiple apps.</p>
-                      <p>The result: most recreational runners either under-train, over-train, or plateau without knowing why. Generic feedback loops that just say "good job" or "slow down" don't move the needle.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-panel" data-panel="solution" hidden>
-                  <div class="callout">
-                    <span class="callout-label">Solution</span>
-                    <span class="callout-title">One analytics layer that turns streams into personalised insight</span>
-                    <div class="callout-body">
-                      <p>RunTrack normalises activity streams from Strava and Suunto into a single schema, then layers an LLM-driven analysis (Gemini Flash) over the data to produce per-run insight, weekly progress reports, PR detection and tailored training schedules.</p>
-                      <p>The Next.js front-end focuses on map-heavy UX (Mapbox + Leaflet) and dashboards that answer questions runners actually ask — not just display numbers.</p>
-                    </div>
-                  </div>
-                </div>
+                <div class="tab-panel" data-panel="arch" hidden></div>
                 <div class="tab-panel" data-panel="readme" hidden>
                   <h4>Screenshots</h4>
                   <div class="image-gallery">
@@ -633,9 +459,7 @@ into actionable training insight.
               <div class="details-inner">
                 <div class="tab-bar" role="tablist">
                   <button class="tab-btn is-active" role="tab" aria-selected="true" data-tab="overview">Overview</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="architecture">Architecture</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="problem">Problem</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="solution">Solution</button>
+                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="arch">Architecture</button>
                   <button class="tab-btn" role="tab" aria-selected="false" data-tab="readme">README</button>
                 </div>
                 <div class="tab-panel is-active" data-panel="overview">
@@ -661,90 +485,7 @@ into actionable training insight.
                     <li>Python</li><li>pgvector</li><li>Ollama</li><li>Next.js</li>
                   </ul>
                 </div>
-                <div class="tab-panel" data-panel="architecture" hidden>
-                  <h4>System Architecture</h4>
-                  <div class="arch-diagram">
-                    <svg viewBox="0 0 720 380" role="img" aria-label="Local RAG pipeline architecture">
-                      <text class="arch-section-label" x="20" y="24">INGESTION</text>
-                      <text class="arch-section-label" x="20" y="134">EMBEDDING / LLM</text>
-                      <text class="arch-section-label" x="20" y="244">QUERY &amp; EVAL</text>
-
-                      <rect class="arch-box" x="20" y="38" width="120" height="58" rx="6"/>
-                      <text class="arch-text" x="80" y="64" text-anchor="middle">Source Docs</text>
-                      <text class="arch-text-muted" x="80" y="80" text-anchor="middle">PDF · Markdown</text>
-
-                      <rect class="arch-box" x="160" y="38" width="140" height="58" rx="6"/>
-                      <text class="arch-text" x="230" y="64" text-anchor="middle">Chunker</text>
-                      <text class="arch-text-muted" x="230" y="80" text-anchor="middle">Recursive splitter</text>
-
-                      <rect class="arch-box" x="320" y="38" width="160" height="58" rx="6"/>
-                      <text class="arch-text" x="400" y="64" text-anchor="middle">Embedder</text>
-                      <text class="arch-text-muted" x="400" y="80" text-anchor="middle">Ollama · nomic-embed</text>
-
-                      <rect class="arch-box" x="500" y="38" width="160" height="58" rx="6"/>
-                      <text class="arch-text" x="580" y="64" text-anchor="middle">pgvector</text>
-                      <text class="arch-text-muted" x="580" y="80" text-anchor="middle">Cosine / L2 search</text>
-
-                      <rect class="arch-box" x="20" y="148" width="160" height="58" rx="6"/>
-                      <text class="arch-text" x="100" y="174" text-anchor="middle">Local LLM Pool</text>
-                      <text class="arch-text-muted" x="100" y="190" text-anchor="middle">Llama · Mistral · Qwen</text>
-
-                      <rect class="arch-box-soft" x="200" y="148" width="160" height="58" rx="6"/>
-                      <text class="arch-text" x="280" y="174" text-anchor="middle">Retrieval</text>
-                      <text class="arch-text-muted" x="280" y="190" text-anchor="middle">Top-k context</text>
-
-                      <rect class="arch-box" x="380" y="148" width="160" height="58" rx="6"/>
-                      <text class="arch-text" x="460" y="174" text-anchor="middle">Prompt Builder</text>
-                      <text class="arch-text-muted" x="460" y="190" text-anchor="middle">Context + query</text>
-
-                      <rect class="arch-box" x="20" y="258" width="160" height="58" rx="6"/>
-                      <text class="arch-text" x="100" y="284" text-anchor="middle">Test Prompts</text>
-                      <text class="arch-text-muted" x="100" y="300" text-anchor="middle">Eval dataset</text>
-
-                      <rect class="arch-box" x="200" y="258" width="160" height="58" rx="6"/>
-                      <text class="arch-text" x="280" y="284" text-anchor="middle">Benchmark Loop</text>
-                      <text class="arch-text-muted" x="280" y="300" text-anchor="middle">Concurrency · timing</text>
-
-                      <rect class="arch-box" x="380" y="258" width="160" height="58" rx="6"/>
-                      <text class="arch-text" x="460" y="284" text-anchor="middle">Eval Logger</text>
-                      <text class="arch-text-muted" x="460" y="300" text-anchor="middle">JSONL · metrics</text>
-
-                      <rect class="arch-box" x="560" y="258" width="120" height="58" rx="6"/>
-                      <text class="arch-text" x="620" y="284" text-anchor="middle">Dashboard</text>
-                      <text class="arch-text-muted" x="620" y="300" text-anchor="middle">Next.js UI</text>
-
-                      <line class="arch-arrow" x1="140" y1="67" x2="160" y2="67" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="300" y1="67" x2="320" y2="67" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="480" y1="67" x2="500" y2="67" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="580" y1="96" x2="280" y2="148" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="100" y1="206" x2="220" y2="258" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="460" y1="206" x2="460" y2="258" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="100" y1="287" x2="200" y2="287" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="360" y1="287" x2="380" y2="287" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="540" y1="287" x2="560" y2="287" marker-end="url(#arch-arrow-head)"/>
-                    </svg>
-                  </div>
-                </div>
-                <div class="tab-panel" data-panel="problem" hidden>
-                  <div class="callout">
-                    <span class="callout-label">Problem</span>
-                    <span class="callout-title">Evaluating local LLMs against your own documents is manual and noisy</span>
-                    <div class="callout-body">
-                      <p>Open-source LLMs change every month. Picking the right one for retrieval-augmented generation over a private document set is guesswork: hosted evals are slow, expensive, and force your data through third-party infrastructure.</p>
-                      <p>There's no easy way to compare models on the same retrieval task, on your own machine, with consistent chunking and embedding settings — which makes the chunking choices themselves hard to reason about.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-panel" data-panel="solution" hidden>
-                  <div class="callout">
-                    <span class="callout-label">Solution</span>
-                    <span class="callout-title">A local, reproducible RAG eval harness with pgvector at the core</span>
-                    <div class="callout-body">
-                      <p>A Python ingestion pipeline chunks documents (recursive splitter) and embeds them with Ollama-hosted nomic-embed-text. Embeddings land in pgvector for cosine/L2 retrieval, and a concurrent benchmark loop runs the same prompts against every local model in the pool, logging latency and token-rate metrics to JSONL.</p>
-                      <p>A Next.js dashboard surfaces those metrics live — so model, chunking, and embedding choices become measurable instead of vibes.</p>
-                    </div>
-                  </div>
-                </div>
+                <div class="tab-panel" data-panel="arch" hidden></div>
                 <div class="tab-panel" data-panel="readme" hidden>
                   <h4>Screenshots</h4>
                   <div class="image-gallery">
@@ -807,9 +548,7 @@ open-source LLMs against your own documents.
               <div class="details-inner">
                 <div class="tab-bar" role="tablist">
                   <button class="tab-btn is-active" role="tab" aria-selected="true" data-tab="overview">Overview</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="architecture">Architecture</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="problem">Problem</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="solution">Solution</button>
+                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="arch">Architecture</button>
                   <button class="tab-btn" role="tab" aria-selected="false" data-tab="readme">README</button>
                 </div>
                 <div class="tab-panel is-active" data-panel="overview">
@@ -835,76 +574,7 @@ open-source LLMs against your own documents.
                     <li>Node.js</li><li>Redis</li><li>PostgreSQL</li><li>k6</li>
                   </ul>
                 </div>
-                <div class="tab-panel" data-panel="architecture" hidden>
-                  <h4>System Architecture</h4>
-                  <div class="arch-diagram">
-                    <svg viewBox="0 0 720 320" role="img" aria-label="Distributed cache-aside architecture">
-                      <text class="arch-section-label" x="20" y="24">CLIENTS</text>
-                      <text class="arch-section-label" x="20" y="124">APP / MIDDLEWARE</text>
-                      <text class="arch-section-label" x="20" y="244">DATA</text>
-
-                      <rect class="arch-box" x="20" y="38" width="140" height="58" rx="6"/>
-                      <text class="arch-text" x="90" y="64" text-anchor="middle">HTTP Clients</text>
-                      <text class="arch-text-muted" x="90" y="80" text-anchor="middle">Read-heavy workload</text>
-
-                      <rect class="arch-box" x="180" y="38" width="140" height="58" rx="6"/>
-                      <text class="arch-text" x="250" y="64" text-anchor="middle">Write Path</text>
-                      <text class="arch-text-muted" x="250" y="80" text-anchor="middle">POST · PUT · DELETE</text>
-
-                      <rect class="arch-box" x="20" y="138" width="180" height="58" rx="6"/>
-                      <text class="arch-text" x="110" y="164" text-anchor="middle">Express API</text>
-                      <text class="arch-text-muted" x="110" y="180" text-anchor="middle">Route · validate</text>
-
-                      <rect class="arch-box" x="220" y="138" width="220" height="58" rx="6"/>
-                      <text class="arch-text" x="330" y="164" text-anchor="middle">Cache-Aside Middleware</text>
-                      <text class="arch-text-muted" x="330" y="180" text-anchor="middle">get → set · TTL</text>
-
-                      <rect class="arch-box" x="460" y="138" width="200" height="58" rx="6"/>
-                      <text class="arch-text" x="560" y="164" text-anchor="middle">Invalidation Service</text>
-                      <text class="arch-text-muted" x="560" y="180" text-anchor="middle">Tx-bound evictions</text>
-
-                      <rect class="arch-box" x="20" y="258" width="200" height="58" rx="6"/>
-                      <text class="arch-text" x="120" y="284" text-anchor="middle">Redis 7</text>
-                      <text class="arch-text-muted" x="120" y="300" text-anchor="middle">Read-through cache</text>
-
-                      <rect class="arch-box" x="240" y="258" width="200" height="58" rx="6"/>
-                      <text class="arch-text" x="340" y="284" text-anchor="middle">PostgreSQL 16</text>
-                      <text class="arch-text-muted" x="340" y="300" text-anchor="middle">System of record</text>
-
-                      <rect class="arch-box" x="460" y="258" width="200" height="58" rx="6"/>
-                      <text class="arch-text" x="560" y="284" text-anchor="middle">k6 Load Driver</text>
-                      <text class="arch-text-muted" x="560" y="300" text-anchor="middle">Latency · throughput</text>
-
-                      <line class="arch-arrow" x1="90" y1="96" x2="110" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="250" y1="96" x2="540" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="200" y1="167" x2="220" y2="167" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="440" y1="167" x2="460" y2="167" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="330" y1="196" x2="120" y2="258" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="120" y1="287" x2="240" y2="287" marker-end="url(#arch-arrow-head)" stroke-dasharray="3 3"/>
-                      <line class="arch-arrow" x1="560" y1="196" x2="340" y2="258" marker-end="url(#arch-arrow-head)" stroke-dasharray="3 3"/>
-                    </svg>
-                  </div>
-                </div>
-                <div class="tab-panel" data-panel="problem" hidden>
-                  <div class="callout">
-                    <span class="callout-label">Problem</span>
-                    <span class="callout-title">Read-heavy traffic saturates the relational database</span>
-                    <div class="callout-body">
-                      <p>A single PostgreSQL instance serving thousands of concurrent reads becomes the bottleneck — query latency climbs, connections pool out, and write traffic gets queued behind long-running reads.</p>
-                      <p>Naively dropping Redis in front introduces a worse problem: stale data. Without atomic invalidation, the cache and database drift apart silently, and bugs only show up when a customer notices.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-panel" data-panel="solution" hidden>
-                  <div class="callout">
-                    <span class="callout-label">Solution</span>
-                    <span class="callout-title">Cache-Aside with atomic invalidation inside the DB transaction</span>
-                    <div class="callout-body">
-                      <p>An Express middleware intercepts every read: hit Redis first, fall back to Postgres on miss and populate the cache with a TTL. The write path wraps SQL updates and Redis evictions in the same database transaction so the cache cannot diverge from the source of truth.</p>
-                      <p>k6 load matrices quantify the gain — thousands of virtual users with stable p95 latency — proving the cache pattern actually holds under contention.</p>
-                    </div>
-                  </div>
-                </div>
+                <div class="tab-panel" data-panel="arch" hidden></div>
                 <div class="tab-panel" data-panel="readme" hidden>
                   <h4>Screenshots</h4>
                   <div class="image-gallery">
@@ -974,9 +644,7 @@ PostgreSQL-backed store fronted by Redis with atomic invalidation.
               <div class="details-inner">
                 <div class="tab-bar" role="tablist">
                   <button class="tab-btn is-active" role="tab" aria-selected="true" data-tab="overview">Overview</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="architecture">Architecture</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="problem">Problem</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="solution">Solution</button>
+                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="arch">Architecture</button>
                   <button class="tab-btn" role="tab" aria-selected="false" data-tab="readme">README</button>
                 </div>
                 <div class="tab-panel is-active" data-panel="overview">
@@ -996,80 +664,7 @@ PostgreSQL-backed store fronted by Redis with atomic invalidation.
                     <li>PHP</li><li>MySQL</li><li>REST APIs</li><li>Docker</li><li>Git</li>
                   </ul>
                 </div>
-                <div class="tab-panel" data-panel="architecture" hidden>
-                  <h4>System Architecture</h4>
-                  <div class="arch-diagram">
-                    <svg viewBox="0 0 720 340" role="img" aria-label="E-Appraisal architecture">
-                      <text class="arch-section-label" x="20" y="24">USERS</text>
-                      <text class="arch-section-label" x="20" y="124">APP LAYER</text>
-                      <text class="arch-section-label" x="20" y="254">DATA</text>
-
-                      <rect class="arch-box" x="20" y="38" width="120" height="58" rx="6"/>
-                      <text class="arch-text" x="80" y="64" text-anchor="middle">Staff</text>
-                      <text class="arch-text-muted" x="80" y="80" text-anchor="middle">Self-review</text>
-
-                      <rect class="arch-box" x="160" y="38" width="120" height="58" rx="6"/>
-                      <text class="arch-text" x="220" y="64" text-anchor="middle">Managers</text>
-                      <text class="arch-text-muted" x="220" y="80" text-anchor="middle">Score · approve</text>
-
-                      <rect class="arch-box" x="300" y="38" width="120" height="58" rx="6"/>
-                      <text class="arch-text" x="360" y="64" text-anchor="middle">HR Admin</text>
-                      <text class="arch-text-muted" x="360" y="80" text-anchor="middle">Cycle · reports</text>
-
-                      <rect class="arch-box" x="20" y="138" width="200" height="58" rx="6"/>
-                      <text class="arch-text" x="120" y="164" text-anchor="middle">PHP Web App</text>
-                      <text class="arch-text-muted" x="120" y="180" text-anchor="middle">Server-rendered UI</text>
-
-                      <rect class="arch-box" x="240" y="138" width="220" height="58" rx="6"/>
-                      <text class="arch-text" x="350" y="164" text-anchor="middle">RBAC Layer</text>
-                      <text class="arch-text-muted" x="350" y="180" text-anchor="middle">Staff · Mgr · HR</text>
-
-                      <rect class="arch-box" x="480" y="138" width="200" height="58" rx="6"/>
-                      <text class="arch-text" x="580" y="164" text-anchor="middle">REST APIs</text>
-                      <text class="arch-text-muted" x="580" y="180" text-anchor="middle">Internal integrations</text>
-
-                      <rect class="arch-box" x="20" y="268" width="200" height="58" rx="6"/>
-                      <text class="arch-text" x="120" y="294" text-anchor="middle">MySQL</text>
-                      <text class="arch-text-muted" x="120" y="310" text-anchor="middle">Cycles · reviews · users</text>
-
-                      <rect class="arch-box" x="240" y="268" width="200" height="58" rx="6"/>
-                      <text class="arch-text" x="340" y="294" text-anchor="middle">Audit Log</text>
-                      <text class="arch-text-muted" x="340" y="310" text-anchor="middle">HR-grade history</text>
-
-                      <rect class="arch-box" x="460" y="268" width="220" height="58" rx="6"/>
-                      <text class="arch-text" x="570" y="294" text-anchor="middle">Docker Host</text>
-                      <text class="arch-text-muted" x="570" y="310" text-anchor="middle">App + DB containers</text>
-
-                      <line class="arch-arrow" x1="80" y1="96" x2="120" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="220" y1="96" x2="140" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="360" y1="96" x2="160" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="220" y1="167" x2="240" y2="167" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="460" y1="167" x2="480" y2="167" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="350" y1="196" x2="120" y2="268" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="580" y1="196" x2="340" y2="268" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="120" y1="297" x2="460" y2="297" marker-end="url(#arch-arrow-head)" stroke-dasharray="3 3"/>
-                    </svg>
-                  </div>
-                </div>
-                <div class="tab-panel" data-panel="problem" hidden>
-                  <div class="callout">
-                    <span class="callout-label">Problem</span>
-                    <span class="callout-title">Appraisal cycles tracked in spreadsheets and email threads</span>
-                    <div class="callout-body">
-                      <p>Across multiple plants, performance appraisals were run through a mix of Excel templates, shared inboxes, and paper forms. HR couldn't see cycle status in real time, scoring was inconsistent between managers, and audit history was effectively lost the moment a form was submitted.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-panel" data-panel="solution" hidden>
-                  <div class="callout">
-                    <span class="callout-label">Solution</span>
-                    <span class="callout-title">Centralised PHP/ MySQL appraisal workflow with role-based access</span>
-                    <div class="callout-body">
-                      <p>A PHP web application backed by a normalised MySQL schema gives every role (staff, manager, HR admin) exactly the views they need. Configurable appraisal cycles, structured review forms, and an append-only audit log make scores comparable across plants and recoverable on demand.</p>
-                      <p>Containerised deployment through Docker means new plants can be onboarded with a single compose-up rather than a hand-rolled install.</p>
-                    </div>
-                  </div>
-                </div>
+                <div class="tab-panel" data-panel="arch" hidden></div>
                 <div class="tab-panel" data-panel="readme" hidden>
                   <h4>Screenshots</h4>
                   <div class="image-gallery">
@@ -1127,9 +722,7 @@ cycles at YBS International Berhad.
               <div class="details-inner">
                 <div class="tab-bar" role="tablist">
                   <button class="tab-btn is-active" role="tab" aria-selected="true" data-tab="overview">Overview</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="architecture">Architecture</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="problem">Problem</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="solution">Solution</button>
+                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="arch">Architecture</button>
                   <button class="tab-btn" role="tab" aria-selected="false" data-tab="readme">README</button>
                 </div>
                 <div class="tab-panel is-active" data-panel="overview">
@@ -1150,95 +743,7 @@ cycles at YBS International Berhad.
                     <li>React</li><li>TypeScript</li><li>ASP.NET</li><li>C#</li><li>Power Automate</li><li>scikit-learn</li><li>ML.NET</li><li>Power BI</li>
                   </ul>
                 </div>
-                <div class="tab-panel" data-panel="architecture" hidden>
-                  <h4>System Architecture</h4>
-                  <div class="arch-diagram">
-                    <svg viewBox="0 0 720 360" role="img" aria-label="IT Request System architecture">
-                      <text class="arch-section-label" x="20" y="24">USERS / PLANTS</text>
-                      <text class="arch-section-label" x="20" y="124">APP LAYER</text>
-                      <text class="arch-section-label" x="20" y="254">ML · AUTOMATION · DATA</text>
-
-                      <rect class="arch-box" x="20" y="38" width="100" height="58" rx="6"/>
-                      <text class="arch-text" x="70" y="64" text-anchor="middle">Plant A</text>
-                      <text class="arch-text-muted" x="70" y="80" text-anchor="middle">staff</text>
-
-                      <rect class="arch-box" x="140" y="38" width="100" height="58" rx="6"/>
-                      <text class="arch-text" x="190" y="64" text-anchor="middle">Plant B</text>
-                      <text class="arch-text-muted" x="190" y="80" text-anchor="middle">staff</text>
-
-                      <rect class="arch-box" x="260" y="38" width="100" height="58" rx="6"/>
-                      <text class="arch-text" x="310" y="64" text-anchor="middle">Plant C</text>
-                      <text class="arch-text-muted" x="310" y="80" text-anchor="middle">staff</text>
-
-                      <rect class="arch-box" x="380" y="38" width="120" height="58" rx="6"/>
-                      <text class="arch-text" x="440" y="64" text-anchor="middle">IT Helpdesk</text>
-                      <text class="arch-text-muted" x="440" y="80" text-anchor="middle">triage · close</text>
-
-                      <rect class="arch-box" x="520" y="38" width="160" height="58" rx="6"/>
-                      <text class="arch-text" x="600" y="64" text-anchor="middle">Power BI</text>
-                      <text class="arch-text-muted" x="600" y="80" text-anchor="middle">Reports · Excel</text>
-
-                      <rect class="arch-box" x="20" y="138" width="240" height="58" rx="6"/>
-                      <text class="arch-text" x="140" y="164" text-anchor="middle">React + TS Frontend</text>
-                      <text class="arch-text-muted" x="140" y="180" text-anchor="middle">Ticket forms</text>
-
-                      <rect class="arch-box" x="280" y="138" width="200" height="58" rx="6"/>
-                      <text class="arch-text" x="380" y="164" text-anchor="middle">ASP.NET / C# API</text>
-                      <text class="arch-text-muted" x="380" y="180" text-anchor="middle">Business logic</text>
-
-                      <rect class="arch-box" x="500" y="138" width="180" height="58" rx="6"/>
-                      <text class="arch-text" x="590" y="164" text-anchor="middle">ManageEngine</text>
-                      <text class="arch-text-muted" x="590" y="180" text-anchor="middle">REST integration</text>
-
-                      <rect class="arch-box" x="20" y="268" width="180" height="58" rx="6"/>
-                      <text class="arch-text" x="110" y="294" text-anchor="middle">ML Auto-fill</text>
-                      <text class="arch-text-muted" x="110" y="310" text-anchor="middle">scikit-learn · ML.NET</text>
-
-                      <rect class="arch-box" x="220" y="268" width="180" height="58" rx="6"/>
-                      <text class="arch-text" x="310" y="294" text-anchor="middle">Power Automate</text>
-                      <text class="arch-text-muted" x="310" y="310" text-anchor="middle">Approval · routing</text>
-
-                      <rect class="arch-box" x="420" y="268" width="160" height="58" rx="6"/>
-                      <text class="arch-text" x="500" y="294" text-anchor="middle">Ticket Store</text>
-                      <text class="arch-text-muted" x="500" y="310" text-anchor="middle">ManageEngine</text>
-
-                      <rect class="arch-box-soft" x="600" y="268" width="80" height="58" rx="6"/>
-                      <text class="arch-text" x="640" y="294" text-anchor="middle">Audit</text>
-                      <text class="arch-text-muted" x="640" y="310" text-anchor="middle">log</text>
-
-                      <line class="arch-arrow" x1="70" y1="96" x2="140" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="190" y1="96" x2="160" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="310" y1="96" x2="180" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="440" y1="96" x2="340" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="600" y1="96" x2="590" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="260" y1="167" x2="280" y2="167" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="480" y1="167" x2="500" y2="167" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="380" y1="196" x2="110" y2="268" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="380" y1="196" x2="310" y2="268" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="590" y1="196" x2="500" y2="268" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="580" y1="297" x2="600" y2="297" marker-end="url(#arch-arrow-head)"/>
-                    </svg>
-                  </div>
-                </div>
-                <div class="tab-panel" data-panel="problem" hidden>
-                  <div class="callout">
-                    <span class="callout-label">Problem</span>
-                    <span class="callout-title">Inconsistent ticket data across plants blocks reporting and routing</span>
-                    <div class="callout-body">
-                      <p>With IT support spread across three manufacturing plants and an existing ManageEngine instance, tickets came in with wildly inconsistent fields — missing categories, wrong request types, free-text descriptions where a structured value was needed. That noise propagated into Power BI dashboards and made routing rules unreliable.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-panel" data-panel="solution" hidden>
-                  <div class="callout">
-                    <span class="callout-label">Solution</span>
-                    <span class="callout-title">React UI + C# integration + ML auto-fill on the write path</span>
-                    <div class="callout-body">
-                      <p>A React + TypeScript front-end gives staff a clean ticket form. An ASP.NET / C# service proxies ManageEngine's REST API and triggers Power Automate flows for approval and routing. On every write, a scikit-learn / ML.NET model predicts the most likely values for missing or suspect fields, dramatically reducing data inconsistencies before they hit the warehouse.</p>
-                      <p>The result: Power BI dashboards that actually reflect reality and rules that route tickets to the right queue the first time.</p>
-                    </div>
-                  </div>
-                </div>
+                <div class="tab-panel" data-panel="arch" hidden></div>
                 <div class="tab-panel" data-panel="readme" hidden>
                   <h4>Screenshots</h4>
                   <div class="image-gallery">
@@ -1301,9 +806,7 @@ at Spritzer Berhad.
               <div class="details-inner">
                 <div class="tab-bar" role="tablist">
                   <button class="tab-btn is-active" role="tab" aria-selected="true" data-tab="overview">Overview</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="architecture">Architecture</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="problem">Problem</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="solution">Solution</button>
+                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="arch">Architecture</button>
                   <button class="tab-btn" role="tab" aria-selected="false" data-tab="readme">README</button>
                 </div>
                 <div class="tab-panel is-active" data-panel="overview">
@@ -1323,87 +826,7 @@ at Spritzer Berhad.
                     <li>PHP</li><li>MySQL</li><li>REST APIs</li><li>Docker</li><li>Git</li>
                   </ul>
                 </div>
-                <div class="tab-panel" data-panel="architecture" hidden>
-                  <h4>System Architecture</h4>
-                  <div class="arch-diagram">
-                    <svg viewBox="0 0 720 340" role="img" aria-label="IT Asset Management architecture">
-                      <text class="arch-section-label" x="20" y="24">USERS</text>
-                      <text class="arch-section-label" x="20" y="124">APP LAYER</text>
-                      <text class="arch-section-label" x="20" y="254">DATA</text>
-
-                      <rect class="arch-box" x="20" y="38" width="120" height="58" rx="6"/>
-                      <text class="arch-text" x="80" y="64" text-anchor="middle">Asset Owners</text>
-                      <text class="arch-text-muted" x="80" y="80" text-anchor="middle">request · update</text>
-
-                      <rect class="arch-box" x="160" y="38" width="120" height="58" rx="6"/>
-                      <text class="arch-text" x="220" y="64" text-anchor="middle">IT Staff</text>
-                      <text class="arch-text-muted" x="220" y="80" text-anchor="middle">approve · assign</text>
-
-                      <rect class="arch-box" x="300" y="38" width="120" height="58" rx="6"/>
-                      <text class="arch-text" x="360" y="64" text-anchor="middle">Auditors</text>
-                      <text class="arch-text-muted" x="360" y="80" text-anchor="middle">read · export</text>
-
-                      <rect class="arch-box" x="440" y="38" width="240" height="58" rx="6"/>
-                      <text class="arch-text" x="560" y="64" text-anchor="middle">Ticketing System (P2)</text>
-                      <text class="arch-text-muted" x="560" y="80" text-anchor="middle">linked records</text>
-
-                      <rect class="arch-box" x="20" y="138" width="220" height="58" rx="6"/>
-                      <text class="arch-text" x="130" y="164" text-anchor="middle">PHP Web App</text>
-                      <text class="arch-text-muted" x="130" y="180" text-anchor="middle">CRUD · search</text>
-
-                      <rect class="arch-box" x="260" y="138" width="200" height="58" rx="6"/>
-                      <text class="arch-text" x="360" y="164" text-anchor="middle">REST APIs</text>
-                      <text class="arch-text-muted" x="360" y="180" text-anchor="middle">Internal contracts</text>
-
-                      <rect class="arch-box" x="480" y="138" width="200" height="58" rx="6"/>
-                      <text class="arch-text" x="580" y="164" text-anchor="middle">Lifecycle Engine</text>
-                      <text class="arch-text-muted" x="580" y="180" text-anchor="middle">status · warranty</text>
-
-                      <rect class="arch-box" x="20" y="268" width="200" height="58" rx="6"/>
-                      <text class="arch-text" x="120" y="294" text-anchor="middle">MySQL</text>
-                      <text class="arch-text-muted" x="120" y="310" text-anchor="middle">assets · assignments</text>
-
-                      <rect class="arch-box" x="240" y="268" width="200" height="58" rx="6"/>
-                      <text class="arch-text" x="340" y="294" text-anchor="middle">Audit History</text>
-                      <text class="arch-text-muted" x="340" y="310" text-anchor="middle">per-asset log</text>
-
-                      <rect class="arch-box" x="460" y="268" width="220" height="58" rx="6"/>
-                      <text class="arch-text" x="570" y="294" text-anchor="middle">Docker Host</text>
-                      <text class="arch-text-muted" x="570" y="310" text-anchor="middle">app + DB</text>
-
-                      <line class="arch-arrow" x1="80" y1="96" x2="130" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="220" y1="96" x2="160" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="360" y1="96" x2="170" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="560" y1="96" x2="360" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="240" y1="167" x2="260" y2="167" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="460" y1="167" x2="480" y2="167" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="130" y1="196" x2="120" y2="268" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="580" y1="196" x2="340" y2="268" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="120" y1="297" x2="240" y2="297" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="240" y1="297" x2="460" y2="297" marker-end="url(#arch-arrow-head)" stroke-dasharray="3 3"/>
-                    </svg>
-                  </div>
-                </div>
-                <div class="tab-panel" data-panel="problem" hidden>
-                  <div class="callout">
-                    <span class="callout-label">Problem</span>
-                    <span class="callout-title">No single source of truth for IT assets across plants</span>
-                    <div class="callout-body">
-                      <p>Asset records lived in scattered spreadsheets and personal files — laptops, monitors, network gear, peripherals. There was no reliable answer to "who has what right now?", warranty expirations slipped unnoticed, and asset write-offs were effectively untraceable.</p>
-                      <p>When IT tickets needed an asset context (e.g. "replace this laptop"), the link between ticket and inventory had to be reconstructed manually.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-panel" data-panel="solution" hidden>
-                  <div class="callout">
-                    <span class="callout-label">Solution</span>
-                    <span class="callout-title">Centralised relational inventory with lifecycle and audit history</span>
-                    <div class="callout-body">
-                      <p>A normalised MySQL schema models assets, assignments, locations and lifecycle states. A PHP front-end exposes CRUD workflows to asset owners and IT staff, with role-based access for auditors who only need read-only visibility.</p>
-                      <p>A lifecycle engine flags warranty expirations and end-of-life events, and every change writes to a per-asset audit log — so tickets, replacements, and write-offs are all traceable back to a single source of truth.</p>
-                    </div>
-                  </div>
-                </div>
+                <div class="tab-panel" data-panel="arch" hidden></div>
                 <div class="tab-panel" data-panel="readme" hidden>
                   <h4>Screenshots</h4>
                   <div class="image-gallery">
@@ -1461,9 +884,7 @@ manufacturing plants.
               <div class="details-inner">
                 <div class="tab-bar" role="tablist">
                   <button class="tab-btn is-active" role="tab" aria-selected="true" data-tab="overview">Overview</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="architecture">Architecture</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="problem">Problem</button>
-                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="solution">Solution</button>
+                  <button class="tab-btn" role="tab" aria-selected="false" data-tab="arch">Architecture</button>
                   <button class="tab-btn" role="tab" aria-selected="false" data-tab="readme">README</button>
                 </div>
                 <div class="tab-panel is-active" data-panel="overview">
@@ -1483,83 +904,7 @@ manufacturing plants.
                     <li>FlutterFlow</li><li>Firebase</li><li>Cloud Functions</li>
                   </ul>
                 </div>
-                <div class="tab-panel" data-panel="architecture" hidden>
-                  <h4>System Architecture</h4>
-                  <div class="arch-diagram">
-                    <svg viewBox="0 0 720 340" role="img" aria-label="FlutterFlow architecture">
-                      <text class="arch-section-label" x="20" y="24">CLIENTS</text>
-                      <text class="arch-section-label" x="20" y="124">FLUTTERFLOW APP</text>
-                      <text class="arch-section-label" x="20" y="254">FIREBASE BACKEND</text>
-
-                      <rect class="arch-box" x="20" y="38" width="160" height="58" rx="6"/>
-                      <text class="arch-text" x="100" y="64" text-anchor="middle">iOS App</text>
-                      <text class="arch-text-muted" x="100" y="80" text-anchor="middle">FlutterFlow build</text>
-
-                      <rect class="arch-box" x="200" y="38" width="160" height="58" rx="6"/>
-                      <text class="arch-text" x="280" y="64" text-anchor="middle">Android App</text>
-                      <text class="arch-text-muted" x="280" y="80" text-anchor="middle">FlutterFlow build</text>
-
-                      <rect class="arch-box" x="380" y="38" width="300" height="58" rx="6"/>
-                      <text class="arch-text" x="530" y="64" text-anchor="middle">Client Admin (Web)</text>
-                      <text class="arch-text-muted" x="530" y="80" text-anchor="middle">content · users</text>
-
-                      <rect class="arch-box" x="20" y="138" width="200" height="58" rx="6"/>
-                      <text class="arch-text" x="120" y="164" text-anchor="middle">Auth Flow</text>
-                      <text class="arch-text-muted" x="120" y="180" text-anchor="middle">login · session</text>
-
-                      <rect class="arch-box" x="240" y="138" width="200" height="58" rx="6"/>
-                      <text class="arch-text" x="340" y="164" text-anchor="middle">UI Screens</text>
-                      <text class="arch-text-muted" x="340" y="180" text-anchor="middle">lists · detail</text>
-
-                      <rect class="arch-box" x="460" y="138" width="220" height="58" rx="6"/>
-                      <text class="arch-text" x="570" y="164" text-anchor="middle">Action Triggers</text>
-                      <text class="arch-text-muted" x="570" y="180" text-anchor="middle">call Cloud Functions</text>
-
-                      <rect class="arch-box" x="20" y="268" width="180" height="58" rx="6"/>
-                      <text class="arch-text" x="110" y="294" text-anchor="middle">Firebase Auth</text>
-                      <text class="arch-text-muted" x="110" y="310" text-anchor="middle">Identity</text>
-
-                      <rect class="arch-box" x="220" y="268" width="200" height="58" rx="6"/>
-                      <text class="arch-text" x="320" y="294" text-anchor="middle">Realtime Database</text>
-                      <text class="arch-text-muted" x="320" y="310" text-anchor="middle">live state</text>
-
-                      <rect class="arch-box" x="440" y="268" width="200" height="58" rx="6"/>
-                      <text class="arch-text" x="540" y="294" text-anchor="middle">Cloud Functions</text>
-                      <text class="arch-text-muted" x="540" y="310" text-anchor="middle">server logic</text>
-
-                      <rect class="arch-box" x="660" y="268" width="40" height="58" rx="6"/>
-                      <text class="arch-text" x="680" y="298" text-anchor="middle">🔔</text>
-
-                      <line class="arch-arrow" x1="100" y1="96" x2="120" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="280" y1="96" x2="160" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="530" y1="96" x2="380" y2="138" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="220" y1="167" x2="240" y2="167" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="440" y1="167" x2="460" y2="167" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="120" y1="196" x2="110" y2="268" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="340" y1="196" x2="320" y2="268" marker-end="url(#arch-arrow-head)"/>
-                      <line class="arch-arrow" x1="570" y1="196" x2="540" y2="268" marker-end="url(#arch-arrow-head)"/>
-                    </svg>
-                  </div>
-                </div>
-                <div class="tab-panel" data-panel="problem" hidden>
-                  <div class="callout">
-                    <span class="callout-label">Problem</span>
-                    <span class="callout-title">A client needed a cross-platform mobile app on a tight freelance timeline</span>
-                    <div class="callout-body">
-                      <p>The client wanted an iOS and Android app with live data sync, authentication, and some server-side logic — without spinning up a custom backend or paying for a full native rewrite. The freelancer (me) had to ship something reliable without over-engineering the infrastructure.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-panel" data-panel="solution" hidden>
-                  <div class="callout">
-                    <span class="callout-label">Solution</span>
-                    <span class="callout-title">FlutterFlow for the UI, Firebase for everything behind it</span>
-                    <div class="callout-body">
-                      <p>FlutterFlow produced a single cross-platform codebase covering both stores. Firebase Authentication handled identity, the Realtime Database carried live state into the app, and Cloud Functions absorbed the small amount of backend logic (validation, notifications, integrations) without standing up a custom server.</p>
-                      <p>The result: a maintainable mobile app delivered on a freelance budget, with the client able to operate content through a simple web admin layer.</p>
-                    </div>
-                  </div>
-                </div>
+                <div class="tab-panel" data-panel="arch" hidden></div>
                 <div class="tab-panel" data-panel="readme" hidden>
                   <h4>Screenshots</h4>
                   <div class="image-gallery">
@@ -1626,16 +971,6 @@ with Firebase for backend services.
       <p class="mono">Designed in plain HTML &amp; CSS.</p>
     </div>
   </footer>
-
-  <!-- Shared SVG defs (arrow markers for architecture diagrams) -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <marker id="arch-arrow-head" viewBox="0 0 10 10" refX="8" refY="5"
-              markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-        <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"></path>
-      </marker>
-    </defs>
-  </svg>
 
   <!-- Lightbox (shared) -->
   <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
