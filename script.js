@@ -2,120 +2,182 @@
   const root = document.documentElement;
 
   // ============================================================
-  //   PROJECTS  —  single source of truth for the journey chart
+//   PROJECTS  —  single source of truth for the journey chart
   // ============================================================
   // Edit this list to add, remove, or reorder projects.
   // Each item controls:
   //   code    : short id used by the project card (e.g. "P4")
-  //   year    : date string shown under the node
-  //   name    : title shown in the small floating card
+  //   year    : numeric year used to position the dot on the X axis
+  //   label   : text shown next to the dot
+  //   name    : title shown in the floating card
   //   tag     : subtitle (e.g. company or "Personal")
-  //   type    : "work" or "personal"  (changes the dot color)
-  //   cx, cy  : position on the chart, in % (0–100)
-  //             cx = horizontal (left → right = time)
-  //             cy = vertical (top → bottom = row)
-  // The line is drawn through every node in the order listed below.
+  //   type    : "work" or "personal" (changes the dot color)
+  //
+  // The dot X position is computed from `year`. The card flips
+  // above or below the line so nothing overlaps. Add a new entry
+  // and it slots in automatically.
   // ============================================================
+  const YEAR_MIN = 2023;
+  const YEAR_MAX = 2026;
+
   const PROJECTS = [
-    { code: 'P4', year: '2023–24', name: 'Cross-Platform Mobile App',  tag: 'P4 · Freelance',          type: 'personal', cx:  8, cy:  6 },
-    { code: 'P5', year: '2026',    name: 'Local AI Evaluator & RAG',   tag: 'P5 · Personal',           type: 'personal', cx: 85, cy: 20 },
-    { code: 'P6', year: '2026',    name: 'Distributed Cache-Aside',    tag: 'P6 · Personal',           type: 'personal', cx: 15, cy: 34 },
-    { code: 'P2', year: '2024–25', name: 'IT Request System',          tag: 'P2 · Spritzer Berhad',    type: 'work',     cx: 78, cy: 49 },
-    { code: 'P7', year: '2026→',   name: 'RunTrack — Running Analytics', tag: 'P7 · Personal · AI',   type: 'personal', cx: 12, cy: 63 },
-    { code: 'P1', year: '2025–26', name: 'E-Appraisal System',         tag: 'P1 · YBS International', type: 'work',     cx: 80, cy: 77 },
-    { code: 'P3', year: '2025–26', name: 'IT Asset Management',        tag: 'P3 · YBS International', type: 'work',     cx: 18, cy: 92 },
+    { code: 'P4', year: 2023, label: '2023–25', name: 'Cross-Platform Mobile App',     tag: 'P4 · Freelance',          type: 'personal' },
+    { code: 'P2', year: 2024, label: '2025',    name: 'IT Request System',             tag: 'P2 · Spritzer Berhad',    type: 'work'     },
+    { code: 'P1', year: 2025, label: '2025',    name: 'E-Appraisal System',            tag: 'P1 · YBS International',  type: 'work'     },
+    { code: 'P3', year: 2025, label: '2025',    name: 'IT Asset Management',           tag: 'P3 · YBS International',  type: 'work'     },
+    { code: 'P7', year: 2026, label: '2026',    name: 'RunTrack — Running Analytics',  tag: 'P7 · Personal · AI',      type: 'personal' },
+    { code: 'P5', year: 2026, label: '2026',    name: 'Local AI Evaluator & RAG',      tag: 'P5 · Personal',           type: 'personal' },
+    { code: 'P6', year: 2026, label: '2026',    name: 'Distributed Cache-Aside',       tag: 'P6 · Personal',           type: 'personal' },
   ];
 
-  // ---- Project journey timeline: draw the connecting line + arrange nodes ----
-  // viewBox matches the SVG in index.html (1000 x 1000) so 1% == 10 units.
+  function yearToX(year) {
+    const t = (year - YEAR_MIN) / (YEAR_MAX - YEAR_MIN);
+    return Math.max(4, Math.min(96, t * 100));
+  }
+
+  // ---- Layout the journey chart: even slots on a horizontal spine ----
   const VB_W = 1000;
-  const VB_H = 1000;
+  const VB_H = 360;
+  const SPINE_Y = 180;
 
-  function toUnits(pct, axis) {
-    return (pct / 100) * (axis === 'x' ? VB_W : VB_H);
+  // Group projects by year so multiple projects in the same year share a slot
+  // and alternate above/below to avoid overlap.
+  function groupByYear(list) {
+    const groups = {};
+    list.forEach(function (p) {
+      if (!groups[p.year]) groups[p.year] = [];
+      groups[p.year].push(p);
+    });
+    return groups;
   }
 
-  // Sort by year bucket (cy) then by cx so the line reads top-to-bottom,
-  // left-to-right — easy to scan.
-  function buildPath(nodes) {
-    const sorted = nodes.slice().sort(function (a, b) {
-      if (a.cy !== b.cy) return a.cy - b.cy;
-      return a.cx - b.cx;
-    });
-
-    if (!sorted.length) return '';
-
-    // Build a stepped path: from each node, go horizontally to the next
-    // node's x, then vertically to its y. This keeps segments axis-aligned
-    // and never overlaps with a dot.
-    let d = '';
-    sorted.forEach(function (n, i) {
-      const x = toUnits(n.cx, 'x');
-      const y = toUnits(n.cy, 'y');
-      if (i === 0) {
-        d += 'M ' + x + ' ' + y;
-      } else {
-        const prev = sorted[i - 1];
-        const prevX = toUnits(prev.cx, 'x');
-        const prevY = toUnits(prev.cy, 'y');
-        // Move horizontally first, then vertically — produces a clean L-step.
-        d += ' L ' + x + ' ' + prevY + ' L ' + x + ' ' + y;
-      }
-    });
-    return d;
-  }
-
-  function layoutJourney() {
+  function layoutJourney(filterFn) {
     var track = document.getElementById('journey-line');
     if (!track) return;
     var nodes = Array.prototype.slice.call(track.querySelectorAll('.journey-node'));
     if (!nodes.length) return;
 
-    // Sync the inline --cx/--cy on each node from the PROJECTS data so the
-    // HTML and the JS data don't drift apart.
+    const filtered = typeof filterFn === 'function' ? PROJECTS.filter(filterFn) : PROJECTS.slice();
+    const groups = groupByYear(filtered);
+    const years = Object.keys(groups).map(Number).sort(function (a, b) { return a - b; });
+    if (!years.length) return;
+
+    // Evenly distribute year groups across the chart width with some padding.
+    const padPct = 6;
+    const usable = 100 - padPct * 2;
+    const slotW = usable / years.length;
+
+    const positions = {};
+    years.forEach(function (y, gi) {
+      const baseX = padPct + slotW * (gi + 0.5);
+      const items = groups[y];
+      items.forEach(function (p, idx) {
+        const count = items.length;
+        const cx = count > 1
+          ? baseX + (idx - (count - 1) / 2) * (slotW / count) * 0.5
+          : baseX;
+        const side = idx % 2 === 0 ? 'above' : 'below';
+        positions[p.code] = { cx: cx, cy: 50, side: side };
+      });
+    });
+
+    // Apply positions to nodes, and dim the ones that aren't in the current filter.
+    const visibleCodes = {};
+    filtered.forEach(function (p) { visibleCodes[p.code] = true; });
     nodes.forEach(function (n) {
       const code = n.getAttribute('data-project');
-      const data = PROJECTS.find(function (p) { return p.code === code; });
-      if (!data) return;
-      n.style.setProperty('--cx', data.cx + '%');
-      n.style.setProperty('--cy', data.cy + '%');
-      n.setAttribute('data-side', (data.cx >= 50) ? 'above' : 'below');
+      const pos = positions[code];
+      if (!pos) {
+        n.classList.add('is-dimmed');
+        return;
+      }
+      n.classList.remove('is-dimmed');
+      n.style.setProperty('--cx', pos.cx.toFixed(2) + '%');
+      n.style.setProperty('--cy', pos.cy.toFixed(2) + '%');
+      n.setAttribute('data-side', pos.side);
     });
 
-    // Draw the connecting path through the node positions.
-    var path = document.getElementById('journey-curve');
-    if (path) {
-      path.setAttribute('d', buildPath(PROJECTS));
-      // Reset the draw-in animation so it plays on every layout.
-      path.style.animation = 'none';
-      // Force reflow then re-apply the animation.
-      void path.getBoundingClientRect();
-      path.style.animation = '';
+    // Draw a single straight spine across the visible range, using the actual
+    // slot positions of the first/last visible year group (not the original
+    // year range — that would shrink to nothing when a single year is picked).
+    var spine = document.getElementById('journey-spine');
+    if (spine) {
+      const firstSlot = padPct + slotW * 0.5;
+      const lastSlot = padPct + slotW * (years.length - 0.5);
+      spine.setAttribute('d', 'M ' + (firstSlot / 100 * VB_W).toFixed(1) + ' ' + SPINE_Y +
+                            ' L ' + (lastSlot / 100 * VB_W).toFixed(1) + ' ' + SPINE_Y);
+      // Replay the draw-in animation whenever the spine changes.
+      spine.style.animation = 'none';
+      void spine.getBoundingClientRect();
+      spine.style.animation = '';
     }
 
-    // Stagger animation delays in PROJECTS order.
-    PROJECTS.forEach(function (p, i) {
-      const n = nodes.find(function (el) { return el.getAttribute('data-project') === p.code; });
-      if (n) n.style.animationDelay = (0.25 + i * 0.18) + 's';
+    var svg = track.querySelector('.journey-svg');
+    if (svg) svg.setAttribute('viewBox', '0 0 ' + VB_W + ' ' + VB_H);
+
+    // Repaint the year axis labels above the chart for the visible years.
+    var axis = document.getElementById('journey-axis');
+    if (axis) {
+      axis.innerHTML = '';
+      years.forEach(function (y, gi) {
+        const baseX = padPct + slotW * (gi + 0.5);
+        const span = document.createElement('span');
+        span.textContent = y;
+        span.style.setProperty('--at', baseX.toFixed(2) + '%');
+        axis.appendChild(span);
+      });
+    }
+
+    // Stagger fade-in.
+    nodes.forEach(function (n, i) {
+      if (n.classList.contains('is-dimmed')) return;
+      n.style.animationDelay = (0.10 + i * 0.06) + 's';
     });
   }
 
-  function scheduleLayout() {
-    if (typeof requestAnimationFrame === 'function') {
-      requestAnimationFrame(layoutJourney);
-    } else {
-      layoutJourney();
+  // Year filter state + persistence
+  let activeFilter = 'all';
+  try {
+    const saved = localStorage.getItem('portfolio-journey-filter');
+    if (saved) activeFilter = saved;
+  } catch (_) {}
+
+  function applyFilter(filter) {
+    activeFilter = filter;
+    try { localStorage.setItem('portfolio-journey-filter', filter); } catch (_) {}
+    document.querySelectorAll('.filter-btn').forEach(function (btn) {
+      const isActive = btn.getAttribute('data-filter') === filter;
+      btn.classList.toggle('is-active', isActive);
+      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+    let fn = null;
+    if (filter !== 'all') {
+      const y = parseInt(filter, 10);
+      fn = function (p) { return p.year === y; };
     }
+    layoutJourney(fn);
   }
 
-  // Initial layout after fonts/styles settle
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', scheduleLayout);
-  } else {
-    scheduleLayout();
-  }
-  window.addEventListener('load', scheduleLayout);
-  window.addEventListener('resize', scheduleLayout);
+  document.querySelectorAll('.filter-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      applyFilter(btn.getAttribute('data-filter'));
+    });
+  });
+  applyFilter(activeFilter);
+
+  // Re-layout on resize so the spine stays aligned with the dots.
+  let resizeTimer = null;
+  window.addEventListener('resize', function () {
+    if (resizeTimer) clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      let fn = null;
+      if (activeFilter !== 'all') {
+        const y = parseInt(activeFilter, 10);
+        fn = function (p) { return p.year === y; };
+      }
+      layoutJourney(fn);
+    }, 120);
+  });
   const toggle = document.getElementById('theme-toggle');
   const STORAGE_KEY = 'portfolio-theme';
 

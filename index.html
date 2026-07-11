@@ -321,6 +321,11 @@
               <span class="legend-item"><span class="legend-dot dot-work"></span>Work</span>
               <span class="legend-item"><span class="legend-dot dot-personal"></span>Personal</span>
             </span>
+            <div class="journey-filter" role="tablist" aria-label="Filter projects by year">
+              <button class="filter-btn is-active" type="button" data-filter="all" role="tab" aria-selected="true">All</button>
+              <button class="filter-btn" type="button" data-filter="2025" role="tab" aria-selected="false">2025</button>
+              <button class="filter-btn" type="button" data-filter="2026" role="tab" aria-selected="false">2026</button>
+            </div>
             <button id="journey-toggle" class="journey-toggle" type="button" aria-expanded="true" aria-controls="journey-body">
               <span class="journey-toggle-label">Hide</span>
               <span class="journey-toggle-chev" aria-hidden="true">–</span>
@@ -328,90 +333,70 @@
           </div>
           <div class="journey-body" id="journey-body">
 
-          <div class="journey-axis" aria-hidden="true">
-            <span style="--at:0%">2023</span>
-            <span style="--at:33%">2024</span>
-            <span style="--at:66%">2025</span>
-            <span style="--at:100%">2026</span>
-          </div>
+          <div class="journey-axis" id="journey-axis" aria-hidden="true"></div>
 
           <div class="journey-track" id="journey-line">
-            <svg class="journey-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
-              <defs>
-                <linearGradient id="journey-grad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%"  stop-color="var(--border)"/>
-                  <stop offset="50%" stop-color="var(--fg-muted)"/>
-                  <stop offset="100%" stop-color="var(--border)"/>
-                </linearGradient>
-              </defs>
-              <!-- Path is drawn at runtime in script.js from the PROJECTS list. -->
-              <path id="journey-curve"
-                    d=""
-                    fill="none" stroke="url(#journey-grad)" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round" />
+            <svg class="journey-svg" viewBox="0 0 1000 360" preserveAspectRatio="none" aria-hidden="true">
+              <path id="journey-spine"
+                    d="" fill="none"
+                    stroke="var(--fg-muted)" stroke-width="1.5"
+                    stroke-linecap="round" />
             </svg>
 
             <ol class="journey-nodes">
-              <li class="journey-node" data-project="P4" data-year="Jan 2023 — Jun 2024" data-name="Cross-Platform Mobile App" style="--cx:8%; --cy:6%;">
+              <li class="journey-node" data-project="P4" data-year="2023–25" data-name="Cross-Platform Mobile App">
                 <span class="journey-dot dot-personal" aria-hidden="true"></span>
-                <span class="journey-year">2023–24</span>
                 <div class="journey-card">
                   <span class="journey-title">Cross-Platform Mobile App</span>
                   <span class="journey-tag">P4 · Freelance</span>
                 </div>
               </li>
 
-              <li class="journey-node" data-project="P5" data-year="4 weeks · 2026" data-name="Local AI Evaluator & RAG Pipeline" style="--cx:85%; --cy:20%;">
-                <span class="journey-dot dot-personal" aria-hidden="true"></span>
-                <span class="journey-year">2026</span>
-                <div class="journey-card">
-                  <span class="journey-title">Local AI Evaluator &amp; RAG</span>
-                  <span class="journey-tag">P5 · Personal</span>
-                </div>
-              </li>
-
-              <li class="journey-node" data-project="P6" data-year="4 weeks · 2026" data-name="Distributed Cache-Aside System" style="--cx:15%; --cy:34%;">
-                <span class="journey-dot dot-personal" aria-hidden="true"></span>
-                <span class="journey-year">2026</span>
-                <div class="journey-card">
-                  <span class="journey-title">Distributed Cache-Aside</span>
-                  <span class="journey-tag">P6 · Personal</span>
-                </div>
-              </li>
-
-              <li class="journey-node" data-project="P2" data-year="Aug 2024 — Jan 2025" data-name="IT Request System Management" style="--cx:78%; --cy:49%;">
+              <li class="journey-node" data-project="P2" data-year="2025" data-name="IT Request System">
                 <span class="journey-dot dot-work" aria-hidden="true"></span>
-                <span class="journey-year">2024–25</span>
                 <div class="journey-card">
                   <span class="journey-title">IT Request System</span>
                   <span class="journey-tag">P2 · Spritzer Berhad</span>
                 </div>
               </li>
 
-              <li class="journey-node" data-project="P7" data-year="2026 — Present" data-name="RunTrack" style="--cx:12%; --cy:63%;">
-                <span class="journey-dot dot-personal" aria-hidden="true"></span>
-                <span class="journey-year">2026→</span>
-                <div class="journey-card">
-                  <span class="journey-title">RunTrack — Running Analytics</span>
-                  <span class="journey-tag">P7 · Personal · AI</span>
-                </div>
-              </li>
-
-              <li class="journey-node" data-project="P1" data-year="Jul 2025 — Mar 2026" data-name="E-Appraisal System" style="--cx:80%; --cy:77%;">
+              <li class="journey-node" data-project="P1" data-year="2025" data-name="E-Appraisal System">
                 <span class="journey-dot dot-work" aria-hidden="true"></span>
-                <span class="journey-year">2025–26</span>
                 <div class="journey-card">
                   <span class="journey-title">E-Appraisal System</span>
                   <span class="journey-tag">P1 · YBS International</span>
                 </div>
               </li>
 
-              <li class="journey-node" data-project="P3" data-year="Jul 2025 — Mar 2026" data-name="IT Asset Management System" style="--cx:18%; --cy:92%;">
+              <li class="journey-node" data-project="P3" data-year="2025" data-name="IT Asset Management">
                 <span class="journey-dot dot-work" aria-hidden="true"></span>
-                <span class="journey-year">2025–26</span>
                 <div class="journey-card">
                   <span class="journey-title">IT Asset Management</span>
                   <span class="journey-tag">P3 · YBS International</span>
+                </div>
+              </li>
+
+              <li class="journey-node" data-project="P7" data-year="2026" data-name="RunTrack">
+                <span class="journey-dot dot-personal" aria-hidden="true"></span>
+                <div class="journey-card">
+                  <span class="journey-title">RunTrack — Running Analytics</span>
+                  <span class="journey-tag">P7 · Personal · AI</span>
+                </div>
+              </li>
+
+              <li class="journey-node" data-project="P5" data-year="2026" data-name="Local AI Evaluator & RAG">
+                <span class="journey-dot dot-personal" aria-hidden="true"></span>
+                <div class="journey-card">
+                  <span class="journey-title">Local AI Evaluator &amp; RAG</span>
+                  <span class="journey-tag">P5 · Personal</span>
+                </div>
+              </li>
+
+              <li class="journey-node" data-project="P6" data-year="2026" data-name="Distributed Cache-Aside">
+                <span class="journey-dot dot-personal" aria-hidden="true"></span>
+                <div class="journey-card">
+                  <span class="journey-title">Distributed Cache-Aside</span>
+                  <span class="journey-tag">P6 · Personal</span>
                 </div>
               </li>
             </ol>
