@@ -710,7 +710,7 @@ A FlutterFlow mobile app built for a freelance client, integrated with Firebase 
     const demoHtml = p.images && p.images.length
       ? '<h4>Screenshots &amp; Demo</h4><div class="image-gallery">' + p.images.map(function (img, i) {
           return '<button class="gallery-item" type="button" data-caption="' + escapeHtml(img.caption) + '" data-project="' + p.code + '" data-idx="' + i + '">' +
-            '<img src="https://placehold.co/640x400/cc7a4f/fdf9f4?text=' + img.text + '" alt="' + escapeHtml(img.caption) + '" loading="lazy" />' +
+            '<img src="https://placehold.co/640x400/4c6785/f8f7f3?text=' + img.text + '" alt="' + escapeHtml(img.caption) + '" loading="lazy" />' +
             '<span class="gallery-caption">' + escapeHtml(img.caption) + '</span>' +
           '</button>';
         }).join('') + '</div>'
