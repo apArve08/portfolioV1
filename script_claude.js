@@ -144,9 +144,9 @@ pnpm dev
         ]},
       ],
       images: [
-        { caption: 'Ingestion pipeline output', text: 'Screenshot+1' },
-        { caption: 'Vector layer schema', text: 'Screenshot+2' },
-        { caption: 'Benchmark dashboard', text: 'Screenshot+3' },
+        { caption: 'Ingestion & chunking run — chunk size/overlap sweep over the source PDF', src: 'img/P1_1.png' },
+        { caption: 'Benchmark run — llama3.2 vs phi3 across 20 eval prompts', src: 'img/P1_2.png' },
+        { caption: 'Benchmark dashboard — time-to-first-token and words/sec per model', src: 'img/P1_3.png' },
       ],
       readme: `# Local AI Evaluator & RAG Pipeline
 
@@ -709,8 +709,9 @@ A FlutterFlow mobile app built for a freelance client, integrated with Firebase 
 
     const demoHtml = p.images && p.images.length
       ? '<h4>Screenshots &amp; Demo</h4><div class="image-gallery">' + p.images.map(function (img, i) {
+          const src = img.src ? img.src : ('https://placehold.co/640x400/4c6785/f8f7f3?text=' + img.text);
           return '<button class="gallery-item" type="button" data-caption="' + escapeHtml(img.caption) + '" data-project="' + p.code + '" data-idx="' + i + '">' +
-            '<img src="https://placehold.co/640x400/4c6785/f8f7f3?text=' + img.text + '" alt="' + escapeHtml(img.caption) + '" loading="lazy" />' +
+            '<img src="' + src + '" alt="' + escapeHtml(img.caption) + '" loading="lazy" />' +
             '<span class="gallery-caption">' + escapeHtml(img.caption) + '</span>' +
           '</button>';
         }).join('') + '</div>'
