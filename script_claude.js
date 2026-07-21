@@ -514,6 +514,364 @@ A FlutterFlow mobile app built for a freelance client, integrated with Firebase 
 - Cross-platform (iOS & Android)
 `,
     },
+
+    {
+      code: 'P52', slug: 'nanolake', year: 2026, type: 'personal',
+      title: 'NanoLake — Browser-Native SQL Analytics',
+      org: 'Personal', duration: '4 weeks',
+      pitch: 'DuckDB-Wasm · Browser-native SQL · WASM background workers · Parquet compression',
+      tag: '🦆 Data Systems',
+      github: GH,
+      overview: {
+        blurb: 'A local-first analytics workspace that runs SQL directly on huge CSV/JSON files inside the browser — no server, no upload, no backend.',
+        features: [
+          'Table tree viewer, SQL code editor, and dynamic SVG data charts in one workspace',
+          'Drag-and-drop ingestion that streams huge CSV/JSON files into browser memory',
+          'Single-threaded DuckDB-Wasm pipeline running relational SQL inside the tab',
+          'Compression pipeline exporting query results into binary Parquet on local storage',
+        ],
+        concepts: [
+          'Running WebAssembly database workers off the main thread inside client-side tabs',
+          "Streaming 500MB+ files into memory without locking the browser's UI thread",
+          'Hand-writing Canvas/SVG chart rendering directly from query results, no chart libraries',
+        ],
+        weeks: [
+          { tag: 'MOD 01', title: 'The UI Shell', body: 'Responsive workspace: table tree viewer on the left, SQL editor in the middle, dynamic SVG charts at the bottom.' },
+          { tag: 'MOD 02', title: 'The Ingestion Module', body: 'Browser drag-and-drop boundary that asynchronously streams large local CSV/JSON files into memory.' },
+          { tag: 'MOD 03', title: 'The Core Analytics Layer', body: 'Single-threaded DuckDB-Wasm pipeline executing standard relational SQL inside the browser tab.' },
+          { tag: 'MOD 04', title: 'The Compression Pipeline', body: 'File exporter converting text rows into binary Parquet structures written to local storage.' },
+        ],
+        stack: ['Next.js (Static)', 'TypeScript', 'Tailwind CSS', 'DuckDB-Wasm', 'IndexedDB'],
+      },
+      problem: 'Ad-hoc analysis of a large CSV or JSON export usually means spinning up a database, writing an ingestion script, or fighting spreadsheet row limits — just to answer one query. That friction kills the habit of actually looking at the data.',
+      solution: 'NanoLake runs DuckDB compiled to WebAssembly directly in a background worker, so dropping a 500MB CSV onto the page gets you a real SQL engine without leaving the tab. Query results render through hand-written SVG charts, and anything worth keeping exports straight to compressed Parquet in local storage — the whole pipeline never touches a server.',
+      architecture: [
+        { label: 'Client UI', nodes: [
+          { title: 'Table Tree Viewer', sub: 'Schema browser' },
+          { title: 'SQL Editor', sub: 'Query input' },
+          { title: 'SVG Chart Renderer', sub: 'Hand-written, no libs' },
+        ]},
+        { label: 'Wasm Runtime', nodes: [
+          { title: 'DuckDB-Wasm Worker', sub: 'Off-main-thread SQL' },
+          { title: 'Ingestion Stream', sub: 'Chunked file reader' },
+        ]},
+        { label: 'Storage', nodes: [
+          { title: 'Browser Memory', sub: 'In-tab tables' },
+          { title: 'Parquet Export', sub: 'Binary compression' },
+          { title: 'IndexedDB', sub: 'Local persistence', soft: true },
+        ]},
+      ],
+      images: [
+        { caption: 'Workspace — table tree, SQL editor, live chart', text: 'Screenshot+1' },
+        { caption: 'Ingesting a 500MB CSV without blocking the UI', text: 'Screenshot+2' },
+        { caption: 'Parquet export from a query result', text: 'Screenshot+3' },
+      ],
+      readme: `# NanoLake
+
+A local-first analytics workspace running SQL directly on huge CSV/JSON files in the browser.
+
+## Stack
+
+- Next.js (static export)
+- DuckDB-Wasm (in-tab SQL engine)
+- IndexedDB (local persistence)
+- Hand-written Canvas/SVG charts
+
+## Modules
+
+\`\`\`
+ui/          table tree · SQL editor · charts
+ingest/      drag-and-drop streaming ingestion
+wasm/        DuckDB-Wasm worker
+export/      Parquet compression pipeline
+\`\`\`
+`,
+    },
+
+    {
+      code: 'P53', slug: 'flexsql-workbench', year: 2026, type: 'personal',
+      title: 'FlexSQL Workbench',
+      org: 'Personal', duration: '4 weeks',
+      pitch: 'AST lexer engine · DAG dependency resolver · Generator-based mock data factory',
+      tag: '🏭 Dev Tooling',
+      github: GH,
+      overview: {
+        blurb: 'A database blueprint compiler that turns raw CREATE TABLE scripts into realistic, relationally-consistent mock datasets.',
+        features: [
+          'Split-pane workspace: CREATE TABLE script input, generated .sql/.csv output',
+          'AST lexer engine parsing raw DDL into column types and structural constraints',
+          'Dependency resolver ordering table generation so root tables build before dependents',
+          'Async generator pipeline streaming data batches to avoid blowing up browser memory',
+        ],
+        concepts: [
+          'Building an AST parser that turns raw SQL DDL into structured JSON',
+          'Topological sort (DAG resolution) to auto-order relational table generation',
+          'JavaScript generator functions (function*) to write large files without OOM errors',
+        ],
+        weeks: [
+          { tag: 'MOD 01', title: 'The Workspace Layout', body: 'Split-pane text grid: left is the CREATE TABLE script input, right is the generated .sql/.csv output.' },
+          { tag: 'MOD 02', title: 'The AST Lexer Engine', body: 'Compiler function that analyzes raw DDL input, matches column types, and tracks structural boundaries.' },
+          { tag: 'MOD 03', title: 'The Hierarchy Resolver', body: "Sorting algorithm computing dependency order so root tables (e.g. users) generate before dependents (e.g. orders)." },
+          { tag: 'MOD 04', title: 'The Async Generator Matrix', body: "Streaming factory producing mock data batches incrementally to protect the host machine's memory." },
+        ],
+        stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Local Storage API'],
+      },
+      problem: 'Seeding a relational schema with believable test data usually means either writing one-off faker scripts per table, or hand-editing foreign keys until nothing violates a constraint. Neither approach scales past a handful of tables.',
+      solution: 'FlexSQL Workbench parses a pasted CREATE TABLE script into an AST, resolves the dependency graph between tables so foreign keys always generate after the rows they reference, and streams realistic mock data out through JavaScript generators — keeping memory flat no matter how large the dataset gets.',
+      architecture: [
+        { label: 'Input', nodes: [
+          { title: 'DDL Editor', sub: 'CREATE TABLE input' },
+          { title: 'AST Lexer', sub: 'Tokenize + parse' },
+        ]},
+        { label: 'Resolution', nodes: [
+          { title: 'Dependency Graph', sub: 'DAG builder' },
+          { title: 'Topological Sort', sub: 'Generation order' },
+        ]},
+        { label: 'Output', nodes: [
+          { title: 'Async Generator', sub: 'Batched mock rows' },
+          { title: 'SQL / CSV Export', sub: 'Downloadable output' },
+          { title: 'Local Storage', sub: 'Saved scripts', soft: true },
+        ]},
+      ],
+      images: [
+        { caption: 'Split-pane workspace — DDL input and generated output', text: 'Screenshot+1' },
+        { caption: 'Dependency graph resolving table generation order', text: 'Screenshot+2' },
+        { caption: 'Streaming generator producing a large mock dataset', text: 'Screenshot+3' },
+      ],
+      readme: `# FlexSQL Workbench
+
+Turns raw CREATE TABLE scripts into realistic, relationally-consistent mock datasets.
+
+## Stack
+
+- Next.js
+- TypeScript
+- Local Storage API (saved scripts)
+
+## Pipeline
+
+\`\`\`
+DDL input → AST lexer → dependency graph → topological sort
+          → async generator → .sql / .csv export
+\`\`\`
+`,
+    },
+
+    {
+      code: 'P57', slug: 'token-lens', year: 2026, type: 'personal',
+      title: 'token · lens — Transformer Internals Explorer',
+      org: 'Personal', duration: '3 weeks',
+      pitch: 'Live BPE training · Hand-written transformer backprop · Attention visualization · Zero dependencies',
+      tag: '🔍 AI / ML',
+      github: GH,
+      overview: {
+        blurb: 'A single self-contained HTML page that trains a real BPE tokenizer and a tiny GPT-style transformer from scratch in the browser at page load, then makes tokenization, next-token prediction, and attention visually inspectable.',
+        features: [
+          'Live BPE tokenizer trainer (203 merges) with a replay slider that re-runs training from any step',
+          'Hand-written 1-layer, 2-head transformer trained via manual backprop + Adam — no ML library',
+          'Per-token surprise heatmap, top-5 next-token distribution, temperature-adjustable resampling',
+          "SVG attention arcs/matrix view plus a generate mode that samples and re-analyzes its own output",
+        ],
+        concepts: [
+          'Byte-pair encoding as frequency-driven subword merging, not hand-designed rules',
+          'A full forward/backward pass — attention, residuals, feed-forward — in ~150 lines of plain JS',
+          'Causal masking made visually obvious via the always-empty upper triangle of the attention matrix',
+          'Cross-entropy loss as the literal training signal, rendered per-token as a heatmap',
+        ],
+        weeks: [
+          { tag: 'MOD 01', title: 'Tokenizer Core', body: 'trainBPE/encodeWord run over a hand-written corpus, producing a 233-token vocabulary re-encoded live on every input.' },
+          { tag: 'MOD 02', title: 'Transformer Core', body: 'Token embedding + positional encoding, 2-head causal self-attention with residual, feed-forward block, unembedding to softmax.' },
+          { tag: 'MOD 03', title: 'Training Loop', body: 'Manual backprop through every layer above, gradient-clipped and updated with Adam over 1,100 steps of random 32-token windows.' },
+          { tag: 'MOD 04', title: 'Inspector UI', body: 'Inference drives the surprise heatmap, top-5 + temperature reshaping, attention arcs/matrix, generate mode, and a seeded share link.' },
+        ],
+        stack: ['HTML/CSS/JS (No Deps)', 'Hand-Written Backprop', 'BPE Tokenizer', 'Adam Optimizer', 'SVG Attention Viz'],
+      },
+      problem: "Transformer internals are usually either a black box behind a library call, or a wall of matrix math with no way to poke at it — hard to build real intuition for attention and next-token prediction without building a framework yourself.",
+      solution: 'token·lens trains a tiny BPE tokenizer and a real 1-layer transformer with hand-written forward/backward passes, entirely in the browser at page load — no PyTorch, no server. Every prediction exposes its per-token surprise, its top-5 distribution, and its attention pattern as an inspectable SVG, all reproducible from a single shareable URL.',
+      architecture: [
+        { label: 'Training (on load)', nodes: [
+          { title: 'Corpus', sub: 'Hand-written text' },
+          { title: 'BPE Trainer', sub: '203 merges' },
+          { title: 'Transformer', sub: '1-layer, 2-head' },
+        ]},
+        { label: 'Manual Backprop', nodes: [
+          { title: 'Forward Pass', sub: 'Attention · feed-forward' },
+          { title: 'Backward Pass', sub: 'Gradients' },
+          { title: 'Adam Optimizer', sub: '1,100 steps', soft: true },
+        ]},
+        { label: 'Inspector', nodes: [
+          { title: 'Surprise Heatmap', sub: 'Per-token loss' },
+          { title: 'Attention Viz', sub: 'SVG arcs / matrix' },
+          { title: 'Generate Mode', sub: 'Sample + re-analyze' },
+        ]},
+      ],
+      images: [
+        { caption: 'Live BPE merge-replay slider', text: 'Screenshot+1' },
+        { caption: 'Per-token surprise heatmap over generated text', text: 'Screenshot+2' },
+        { caption: 'SVG attention arcs / matrix view', text: 'Screenshot+3' },
+      ],
+      readme: `# token · lens
+
+A zero-dependency, single-HTML-file transformer trained live in the browser at page load.
+
+## Stack
+
+- Plain HTML/CSS/JS — no framework, no ML library
+- Hand-written BPE tokenizer (203 merges)
+- Hand-written 1-layer, 2-head transformer with manual backprop + Adam
+
+## Open it
+
+\`\`\`
+open index.html
+# trains on load, then explore tokenization / prediction / attention live
+\`\`\`
+`,
+    },
+
+    {
+      code: 'P58', slug: 'glasshouse', year: 2026, type: 'personal',
+      title: 'GlassHouse — Cross-Agent Observability Layer',
+      org: 'Personal', duration: '4 weeks',
+      pitch: 'Native CLI hooks · Cross-agent event schema · Hash-chained session log · Local-first replay viewer',
+      tag: '👁️ Dev Tooling',
+      github: GH,
+      overview: {
+        blurb: "A local-first observability layer that hooks natively into Claude Code, Codex CLI, and Gemini CLI, normalizes every tool-use event into one hash-chained schema, and replays a session's full audit trail offline.",
+        features: [
+          'Recorder core normalizing agent-native hook JSON into one GlasshouseEvent schema, SHA-256 hash-chained',
+          "Three thin shims (claude-shim, codex-shim, gemini-shim) translating each CLI's native hook payload",
+          "Git-diff fallback watcher covering Codex's blind spot — apply_patch writes never reach its hooks",
+          'CLI with init (auto-config), serve (live WS viewer), and verify (offline hash-chain integrity check)',
+        ],
+        concepts: [
+          'Every major coding CLI now ships native lifecycle hooks — no more fragile stdout-parsing wrappers',
+          'Hook coverage gaps differ per agent and have to be designed around, not assumed away',
+          'Hash-chained JSONL as a tamper-evident local audit log, verifiable without a server or browser',
+          "One canonical event schema decouples the replay/viewer layer from any single agent's quirks",
+        ],
+        weeks: [
+          { tag: 'MOD 01', title: 'Recorder Core', body: 'Hash-chain + JSONL writer, fully agent-agnostic — the shared backbone every shim writes into.' },
+          { tag: 'MOD 02', title: 'Agent Shims', body: "Pure functions mapping each CLI's native hook JSON into one GlasshouseEvent shape." },
+          { tag: 'MOD 03', title: 'Codex File-Watch Fallback', body: "fs.watch/chokidar diffed against git to catch the apply_patch file writes Codex's own hooks can't see." },
+          { tag: 'MOD 04', title: 'CLI + Viewer', body: 'glasshouse init auto-configures hooks; glasshouse serve tails the log into a live WS replay viewer; glasshouse verify re-checks the hash chain offline.' },
+        ],
+        stack: ['Node.js / TypeScript', 'Claude Code Hooks', 'Codex CLI Hooks', 'Gemini CLI Hooks', 'SHA-256 Hash Chain', 'chokidar'],
+      },
+      problem: "Every coding agent CLI logs differently, and Codex's own hooks silently miss file edits made through apply_patch — meaning a wrapper trusting hooks alone has a blind spot it doesn't know about. There was no single audit trail that worked the same way across Claude Code, Codex, and Gemini CLI.",
+      solution: "GlassHouse normalizes every agent's native hook payload into one GlasshouseEvent schema through per-agent shims, hash-chains each event into a tamper-evident session.jsonl, and layers a git-diff watcher on top of Codex specifically to catch the file writes its hooks can't see. glasshouse serve replays any session live over WebSocket; glasshouse verify re-checks the hash chain fully offline.",
+      architecture: [
+        { label: 'Agent CLIs', nodes: [
+          { title: 'Claude Code', sub: 'settings.json hooks' },
+          { title: 'Codex CLI', sub: 'hooks.json (shell only)' },
+          { title: 'Gemini CLI', sub: '.gemini/settings.json' },
+        ]},
+        { label: 'Normalization', nodes: [
+          { title: 'Agent Shims', sub: 'claude · codex · gemini' },
+          { title: 'Git-Diff Watcher', sub: 'Codex fallback' },
+          { title: 'Recorder Core', sub: 'Hash-chain writer' },
+        ]},
+        { label: 'Output', nodes: [
+          { title: 'session.jsonl', sub: 'Hash-chained log' },
+          { title: 'Live WS Viewer', sub: 'glasshouse serve' },
+          { title: 'Integrity Check', sub: 'glasshouse verify', soft: true },
+        ]},
+      ],
+      images: [
+        { caption: 'Live session replay viewer', text: 'Screenshot+1' },
+        { caption: 'Hash-chain integrity check output', text: 'Screenshot+2' },
+        { caption: 'Cross-agent event schema comparison', text: 'Screenshot+3' },
+      ],
+      readme: `# GlassHouse
+
+A local-first observability layer for Claude Code, Codex CLI, and Gemini CLI.
+
+## Stack
+
+- Node.js / TypeScript
+- Native hooks: Claude Code, Codex CLI, Gemini CLI
+- SHA-256 hash-chained JSONL session log
+
+## CLI
+
+\`\`\`
+glasshouse init      # detect installed agents, write hook config
+glasshouse serve      # tail session.jsonl into a live WS replay viewer
+glasshouse verify     # re-run the hash-chain integrity check offline
+\`\`\`
+`,
+    },
+
+    {
+      code: 'P59', slug: 'arveend-os', year: 2026, type: 'personal',
+      title: 'arveend_OS — Personal Command Center',
+      org: 'Personal', duration: '3 weeks',
+      pitch: 'Local-first PWA · WIP-limited kanban · Optional Firestore sync · Zero-build static app',
+      tag: '🖥️ Personal Ops',
+      github: GH,
+      overview: {
+        blurb: 'A personal command center — dashboard, project matrix, WIP-limited kanban, brain-dump inbox, icebox — built as a single static index.html with instant localStorage persistence and optional Google/Firestore cloud sync.',
+        features: [
+          'Dashboard, project matrix, WIP-limited kanban, brain-dump inbox, and icebox in one static HTML file',
+          'Local-first persistence: every change written to localStorage instantly, works fully offline',
+          'Optional cloud sync — Google sign-in + Firestore, per-user state gated by firestore.rules',
+          'Export/import JSON snapshot round-trip as a manual backup path independent of any cloud provider',
+        ],
+        concepts: [
+          'Local-first architecture: the browser is the source of truth, cloud sync is a strictly optional mirror',
+          'WIP limits as an actual kanban constraint, not just a column count',
+          'Static hosting with no build command as a deliberate constraint — zero infrastructure to keep running',
+          "Firebase Authorized Domains as the one piece of cloud config that can't be skipped once sign-in is enabled",
+        ],
+        weeks: [
+          { tag: 'MOD 01', title: 'Static App Shell', body: 'Dashboard, project matrix, kanban, inbox, and icebox views in one index.html — no build step, no framework.' },
+          { tag: 'MOD 02', title: 'Local Persistence', body: 'localStorage read/write on every state change, verified working from a plain file:// open with no server running.' },
+          { tag: 'MOD 03', title: 'Cloud Sync Layer', body: 'Firebase Auth (Google) + Firestore, per-user document at users/{uid}/os/state, firestore.rules enforcing access.' },
+          { tag: 'MOD 04', title: 'Backup + Hosting', body: 'Export/import JSON snapshot buttons; deploy static to GitHub Pages; add the live domain to Firebase Authorized Domains.' },
+        ],
+        stack: ['Vanilla JS', 'LocalStorage', 'Firebase Auth', 'Firestore', 'GitHub Pages'],
+      },
+      problem: "Personal task and project tracking tools either demand a server and an account just to jot something down, or lock you into someone else's data model. What was needed was somewhere to dump ideas and track WIP that works instantly, offline, from a single file — with sync as a bonus, not a requirement.",
+      solution: 'arveend_OS is one static index.html: dashboard, kanban, inbox, and icebox all persisted to localStorage on every change, so it works straight from file:// with zero setup. An optional Firebase Auth + Firestore layer mirrors that same state per-user when signed in, gated by firestore.rules, with JSON export/import as a manual fallback — the browser stays the source of truth either way.',
+      architecture: [
+        { label: 'App Shell', nodes: [
+          { title: 'Dashboard', sub: 'Overview' },
+          { title: 'Project Matrix', sub: 'All projects' },
+          { title: 'Kanban', sub: 'WIP-limited' },
+          { title: 'Inbox / Icebox', sub: 'Capture + defer' },
+        ]},
+        { label: 'Persistence', nodes: [
+          { title: 'localStorage', sub: 'Instant, offline-first' },
+          { title: 'JSON Export/Import', sub: 'Manual backup' },
+        ]},
+        { label: 'Optional Sync', nodes: [
+          { title: 'Firebase Auth', sub: 'Google sign-in' },
+          { title: 'Firestore', sub: 'users/{uid}/os/state' },
+          { title: 'GitHub Pages', sub: 'Static hosting', soft: true },
+        ]},
+      ],
+      images: [
+        { caption: 'Dashboard overview', text: 'Screenshot+1' },
+        { caption: 'WIP-limited kanban board', text: 'Screenshot+2' },
+        { caption: 'Brain-dump inbox and icebox', text: 'Screenshot+3' },
+      ],
+      readme: `# arveend_OS
+
+A personal command center — dashboard, project matrix, kanban, inbox, icebox — as one static file.
+
+## Stack
+
+- Vanilla JS, no build step
+- localStorage (source of truth)
+- Firebase Auth + Firestore (optional sync)
+
+## Run
+
+\`\`\`
+open index.html          # works offline, straight from file://
+\`\`\`
+`,
+    },
   ];
 
   // Sort newest first for the rail (mirrors a timeline read top-down).

@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Self-Learn Roadmap: Advanced Systems & AI Core — Extended</title>
+<style>
+/* ── RESET & BASE ─────────────────────────────────────────────── */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0f;
+  --surface:#111118;
+  --card:#13131d;
+  --border:#1e1e2e;
+  --border2:#2a2a3e;
+  --text:#e8e8f0;
+  --muted:#6b6b80;
+  --dim:#3a3a52;
+  --white:#ffffff;
+
+  /* accent palette */
+  --p1:#7c6af7;   /* purple */
+  --p2:#f76a6a;   /* red */
+  --p3:#3b9eff;   /* blue */
+  --p4:#f7c46a;   /* gold */
+  --p5:#6af7c4;   /* teal */
+  --p6:#f76ab4;   /* pink */
+  --p7:#a0f76a;   /* lime */
+  --p8:#f7a06a;   /* orange */
+  --cs:#c97cff;   /* cs-fundamentals */
+  --net:#38bdf8;  /* networking */
+  --os:#fb923c;   /* os */
+  --comp:#34d399; /* compilers */
+  --db:#f472b6;   /* databases */
+  --crypt:#818cf8;/* crypto */
+  --fun:#fb7185;  /* fun */
+  --my1:#60a5fa;  /* malaysia t1 */
+  --my2:#4ade80;  /* malaysia t2 */
+  --my3:#a78bfa;  /* malaysia t3 */
+  --faang:#f97316;/* faang */
+}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'JetBrains Mono',monospace,system-ui;
+  font-size:13px;
+  line-height:1.6;
+  min-height:100vh;
+}
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(124,106,247,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(124,106,247,.03) 1px,transparent 1px);
+  background-size:40px 40px;pointer-events:none;z-index:0;
+}
+.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 20px 100px}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero{padding:60px 0 48px;border-bottom:1px solid var(--border)}
+.hero-eyebrow{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--p1);margin-bottom:14px}
+.hero-title{font-size:clamp(28px,5vw,52px);font-weight:700;line-height:1.1;margin-bottom:16px}
+.hero-title span{color:var(--p1)}
+.hero-sub{font-size:13px;color:var(--muted);max-width:620px;line-height:1.7}
+.stat-row{display:flex;flex-wrap:wrap;gap:24px;margin-top:36px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px 22px}
+.stat-val{font-size:26px;font-weight:700;color:var(--text)}
+.stat-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:4px}
+
+/* ── PHASE HEADERS ────────────────────────────────────────────── */
+.phase-header{
+  display:flex;align-items:center;gap:14px;
+  margin:56px 0 24px;padding:20px 24px;
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+}
+.phase-num{
+  font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  padding:4px 10px;border-radius:4px;white-space:nowrap;
+}
+.phase-title{font-size:18px;font-weight:700;flex:1}
+.phase-sub{font-size:11px;color:var(--muted);white-space:nowrap}
+
+/* ── PROJECT CARDS ────────────────────────────────────────────── */
+.projects{display:flex;flex-direction:column;gap:16px}
+.proj{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;
+}
+.proj-head{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:22px 24px;cursor:pointer;transition:background .15s;
+}
+.proj-head:hover{background:rgba(255,255,255,.02)}
+.proj-id{
+  font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:3px 9px;border-radius:4px;white-space:nowrap;margin-top:2px;flex-shrink:0;
+}
+.proj-meta{flex:1}
+.proj-meta h3{font-size:16px;font-weight:700;margin-bottom:4px;color:var(--text)}
+.proj-meta .tagline{font-size:11px;color:var(--muted)}
+.proj-right{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0}
+.proj-weeks{font-size:11px;color:var(--dim);white-space:nowrap}
+.emoji-badge{font-size:18px}
+.chevron{font-size:12px;color:var(--muted);transition:transform .25s;margin-top:2px}
+.proj.open .chevron{transform:rotate(180deg)}
+
+/* ── PROJECT BODY ─────────────────────────────────────────────── */
+.proj-body{display:none;border-top:1px solid var(--border)}
+.proj.open .proj-body{display:block}
+.body-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+@media(max-width:640px){.body-grid{grid-template-columns:1fr}}
+.body-col{padding:20px 24px}
+.body-col+.body-col{border-left:1px solid var(--border)}
+.body-label{
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:10px;font-weight:600;
+}
+.body-col ul{list-style:none}
+.body-col ul li{
+  font-size:12px;color:var(--muted);padding:5px 0;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  display:flex;gap:8px;align-items:flex-start;line-height:1.5;
+}
+.body-col ul li:last-child{border-bottom:none}
+.body-col ul li::before{content:'›';color:var(--text);opacity:.4;flex-shrink:0}
+
+/* week table */
+.week-table{width:100%;border-collapse:collapse}
+.week-table td{
+  padding:10px 14px;font-size:12px;
+  border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top;
+}
+.week-table td:first-child{
+  width:56px;font-weight:600;white-space:nowrap;color:var(--dim);
+  border-right:1px solid rgba(255,255,255,.04);
+}
+.week-table td strong{color:var(--text);display:block;margin-bottom:2px}
+.week-table td p{color:var(--muted);font-size:11px;line-height:1.5}
+.week-table tr:last-child td{border-bottom:none}
+
+/* tech chips */
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:14px 24px;border-top:1px solid var(--border);background:rgba(0,0,0,.2)}
+.chip{
+  font-size:10px;padding:3px 9px;border-radius:3px;
+  background:rgba(255,255,255,.04);border:1px solid var(--border2);color:var(--muted);
+}
+
+/* note boxes */
+.note-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+@media(max-width:640px){.note-grid{grid-template-columns:1fr}}
+.note{padding:14px 20px;font-size:12px;line-height:1.6}
+.note:first-child{border-right:1px solid var(--border)}
+.note-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.note-warn{color:#c4a84a;background:rgba(247,196,106,.06);border-top:1px solid var(--border)}
+.note-tip{color:#4ac49b;background:rgba(106,247,196,.06);border-top:1px solid var(--border)}
+
+/* intro sentence */
+.proj-intro{padding:16px 24px;font-size:12px;color:var(--text);line-height:1.6;border-top:1px solid var(--border);background:rgba(255,255,255,.015)}
+.cap-body>.proj-intro{padding:0 0 16px;border-top:none;background:none}
+
+/* connects banner */
+.connects{
+  padding:10px 24px;border-top:1px solid var(--border);
+  font-size:11px;color:var(--p3);font-style:italic;
+  background:rgba(59,158,255,.04);
+}
+
+/* ── DIFFICULTY METER ─────────────────────────────────────────── */
+.diff-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--border)}
+@media(max-width:640px){.diff-wrap{grid-template-columns:1fr}}
+.diff-col{padding:16px 24px}
+.diff-col+.diff-col{border-left:1px solid var(--border)}
+.diff-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.diff-name{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600}
+.diff-score{font-size:13px;font-weight:700}
+.diff-track{height:6px;border-radius:3px;background:rgba(255,255,255,.06);overflow:hidden}
+.diff-fill{height:100%;border-radius:3px}
+
+/* ── CAPSTONE CARDS ───────────────────────────────────────────── */
+.capstone{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px;
+}
+.cap-banner{
+  display:grid;grid-template-columns:160px 1fr;
+}
+@media(max-width:540px){.cap-banner{grid-template-columns:1fr}}
+.cap-id-col{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:28px 20px;text-align:center;
+}
+.cap-id-badge{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border-radius:4px;margin-bottom:10px}
+.cap-id-num{font-size:36px;font-weight:800;line-height:1}
+.cap-id-dur{font-size:10px;letter-spacing:1px;opacity:.7;margin-top:6px}
+.cap-info{padding:28px 28px 24px;border-left:1px solid var(--border)}
+.cap-title{font-size:18px;font-weight:700;margin-bottom:6px}
+.cap-sub{font-size:11px;color:var(--muted);margin-bottom:18px}
+.cap-body{padding:20px 24px}
+.cap-int-table{width:100%;border-collapse:collapse;margin-top:8px}
+.cap-int-table td{padding:9px 14px;font-size:12px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top}
+.cap-int-table td:first-child{width:180px;font-weight:600;color:var(--muted);font-size:11px}
+.cap-int-table td:last-child{color:var(--muted)}
+.cap-int-table tr:last-child td{border-bottom:none}
+
+/* ── FOOTER SUMMARY ───────────────────────────────────────────── */
+.summary{
+  margin-top:60px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:32px 28px;
+}
+.summary h2{font-size:18px;font-weight:700;margin-bottom:24px}
+.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:640px){.summary-grid{grid-template-columns:1fr}}
+.sum-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px}
+.sum-val{font-size:28px;font-weight:800}
+.sum-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.sum-desc{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.5}
+
+/* ── TOC SIDEBAR PILL ─────────────────────────────────────────── */
+.toc-strip{
+  display:flex;flex-wrap:wrap;gap:6px;
+  padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:8px;
+}
+.toc-pill{
+  font-size:10px;padding:4px 10px;border-radius:20px;
+  border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:all .15s;
+  text-decoration:none;
+}
+.toc-pill:hover{border-color:var(--p1);color:var(--p1)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <div class="hero-eyebrow">// Master Learning Blueprint · Systems & Infrastructure</div>
+  <h1 class="hero-title">59 Deep Infrastructure Builds.<br/><span>Plus Tier-1 Capstone Architecture Suites.</span></h1>
+  <p class="hero-sub">An exhaustive master tracking curriculum spanning performant application design, automated model fine-tuning, telemetry pipelines, hardware compilers, real-time automation twins, CS fundamentals, cryptography, compiler construction, and Malaysia/FAANG career targeting.</p>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-val">59</div><div class="stat-lbl">Core Projects</div></div>
+    <div class="stat"><div class="stat-val">8</div><div class="stat-lbl">Phases</div></div>
+    <div class="stat"><div class="stat-val">2</div><div class="stat-lbl">Capstone Suites</div></div>
+    <div class="stat"><div class="stat-val">~2 yrs</div><div class="stat-lbl">Full Timeline</div></div>
+  </div>
+</div>
+
+<div class="toc-strip">
+  <a class="toc-pill" href="#ph1">Phase 01 · Backend P1–P7, P52–P59</a>
+  <a class="toc-pill" href="#ph2">Phase 02 · Neural Math P8–P14</a>
+  <a class="toc-pill" href="#ph3">Phase 03 · Hardware P15–P19</a>
+  <a class="toc-pill" href="#ph4">Phase 04 · MLOps P20–P25</a>
+  <a class="toc-pill" href="#ph5">Phase 05 · Compilers & Alignment P26–P31</a>
+  <a class="toc-pill" href="#ph6">Phase 06 · CS Fundamentals P32–P38</a>
+  <a class="toc-pill" href="#ph7">Phase 07 · Systems Craft P39–P45</a>
+  <a class="toc-pill" href="#ph8">Phase 08 · Career Targets P46–P51</a>
+  <a class="toc-pill" href="#cap">Capstone Suites</a>
+</div>
+
+<script>
+function tog(el){el.closest('.proj').classList.toggle('open')}
+</script>
+
+<div id="ph1" class="phase-header">
+  <div class="phase-num" style="background:rgba(124,106,247,.15);color:var(--p1)">Phase 01</div>
+  <div class="phase-title">Backend & Concurrency</div>
+  <div class="phase-sub">P1 – P7 · P52 – P59 Active Builds</div>
+</div>
+<div class="projects">
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(124,106,247,.15);color:var(--p1)">P1 · 4 WKS</div>
+    <div class="proj-meta"><h3>Local AI Evaluator & RAG Pipeline</h3><div class="tagline">Vector math · Open-source LLMs · Semantic search · pgvector</div></div>
+    <div class="proj-right"><div class="emoji-badge">🧠</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A retrieval-augmented generation stack that benchmarks two local LLMs against each other using a self-built vector search pipeline.</div>
+    <div class="body-grid">
+      <div class="body-col">
+        <div class="body-label">What You're Building</div>
+        <ul><li>Document ingestion &amp; chunking pipeline (PDF/text → vectors)</li><li>pgvector database storing semantic embeddings</li><li>Model benchmarking harness tracking generations across 2 local LLMs</li><li>Next.js analytics dashboard rendering latency &amp; accuracy charts</li></ul>
+      </div>
+      <div class="body-col">
+        <div class="body-label">Core Concepts</div>
+        <ul><li>Embedding vector mechanics and distance bounds (L2, cosine similarity)</li><li>Chunking tradeoffs — recursive vs semantic spatial groupings</li><li>Full RAG loop: retrieve, augment, generate</li><li>TTFT, tokens/sec, manual accuracy as LLM benchmarking metrics</li></ul>
+      </div>
+    </div>
+    <div class="body-col" style="border-top:1px solid var(--border)">
+      <div class="body-label">Week-by-Week</div>
+      <table class="week-table"><tbody>
+        <tr><td>WK 01</td><td><strong>Ingestion &amp; Chunking</strong><p>Install Ollama, pull llama3.2:3b + nomic-embed-text. Write Python ingest script with RecursiveCharacterTextSplitter. Test chunk sizes 256/512/1024. Pin requirements.txt Day 1.</p></td></tr>
+        <tr><td>WK 02</td><td><strong>The Vector Layer</strong><p>Launch PostgreSQL + pgvector in Docker. Create vector(768) column. Batch-embed chunks. Run manual cosine similarity query: top-5 most similar chunks to a test sentence.</p></td></tr>
+        <tr><td>WK 03</td><td><strong>The Benchmark Core</strong><p>Write 20 test questions. Build loop: question → cosine query → top-3 chunks → both models simultaneously. Log TTFT, tokens/sec, manual accuracy (1–5) to JSON.</p></td></tr>
+        <tr><td>WK 04</td><td><strong>Analytics Dashboard</strong><p>Scaffold Next.js 14 + Recharts. Build latency bar, tokens/sec line, accuracy scatter. Add live "Run Test" input appending results dynamically.</p></td></tr>
+      </tbody></table>
+    </div>
+    <div class="chips"><span class="chip">Python</span><span class="chip">pgvector</span><span class="chip">Ollama</span><span class="chip">Next.js</span><span class="chip">LangChain</span><span class="chip">nomic-embed-text</span></div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(247,106,106,.15);color:var(--p2)">P2 · 4 WKS</div>
+    <div class="proj-meta"><h3>Distributed Cache-Aside System</h3><div class="tagline">Redis · Cache invalidation · Event-driven · Race condition protection</div></div>
+    <div class="proj-right"><div class="emoji-badge">⚡</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A two-tier PostgreSQL/Redis cache layer that proves, under real load, the difference between naive queries and cache-aside reads.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div>
+        <ul><li>PostgreSQL + Redis two-tier data layer via Docker Compose</li><li>Cache-Aside GET middleware — Redis first, miss → PG → populate cache with TTL</li><li>Atomic write path: SQL UPDATE + Redis DEL in one coherent sequence</li><li>Cache stampede protection via Redis SETNX mutex</li></ul>
+      </div>
+      <div class="body-col"><div class="body-label">Core Concepts</div>
+        <ul><li>Cache-Aside vs Write-Through vs Read-Through patterns</li><li>TTL tradeoffs: too short = misses, too long = stale data</li><li>Dirty read problem and atomic invalidation</li><li>k6 virtual user ramping, p95/p99 metrics, threshold config</li></ul>
+      </div>
+    </div>
+    <div class="body-col" style="border-top:1px solid var(--border)"><div class="body-label">Week-by-Week</div>
+      <table class="week-table"><tbody>
+        <tr><td>WK 05</td><td><strong>Two-Tier Setup</strong><p>Docker Compose: PostgreSQL + Redis. Seed 20,000 records with faker.js. Baseline Express/TypeScript CRUD — zero caching. Log avg/p95/p99 latency.</p></td></tr>
+        <tr><td>WK 06</td><td><strong>Cache-Aside Middleware</strong><p>Install ioredis. GET middleware: Redis check → hit return → miss: PG fetch → SET Redis TTL 60s. Add X-Cache: HIT/MISS header. Confirm second call &lt;2ms.</p></td></tr>
+        <tr><td>WK 07</td><td><strong>Atomic Cache Invalidation</strong><p>PUT/PATCH: SQL UPDATE + Redis DEL in sequence. Write dirty-read test. Implement SETNX mutex. Integration test: create → cache → update → fresh read.</p></td></tr>
+        <tr><td>WK 08</td><td><strong>Load Test Proof</strong><p>k6: ramp 0→3,000 VUs over 60s. Run with caching DISABLED, capture PG CPU%. Re-run ENABLED. Build comparison chart — this screenshot is your portfolio proof.</p></td></tr>
+      </tbody></table>
+    </div>
+    <div class="chips"><span class="chip">Node.js TypeScript</span><span class="chip">Redis</span><span class="chip">PostgreSQL</span><span class="chip">k6</span><span class="chip">ioredis</span></div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(59,158,255,.15);color:var(--p3)">P3 · 4 WKS</div>
+    <div class="proj-meta"><h3>High-Performance Inventory Reservation Engine</h3><div class="tagline">Lua atomic scripts · BullMQ · Thread safety · Eventual consistency</div></div>
+    <div class="proj-right"><div class="emoji-badge">🔒</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A Redis-Lua powered checkout engine that eliminates overselling race conditions under thousands of concurrent buyers.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div>
+        <ul><li>Redis stock gateway: product:stock:{id} = 100 in-memory counters</li><li>Intentionally broken endpoint proving the race condition (do this first)</li><li>Lua atomic script: IF stock&gt;0 THEN DECRBY 1 — one uninterruptible operation</li><li>BullMQ pipeline: successful checkouts → queue → PostgreSQL worker</li><li>Chaos test: 2,000 concurrent requests for 5 units — 4 invariant assertions</li></ul>
+      </div>
+      <div class="body-col"><div class="body-label">Core Concepts</div>
+        <ul><li>Race conditions: the interleaving window between read and write</li><li>Redis single-threaded model and why Lua scripts are atomic</li><li>EVALSHA: pre-loading scripts via SCRIPT LOAD for performance</li><li>Eventual consistency: checkout responds in μs, DB writes in background</li><li>Chaos engineering: invariant assertions, not absence of errors</li></ul>
+      </div>
+    </div>
+    <div class="body-col" style="border-top:1px solid var(--border)"><div class="body-label">Week-by-Week</div>
+      <table class="week-table"><tbody>
+        <tr><td>WK 09</td><td><strong>Broken First</strong><p>Build checkout WITHOUT protection: Redis GET → check → DECR as three calls. 500 concurrent requests. Screenshot negative stock. Draw thread interleaving timeline.</p></td></tr>
+        <tr><td>WK 10</td><td><strong>Lua Atomic Lock</strong><p>Write Lua script. Load via SCRIPT LOAD, call via EVALSHA. Re-run test — zero overselling. Add 10-min reservation expiry.</p></td></tr>
+        <tr><td>WK 11</td><td><strong>Async Worker Pipeline</strong><p>BullMQ v5. Push order payload on success. Worker writes to PostgreSQL with idempotency. 3x retry with backoff. Dead-letter queue. BullMQ Board UI.</p></td></tr>
+        <tr><td>WK 12</td><td><strong>The Chaos Script</strong><p>2,000 concurrent requests, 5 units. Assert: 5 HTTP 200s, 1,995 HTTP 409s, Redis stock=0, PostgreSQL count=5. Run 3 times — same result. Screenshot proof.</p></td></tr>
+      </tbody></table>
+    </div>
+    <div class="chips"><span class="chip">TypeScript</span><span class="chip">Redis Lua</span><span class="chip">BullMQ</span><span class="chip">PostgreSQL</span><span class="chip">EVALSHA</span></div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(247,196,106,.15);color:var(--p4)">P4 · PARALLEL</div>
+    <div class="proj-meta"><h3>Arveend Terminal — Financial Intelligence System</h3><div class="tagline">WebSockets · RAG · Live screener · Paper trading · Finnhub API</div></div>
+    <div class="proj-right"><div class="emoji-badge">🏦</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A full-stack financial terminal combining live market data, AI sentiment analysis, and simulated trading in one WebSocket-driven app.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div>
+        <ul><li>V1: Stock search, candlestick charts, portfolio P&amp;L tracker with JWT auth</li><li>V2: Ollama news sentiment scoring, RAG earnings summarizer, market screener</li><li>V3: Socket.io price feed 500ms ticks, Redis alerts, paper trading wallet</li><li>Mock fixture layer — never block on Finnhub rate limits during development</li></ul>
+      </div>
+      <div class="body-col"><div class="body-label">Core Concepts</div>
+        <ul><li>WebSocket subscription rooms, reconnection, server-side broadcasting</li><li>Circular buffer for tick history — append without full component re-render</li><li>Portfolio accounting: cost basis, unrealised P&amp;L, position reconciliation</li><li>P1 RAG + P2 Cache-Aside + P3 atomic reservation all wire in here</li></ul>
+      </div>
+    </div>
+    <div class="body-col" style="border-top:1px solid var(--border)"><div class="body-label">Phase Breakdown</div>
+      <table class="week-table"><tbody>
+        <tr><td>PH 01</td><td><strong>Core Engine (Wk 1–4)</strong><p>Finnhub integration + mock fixture layer. PostgreSQL schema. JWT auth. SQL P&amp;L aggregation. Next.js candlestick chart. Deploy to Railway by Wk 4.</p></td></tr>
+        <tr><td>PH 02</td><td><strong>AI Intelligence (Wk 5–8)</strong><p>Ollama sentiment: 10 articles → llama3.2:3b → {score, label, reasoning}. RAG earnings using P1 pgvector. Beta, moving averages, dividend yield. Screener table.</p></td></tr>
+        <tr><td>PH 03</td><td><strong>Streaming & Trading (Wk 9–12)</strong><p>Socket.io 500ms ticks. Client circular buffer. Redis alert processor. Paper trading wallet using P3 Lua atomic pattern.</p></td></tr>
+      </tbody></table>
+    </div>
+    <div class="chips"><span class="chip">Next.js 14</span><span class="chip">Socket.io</span><span class="chip">PostgreSQL</span><span class="chip">Redis</span><span class="chip">Ollama</span><span class="chip">Finnhub API</span></div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(106,247,196,.15);color:var(--p5)">P5 · 3 WKS</div>
+    <div class="proj-meta"><h3>Visual Multi-Agent Workspace</h3><div class="tagline">Event-driven orchestration · Dynamic prompt injection · Live WebSocket stream · BullMQ sequencing</div></div>
+    <div class="proj-right"><div class="emoji-badge">🤖</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A three-agent AI development team — architect, developer, QA — that collaborates on real coding tasks through a live orchestration canvas.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div>
+        <ul><li>Three role-assigned agents: Architect (DeepSeek-r1), Developer (Qwen2.5-coder), QA (Llama3.1)</li><li>BullMQ dependency chains: Developer job blocked until Architect approved</li><li>Human-in-the-loop approval gates with Approve / Reject + Feedback</li><li>Next.js swimlane canvas: Queued / Thinking / Writing / Awaiting Review</li></ul>
+      </div>
+      <div class="body-col"><div class="body-label">Core Concepts</div>
+        <ul><li>Multi-agent context: each model has isolated context window, no shared state</li><li>BullMQ job dependency resolution — child waits for parent completion</li><li>Streaming buffer arrays: partial token delivery to live UI without re-renders</li><li>Producer-consumer: orchestrator as producer, agent workers as typed consumers</li></ul>
+      </div>
+    </div>
+    <div class="body-col" style="border-top:1px solid var(--border)"><div class="body-label">Week-by-Week</div>
+      <table class="week-table"><tbody>
+        <tr><td>WK 13</td><td><strong>Orchestrator Foundation</strong><p>Multi-model Ollama env. Task decomposer: high-level prompt → JSON subtask array. BullMQ dependency config. Worker stubs. Socket.io server.</p></td></tr>
+        <tr><td>WK 14</td><td><strong>Agents + Canvas</strong><p>Architect streams DeepSeek-r1 to Socket.io. Developer uses architecture as system context. QA reviews. Next.js swimlane. Human approval gate.</p></td></tr>
+        <tr><td>WK 15</td><td><strong>E2E Test + Docs</strong><p>Submit real task: build a REST CRUD API. Measure full pipeline time. Task history to PostgreSQL. README with agent diagram. Loom: 3 agents simultaneously.</p></td></tr>
+      </tbody></table>
+    </div>
+    <div class="chips"><span class="chip">Next.js</span><span class="chip">Socket.io</span><span class="chip">BullMQ</span><span class="chip">Ollama</span><span class="chip">DeepSeek-r1</span><span class="chip">Qwen2.5-coder</span></div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(124,106,247,.15);color:var(--p1)">P6 · 4 WKS</div>
+    <div class="proj-meta"><h3>AI Fusion Gateway (Multi-LLM Ensemble Platform)</h3><div class="tagline">Parallel inference · Response fusion · Consensus scoring · Intelligent routing</div></div>
+    <div class="proj-right"><div class="emoji-badge">🧠⚡</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A gateway that queries multiple LLMs in parallel and fuses their answers into a single, confidence-scored response.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div>
+        <ul><li>A production-style AI gateway routing prompts to multiple LLMs simultaneously</li><li>Response fusion layer parsing and scoring outputs under custom weight matrices</li><li>Intelligent router evaluating incoming requests against specialized model capability profiles</li><li>Live WebSocket tracking dashboard displaying token footprints, costs, and consensus statistics</li></ul>
+      </div>
+      <div class="body-col"><div class="body-label">Core Concepts</div>
+        <ul><li>Parallel asynchronous execution &amp; Fan-Out / Fan-In paradigms</li><li>Response ranking, confidence bounds, and consensus-based answer mapping</li><li>Dynamic model routing, fallback execution, and transactional retry handlers</li><li>Streaming architectures and microsecond token/latency benchmarking mechanics</li></ul>
+      </div>
+    </div>
+    <div class="body-col" style="border-top:1px solid var(--border)"><div class="body-label">Week-by-Week</div>
+      <table class="week-table"><tbody>
+        <tr><td>WK 16</td><td><strong>Multi-Model Gateway</strong><p>Configure local Ollama multi-model environments. Construct asynchronous Fan-Out orchestration via Promise.all. Map output metrics to structural JSON streams.</p></td></tr>
+        <tr><td>WK 17</td><td><strong>Response Fusion Engine</strong><p>Build response parser tracking string similarity distances. Devise voting loops evaluating confidence metrics and output weighted score integrations.</p></td></tr>
+        <tr><td>WK 18</td><td><strong>Intelligent Routing</strong><p>Scaffold rule-based capabilities mapping domains (Code → Qwen, Math → DeepSeek, Prose → Llama). Configure automated fallback pathways and failure boundaries.</p></td></tr>
+        <tr><td>WK 19</td><td><strong>Live Fusion UI</strong><p>Deploy real-time WebSocket dashboard. Stream unified generation steps alongside comparative latency charts, active token cost tracking metrics, and consensus logs.</p></td></tr>
+      </tbody></table>
+    </div>
+    <div class="chips"><span class="chip">Next.js</span><span class="chip">Express</span><span class="chip">TypeScript</span><span class="chip">Ollama</span><span class="chip">WebSockets</span><span class="chip">Redis</span><span class="chip">PostgreSQL</span></div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(59,158,255,.15);color:var(--p3)">P7 · 5 WKS</div>
+    <div class="proj-meta"><h3>Semantic Search & Knowledge Platform</h3><div class="tagline">Embeddings · Hybrid Search · Vector Database · Retrieval Pipeline</div></div>
+    <div class="proj-right"><div class="emoji-badge">📚🔍</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">An enterprise-grade retrieval platform combining keyword and vector search with reranking to make document Q&amp;A actually accurate.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div>
+        <ul><li>Production enterprise retrieval platform scaling indexing across deep text layers</li><li>Hybrid keyword (BM25) and semantic vector similarity search execution block</li><li>Cross-Encoder reranking tier filtering downstream chunk subsets dynamically</li><li>Automated evaluation dashboard reporting Recall@K and precision profiles</li></ul>
+      </div>
+      <div class="body-col"><div class="body-label">Core Concepts</div>
+        <ul><li>Cosine similarity mechanics, embedding distribution bounds, and metadata mapping</li><li>Vector layer indexing foundations (IVF vs HNSW internals)</li><li>Reciprocal Rank Fusion (RRF) math merging structural query indices</li><li>Context optimization constraints, duplicate elimination filters, and citation bounds</li></ul>
+      </div>
+    </div>
+    <div class="body-col" style="border-top:1px solid var(--border)"><div class="body-label">Week-by-Week</div>
+      <table class="week-table"><tbody>
+        <tr><td>WK 20</td><td><strong>Vector Pipeline</strong><p>Write optimized chunking utilities. Embed files and bind data rows inside PostgreSQL storing target indexes through pgvector schemas.</p></td></tr>
+        <tr><td>WK 21</td><td><strong>Search Engine Core</strong><p>Construct similarity search logic passing strict metadata filters. Profile execution times across varying cluster parameters via raw SQL scripts.</p></td></tr>
+        <tr><td>WK 22</td><td><strong>Hybrid Search Layer</strong><p>Integrate keyword indexes beside spatial embeddings. Combine results through reciprocal ranking matrices to generate consolidated structural outputs.</p></td></tr>
+        <tr><td>WK 23</td><td><strong>Reranking Tier</strong><p>Implement Cross-Encoder architectures pulling the top hits into tightly packed, non-redundant contextual text segments containing clean semantic citations.</p></td></tr>
+        <tr><td>WK 24</td><td><strong>Evaluation Platform</strong><p>Build custom regression analytics verifying Recall@K, Precision@K, and Mean Reciprocal Rank (MRR) bounds across changing document workloads.</p></td></tr>
+      </tbody></table>
+    </div>
+    <div class="chips"><span class="chip">PostgreSQL</span><span class="chip">pgvector</span><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Ollama</span><span class="chip">Docker</span><span class="chip">Next.js</span></div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(247,160,106,.15);color:var(--p8)">P52 · 4 WKS</div>
+    <div class="proj-meta"><h3>NanoLake</h3><div class="tagline">DuckDB-Wasm · Browser-native SQL · WASM background workers · Parquet compression</div></div>
+    <div class="proj-right"><div class="emoji-badge">🦆</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A local-first analytics workspace that runs SQL directly on huge CSV/JSON files inside the browser, no server required.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div>
+        <ul><li>UI shell: table tree viewer, SQL code editor, dynamic SVG data charts</li><li>Drag-and-drop ingestion boundary streaming huge CSV/JSON into browser memory</li><li>Single-threaded Wasm database pipeline running relational SQL inside the tab</li><li>Compression pipeline exporting rows into binary Parquet on local storage</li></ul>
+      </div>
+      <div class="body-col"><div class="body-label">Core Concepts</div>
+        <ul><li>Configuring and running WASM background workers inside client-side tabs</li><li>Memory management to parse 500MB+ files without locking the browser thread</li><li>Hand-writing Canvas/SVG rendering to auto-plot query results, no chart libraries</li></ul>
+      </div>
+    </div>
+    <div class="body-col" style="border-top:1px solid var(--border)">
+      <div class="body-label">Build Modules</div>
+      <table class="week-table"><tbody>
+        <tr><td>MOD 01</td><td><strong>The UI Shell</strong><p>Fast, responsive workspace with an uploaded table tree viewer on the left, an interactive SQL code editor in the middle, and dynamic SVG data charts at the bottom.</p></td></tr>
+        <tr><td>MOD 02</td><td><strong>The Ingestion Module</strong><p>Browser drag-and-drop boundary that streams huge local files (CSV/JSON) asynchronously into browser memory.</p></td></tr>
+        <tr><td>MOD 03</td><td><strong>The Core Analytics Layer</strong><p>Single-threaded WebAssembly database pipeline that runs standard relational queries inside the browser tab.</p></td></tr>
+        <tr><td>MOD 04</td><td><strong>The Compression Pipeline</strong><p>File exporter converting text rows into binary Parquet structures directly to local storage.</p></td></tr>
+      </tbody></table>
+    </div>
+    <div class="chips"><span class="chip">Next.js (Static)</span><span class="chip">TypeScript</span><span class="chip">Tailwind CSS</span><span class="chip">DuckDB-Wasm</span><span class="chip">IndexedDB</span></div>
+    <div class="diff-wrap">
+      <div class="diff-col"><div class="diff-top"><span class="diff-name">Human Hand-Coded</span><span class="diff-score" style="color:var(--p2)">8 / 10</span></div><div class="diff-track"><div class="diff-fill" style="width:80%;background:var(--p2)"></div></div></div>
+      <div class="diff-col"><div class="diff-top"><span class="diff-name">AI-Assisted Sprint</span><span class="diff-score" style="color:var(--p5)">3 / 10</span></div><div class="diff-track"><div class="diff-fill" style="width:30%;background:var(--p5)"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(160,247,106,.15);color:var(--p7)">P53 · 4 WKS</div>
+    <div class="proj-meta"><h3>FlexSQL Workbench</h3><div class="tagline">AST lexer engine · DAG dependency resolver · Generator-based mock data factory</div></div>
+    <div class="proj-right"><div class="emoji-badge">🏭</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A database blueprint compiler that turns raw CREATE TABLE scripts into realistic, relationally-consistent mock datasets.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div>
+        <ul><li>Split-pane workspace: CREATE TABLE script input, generated .sql/.csv matrix output</li><li>AST lexer engine analyzing custom DB inputs, matching column types and structural boundaries</li><li>Hierarchy resolver calculating dependency pathways so root tables build before dependents</li><li>Asynchronous generator matrix streaming data batches to protect host hardware</li></ul>
+      </div>
+      <div class="body-col"><div class="body-label">Core Concepts</div>
+        <ul><li>Building an Abstract Syntax Tree parser: raw DB code → structured JSON</li><li>Graph sorting algorithms (DAGs) to auto-resolve relational table configurations</li><li>JavaScript generator patterns (function*) to write massive files without OOM errors</li></ul>
+      </div>
+    </div>
+    <div class="body-col" style="border-top:1px solid var(--border)">
+      <div class="body-label">Build Modules</div>
+      <table class="week-table"><tbody>
+        <tr><td>MOD 01</td><td><strong>The Workspace Layout</strong><p>Clean, split-pane text grid environment — left: database CREATE TABLE script input, right: generated .sql/.csv matrix output.</p></td></tr>
+        <tr><td>MOD 02</td><td><strong>The AST Lexer Engine</strong><p>Advanced text compilation function that analyzes custom database inputs, matches column types, and tracks structural boundaries.</p></td></tr>
+        <tr><td>MOD 03</td><td><strong>The Hierarchy Resolver</strong><p>Sorting algorithm calculating dependency matrix pathways so root tables (e.g. users) are constructed before secondary elements (e.g. orders).</p></td></tr>
+        <tr><td>MOD 04</td><td><strong>The Asynchronous Generator Matrix</strong><p>Streaming factory array that generates data batches incrementally to protect the machine's physical hardware.</p></td></tr>
+      </tbody></table>
+    </div>
+    <div class="chips"><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Tailwind CSS</span><span class="chip">Local Storage API</span></div>
+    <div class="diff-wrap">
+      <div class="diff-col"><div class="diff-top"><span class="diff-name">Human Hand-Coded</span><span class="diff-score" style="color:var(--p2)">9 / 10</span></div><div class="diff-track"><div class="diff-fill" style="width:90%;background:var(--p2)"></div></div></div>
+      <div class="diff-col"><div class="diff-top"><span class="diff-name">AI-Assisted Sprint</span><span class="diff-score" style="color:var(--p5)">4 / 10</span></div><div class="diff-track"><div class="diff-fill" style="width:40%;background:var(--p5)"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(244,114,182,.15);color:var(--db)">P54 · 4 WKS</div>
+    <div class="proj-meta"><h3>TitanDB</h3><div class="tagline">Slotted-page storage engine · Disk-backed B+Tree · WAL durability · ACID from scratch</div></div>
+    <div class="proj-right"><div class="emoji-badge">🏗️</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A from-scratch, disk-backed database storage engine implementing the same B+Tree, WAL, and page-buffer architecture as SQLite and Postgres.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div>
+        <ul><li>AST parser &amp; compiler loop tokenizing SQL text into logical JSON commands</li><li>Buffer Pool Manager &amp; slotted-page layout controlling 4KB binary memory arrays in RAM</li><li>Write-Ahead Log engine — appends durable histories before any data page is touched</li><li>Disk-backed B+Tree index mapping row keys to absolute disk Page Numbers</li></ul>
+      </div>
+      <div class="body-col"><div class="body-label">Core Concepts</div>
+        <ul><li>Low-level binary control: Uint8Array/DataView buffers for byte-precise reads and writes</li><li>Transactional durability (ACID): crash recovery, log sequence numbers, atomic fsync</li><li>Relational storage mechanics: slotted pages for variable-length rows without fragmentation</li></ul>
+      </div>
+    </div>
+    <div class="body-col" style="border-top:1px solid var(--border)">
+      <div class="body-label">Build Modules</div>
+      <table class="week-table"><tbody>
+        <tr><td>MOD 01</td><td><strong>AST Parser & Compiler Loop</strong><p>Tokenizes text strings into logical JSON commands — the entry point every user SQL query passes through before touching storage.</p></td></tr>
+        <tr><td>MOD 02</td><td><strong>Slotted-Page & Buffer Manager</strong><p>File layout divided into fixed 4KB binary blocks (Pages). The Buffer Pool Manager caches the most recently used pages in RAM and marks modified pages "dirty."</p></td></tr>
+        <tr><td>MOD 03</td><td><strong>Write-Ahead Log Engine</strong><p>Enforces the WAL protocol: no data page is written to the main file until the change is sequentially appended to the log. Crash recovery replays the WAL on boot.</p></td></tr>
+        <tr><td>MOD 04</td><td><strong>Disk-Backed B+Tree Engine</strong><p>Parent and leaf nodes map directly to 4KB Page Numbers. A key seek unpacks the binary buffer and binary-searches down the tree — under 4 disk reads for a 1M-row table.</p></td></tr>
+      </tbody></table>
+    </div>
+    <div class="chips"><span class="chip">Next.js (Static Engine Panel)</span><span class="chip">TypeScript</span><span class="chip">Node.js fs/promises</span><span class="chip">IndexedDB / OPFS</span></div>
+    <div class="note-grid">
+      <div class="note note-warn"><div class="note-lbl">⚠ Caution</div>Writing an error-free disk-backed B+Tree that correctly splits and merges pages while maintaining log sequence numbers is legendary tier. Build the WAL replay path before the B+Tree — durability first, indexing second.</div>
+    </div>
+    <div class="diff-wrap">
+      <div class="diff-col"><div class="diff-top"><span class="diff-name">Human Hand-Coded</span><span class="diff-score" style="color:var(--p2)">9.8 / 10</span></div><div class="diff-track"><div class="diff-fill" style="width:98%;background:var(--p2)"></div></div></div>
+      <div class="diff-col"><div class="diff-top"><span class="diff-name">AI-Assisted Sprint</span><span class="diff-score" style="color:var(--p5)">6 / 10</span></div><div class="diff-track"><div class="diff-fill" style="width:60%;background:var(--p5)"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(201,124,255,.15);color:var(--cs)">P55 · 4 WKS</div>
+    <div class="proj-meta"><h3>DevLog Catalyst</h3><div class="tagline">Offline-first PWA · Markdown log parser · GitHub-style contribution grid · OPFS + Supabase sync</div></div>
+    <div class="proj-right"><div class="emoji-badge">📋</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">An offline-first developer journal that turns Markdown notes into a GitHub-style contribution graph of your own learning.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div>
+        <ul><li>Modular sidebar switching seamlessly between coding and personal learning configurations</li><li>Markdown drop processor scanning raw notes for task completions, timestamps, target hashtags</li><li>SVG contribution-matrix mapping text histories onto a GitHub-style tracking grid</li><li>Dual-layer offline storage: instant browser cache with background sync loops to Supabase/Firebase</li></ul>
+      </div>
+      <div class="body-col"><div class="body-label">Core Concepts</div>
+        <ul><li>Offline-First Web App design: write to browser storage first, stay usable disconnected</li><li>Origin Private File System (OPFS) for lightning-fast, quiet local file access</li><li>Mapping text markers into live relational graphs via SVG for engineering mind-maps</li></ul>
+      </div>
+    </div>
+    <div class="body-col" style="border-top:1px solid var(--border)">
+      <div class="body-label">Build Modules</div>
+      <table class="week-table"><tbody>
+        <tr><td>MOD 01</td><td><strong>The Central Sidebar</strong><p>Modular navigation interface that switches seamlessly between multiple coding and personal learning configurations.</p></td></tr>
+        <tr><td>MOD 02</td><td><strong>The Markdown Drop Processor</strong><p>Inline scanner that instantly reads raw notes to pull out task completions, timestamps, and target hashtags.</p></td></tr>
+        <tr><td>MOD 03</td><td><strong>The Analytical Visual Grid</strong><p>Tracking component composed of custom SVG cells that maps text histories onto a GitHub-style contribution matrix.</p></td></tr>
+        <tr><td>MOD 04</td><td><strong>The Offline Storage Deck</strong><p>Dual-layer system caching data to browser containers instantly while maintaining background sync loops to Supabase/Firebase.</p></td></tr>
+      </tbody></table>
+    </div>
+    <div class="chips"><span class="chip">Next.js (PWA / Serwist)</span><span class="chip">TypeScript</span><span class="chip">Tailwind CSS</span><span class="chip">IndexedDB</span><span class="chip">OPFS</span><span class="chip">Supabase / Firebase</span></div>
+    <div class="diff-wrap">
+      <div class="diff-col"><div class="diff-top"><span class="diff-name">Human Hand-Coded</span><span class="diff-score" style="color:var(--p2)">7.5 / 10</span></div><div class="diff-track"><div class="diff-fill" style="width:75%;background:var(--p2)"></div></div></div>
+      <div class="diff-col"><div class="diff-top"><span class="diff-name">AI-Assisted Sprint</span><span class="diff-score" style="color:var(--p5)">3.5 / 10</span></div><div class="diff-track"><div class="diff-fill" style="width:35%;background:var(--p5)"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(247,196,106,.15);color:var(--p4)">P56 · 6 WKS</div>
+    <div class="proj-meta"><h3>Resume-to-Portfolio Generator</h3><div class="tagline">pdf.js extraction · AI JSON structuring · Multi-theme renderer · Supabase deploy engine</div></div>
+    <div class="proj-right"><div class="emoji-badge">📄✨</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A tool that turns a dropped-in resume PDF into a live, shareable developer portfolio site in minutes — the demo IS the product.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div>
+        <ul><li>Client-side PDF parser (pdf.js in a Web Worker) with drag-and-drop and a live extraction preview</li><li>AI structuring engine converting raw resume text into a validated JSON schema via Anthropic API or Ollama</li><li>Six-section themeable component tree — Terminal Dark, Minimal, Gradient Bold, Corporate Dark, Academic — with inline editing</li><li>Supabase-backed deploy engine publishing a live, editable portfolio at a public /p/[slug] URL</li></ul>
+      </div>
+      <div class="body-col"><div class="body-label">Core Concepts</div>
+        <ul><li>Client-side WASM parsing — the same pattern as P52 NanoLake, applied to PDFs instead of CSVs</li><li>Structured JSON extraction from unstructured text — P1's RAG pattern aimed at structured output instead of retrieval</li><li>Dynamic-route deployment on Supabase — the same architecture as P4 Arveend Terminal, aimed at a public product</li></ul>
+      </div>
+    </div>
+    <div class="body-col" style="border-top:1px solid var(--border)">
+      <div class="body-label">Week-by-Week</div>
+      <table class="week-table"><tbody>
+        <tr><td>WK 01</td><td><strong>PDF Parser + Extraction Preview</strong><p>Install pdf.js. Build drag-and-drop zone. Extract text in a Web Worker. Show raw extracted text in a preview panel. Handle multi-column layout edge cases. Test with 5 different real resume formats.</p></td></tr>
+        <tr><td>WK 02</td><td><strong>AI Structuring Engine</strong><p>Design the full JSON schema. Write the extraction prompt. Call the Anthropic API (or Ollama locally). Parse and validate the JSON response. Show structured JSON alongside the extracted text. Retry once with a stricter prompt on parse failure.</p></td></tr>
+        <tr><td>WK 03</td><td><strong>First Theme + Component Tree</strong><p>Build all 6 section components. Implement Terminal Dark first — the most distinctive theme. Wire JSON → components → live preview. Add contentEditable inline editing. Test with your own resume first.</p></td></tr>
+        <tr><td>WK 04</td><td><strong>Remaining Themes + Theme Switcher</strong><p>Build Minimal, Gradient Bold, Corporate Dark, Academic themes. Add a theme switcher with live preview switching. Implement auto-theme selection from theme_hints. Add section drag-to-reorder with dnd-kit.</p></td></tr>
+        <tr><td>WK 05</td><td><strong>Supabase + Deployment Engine</strong><p>Set up Supabase. Create a portfolios table with RLS. Build a slug availability checker with real-time feedback. Build /api/deploy and the /p/[slug] dynamic route. Test the full flow end to end.</p></td></tr>
+        <tr><td>WK 06</td><td><strong>Polish + Your Own Portfolio</strong><p>Add a view counter. Add an update flow: re-upload resume → diff JSON → update Supabase row → URL unchanged. Deploy to Vercel. Generate your own portfolio as the live demo. Share the link.</p></td></tr>
+      </tbody></table>
+    </div>
+    <div class="chips"><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">pdf.js</span><span class="chip">Anthropic API / Ollama</span><span class="chip">Supabase</span><span class="chip">dnd-kit</span><span class="chip">Vercel</span></div>
+    <div class="connects">🔗 Wires three roadmap skills into one shippable product: P52 NanoLake's client-side WASM parsing (Module 1), P1's structured-extraction pattern (Module 2), and P4 Arveend Terminal's Supabase deploy architecture (Module 5) — the demo it produces is your own portfolio.</div>
+    <div class="diff-wrap">
+      <div class="diff-col"><div class="diff-top"><span class="diff-name">Human Hand-Coded</span><span class="diff-score" style="color:var(--p2)">6.5 / 10</span></div><div class="diff-track"><div class="diff-fill" style="width:65%;background:var(--p2)"></div></div></div>
+      <div class="diff-col"><div class="diff-top"><span class="diff-name">AI-Assisted Sprint</span><span class="diff-score" style="color:var(--p5)">2.5 / 10</span></div><div class="diff-track"><div class="diff-fill" style="width:25%;background:var(--p5)"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(129,140,248,.15);color:var(--crypt)">P57 · 3 WKS</div>
+    <div class="proj-meta"><h3>token · lens</h3><div class="tagline">Live BPE training · Hand-written transformer backprop · Attention visualization · Zero dependencies</div></div>
+    <div class="proj-right"><div class="emoji-badge">🔍</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A single self-contained HTML page that trains a real BPE tokenizer and a tiny GPT-style transformer from scratch in the browser at page load, then makes tokenization, next-token prediction, and attention visually inspectable.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div>
+        <ul><li>Live BPE tokenizer trainer (203 merges) with a merge-replay slider that re-runs the process live from any step</li><li>Hand-written 1-layer, 2-head transformer — embeddings, causal attention, feed-forward, residuals — trained via manual backprop + Adam, no ML library</li><li>Per-token surprise heatmap, top-5 next-token distribution, and temperature-adjustable resampling</li><li>SVG attention arcs/matrix view plus a generate mode that samples, appends, and re-analyzes its own output live</li></ul>
+      </div>
+      <div class="body-col"><div class="body-label">Core Concepts</div>
+        <ul><li>Byte-pair encoding as frequency-driven subword merging, not hand-designed rules</li><li>A full forward/backward pass — attention, residuals, feed-forward — in ~150 lines of plain JS, no framework</li><li>Causal masking made visually obvious via the always-empty upper triangle of the attention matrix</li><li>Cross-entropy loss as the literal training signal, rendered per-token as a heatmap</li></ul>
+      </div>
+    </div>
+    <div class="body-col" style="border-top:1px solid var(--border)">
+      <div class="body-label">Build Modules</div>
+      <table class="week-table"><tbody>
+        <tr><td>MOD 01</td><td><strong>Tokenizer Core</strong><p>trainBPE/encodeWord run over a hand-written corpus, producing a 233-token vocabulary. Every input event re-encodes text live against the current merge table.</p></td></tr>
+        <tr><td>MOD 02</td><td><strong>Transformer Core</strong><p>Token embedding + learned positional encoding, 2-head causal self-attention, output projection with residual, feed-forward block, unembedding to a 233-way softmax.</p></td></tr>
+        <tr><td>MOD 03</td><td><strong>Training Loop</strong><p>Manual backprop through every layer above, gradient-clipped and updated with Adam, 1,100 steps over random 32-token windows — the "training your transformer…" overlay on load.</p></td></tr>
+        <tr><td>MOD 04</td><td><strong>Inspector UI</strong><p>analyze() runs inference and drives the surprise heatmap, top-5 + temperature reshaping, attention arcs/matrix, generate mode, and a share link that reproduces the same trained model via a seeded URL hash.</p></td></tr>
+      </tbody></table>
+    </div>
+    <div class="chips"><span class="chip">HTML/CSS/JS (No Deps)</span><span class="chip">Hand-Written Backprop</span><span class="chip">BPE Tokenizer</span><span class="chip">Adam Optimizer</span><span class="chip">SVG Attention Viz</span></div>
+    <div class="connects">🔗 Same from-scratch transformer math as P8 Transformer from Scratch, compressed into a zero-dependency browser demo you can share as a single link.</div>
+    <div class="diff-wrap">
+      <div class="diff-col"><div class="diff-top"><span class="diff-name">Human Hand-Coded</span><span class="diff-score" style="color:var(--p2)">9 / 10</span></div><div class="diff-track"><div class="diff-fill" style="width:90%;background:var(--p2)"></div></div></div>
+      <div class="diff-col"><div class="diff-top"><span class="diff-name">AI-Assisted Sprint</span><span class="diff-score" style="color:var(--p5)">4 / 10</span></div><div class="diff-track"><div class="diff-fill" style="width:40%;background:var(--p5)"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(56,189,248,.15);color:var(--net)">P58 · 4 WKS</div>
+    <div class="proj-meta"><h3>GlassHouse</h3><div class="tagline">Native CLI hooks · Cross-agent event schema · Hash-chained session log · Local-first replay viewer</div></div>
+    <div class="proj-right"><div class="emoji-badge">👁️</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A local-first observability layer that hooks natively into Claude Code, Codex CLI, and Gemini CLI, normalizes every tool-use event into one hash-chained schema, and replays a session's full audit trail offline.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div>
+        <ul><li>Recorder Core: normalizes agent-native hook JSON into a single GlasshouseEvent schema, SHA-256 hash-chains each event, appends to session.jsonl</li><li>Three thin shims (claude-shim, codex-shim, gemini-shim) translating each CLI's native hook payload into that one schema</li><li>Git-diff fallback watcher covering Codex's blind spot — apply_patch file writes never reach its hooks today</li><li>glasshouse init auto-config, glasshouse serve live WS viewer, glasshouse verify offline hash-chain integrity checker</li></ul>
+      </div>
+      <div class="body-col"><div class="body-label">Core Concepts</div>
+        <ul><li>Every major coding CLI now ships native lifecycle hooks — no more fragile stdout-parsing wrappers around the agent process</li><li>Hook coverage gaps differ per agent (Codex hooks fire for shell only, not file edits) and have to be designed around, not assumed away</li><li>Hash-chained JSONL as a tamper-evident local audit log, verifiable without a server or browser</li><li>One canonical event schema decouples the replay/viewer layer from any single agent's quirks</li></ul>
+      </div>
+    </div>
+    <div class="body-col" style="border-top:1px solid var(--border)">
+      <div class="body-label">Build Modules</div>
+      <table class="week-table"><tbody>
+        <tr><td>MOD 01</td><td><strong>Recorder Core</strong><p>Hash-chain + JSONL writer, fully agent-agnostic — the shared backbone every shim writes into.</p></td></tr>
+        <tr><td>MOD 02</td><td><strong>Agent Shims</strong><p>Pure functions mapping each CLI's native hook JSON — Claude Code's settings.json (32 events), Codex's hooks.json, Gemini's .gemini/settings.json — into one GlasshouseEvent shape.</p></td></tr>
+        <tr><td>MOD 03</td><td><strong>Codex File-Watch Fallback</strong><p>fs.watch/chokidar diffed against git, running alongside the Codex shim to catch the apply_patch writes its hooks can't see.</p></td></tr>
+        <tr><td>MOD 04</td><td><strong>CLI + Viewer</strong><p>glasshouse init detects installed agents and writes hook config automatically; glasshouse serve tails session.jsonl into a live WS replay viewer; glasshouse verify re-runs the hash-chain check offline.</p></td></tr>
+      </tbody></table>
+    </div>
+    <div class="chips"><span class="chip">Node.js / TypeScript</span><span class="chip">Claude Code Hooks</span><span class="chip">Codex CLI Hooks</span><span class="chip">Gemini CLI Hooks</span><span class="chip">SHA-256 Hash Chain</span><span class="chip">chokidar</span></div>
+    <div class="note-grid">
+      <div class="note note-warn"><div class="note-lbl">⚠ Caution</div>Codex's PreToolUse hook only fires for the shell tool — apply_patch, Read/Write, and MCP calls are invisible to it today. Build the git-diff fallback watcher before trusting Codex coverage.</div>
+      <div class="note note-tip"><div class="note-lbl">💡 Tip</div>Claude Code also writes its own JSONL transcript to ~/.claude/projects/&lt;hash&gt;/&lt;session&gt;.jsonl — use it as a free redundant integrity cross-check against your own hash chain.</div>
+    </div>
+    <div class="diff-wrap">
+      <div class="diff-col"><div class="diff-top"><span class="diff-name">Human Hand-Coded</span><span class="diff-score" style="color:var(--p2)">8 / 10</span></div><div class="diff-track"><div class="diff-fill" style="width:80%;background:var(--p2)"></div></div></div>
+      <div class="diff-col"><div class="diff-top"><span class="diff-name">AI-Assisted Sprint</span><span class="diff-score" style="color:var(--p5)">3.5 / 10</span></div><div class="diff-track"><div class="diff-fill" style="width:35%;background:var(--p5)"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(247,106,180,.15);color:var(--p6)">P59 · 3 WKS</div>
+    <div class="proj-meta"><h3>arveend_OS</h3><div class="tagline">Local-first PWA · WIP-limited kanban · Optional Firestore sync · Zero-build static app</div></div>
+    <div class="proj-right"><div class="emoji-badge">🖥️</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A personal command center — dashboard, project matrix, WIP-limited kanban, brain-dump inbox, icebox — built as a single static index.html with instant localStorage persistence and optional Google/Firestore cloud sync.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div>
+        <ul><li>Dashboard, project matrix, WIP-limited kanban, brain-dump inbox, and icebox in one no-build static HTML file</li><li>Local-first persistence: every change written to localStorage instantly, works fully offline and straight from file://</li><li>Optional cloud sync layer — Google sign-in + Firestore, per-user state at users/{uid}/os/state, gated by firestore.rules</li><li>Export/import JSON snapshot round-trip as a manual backup path independent of any cloud provider</li></ul>
+      </div>
+      <div class="body-col"><div class="body-label">Core Concepts</div>
+        <ul><li>Local-first architecture: the browser is the source of truth, cloud sync is a strictly optional mirror on top</li><li>WIP limits as an actual kanban constraint, not just a column count</li><li>Static hosting with no build command as a deliberate constraint — zero infrastructure to keep running</li><li>Firebase Authorized Domains as the one piece of cloud config that can't be skipped once sign-in is enabled</li></ul>
+      </div>
+    </div>
+    <div class="body-col" style="border-top:1px solid var(--border)">
+      <div class="body-label">Build Modules</div>
+      <table class="week-table"><tbody>
+        <tr><td>MOD 01</td><td><strong>Static App Shell</strong><p>Dashboard, project matrix, kanban, inbox, and icebox views in one index.html — no build step, no framework.</p></td></tr>
+        <tr><td>MOD 02</td><td><strong>Local Persistence</strong><p>localStorage read/write on every state change, verified working from a plain file:// open with no server running.</p></td></tr>
+        <tr><td>MOD 03</td><td><strong>Cloud Sync Layer</strong><p>Firebase Auth (Google) + Firestore, per-user document at users/{uid}/os/state, firestore.rules enforcing per-user read/write access.</p></td></tr>
+        <tr><td>MOD 04</td><td><strong>Backup + Hosting</strong><p>Export/import JSON snapshot buttons; deploy static to GitHub Pages (Vercel fallback, no build command); add the live domain to Firebase Authorized Domains so sign-in works in production.</p></td></tr>
+      </tbody></table>
+    </div>
+    <div class="chips"><span class="chip">Vanilla JS</span><span class="chip">LocalStorage</span><span class="chip">Firebase Auth</span><span class="chip">Firestore</span><span class="chip">GitHub Pages</span></div>
+    <div class="connects">🔗 Same local-first-then-sync pattern as P55 DevLog Catalyst, applied to a personal ops dashboard instead of a dev journal.</div>
+    <div class="diff-wrap">
+      <div class="diff-col"><div class="diff-top"><span class="diff-name">Human Hand-Coded</span><span class="diff-score" style="color:var(--p2)">6 / 10</span></div><div class="diff-track"><div class="diff-fill" style="width:60%;background:var(--p2)"></div></div></div>
+      <div class="diff-col"><div class="diff-top"><span class="diff-name">AI-Assisted Sprint</span><span class="diff-score" style="color:var(--p5)">2 / 10</span></div><div class="diff-track"><div class="diff-fill" style="width:20%;background:var(--p5)"></div></div></div>
+    </div>
+  </div>
+</div>
+
+</div><div id="ph2" class="phase-header">
+  <div class="phase-num" style="background:rgba(247,106,180,.15);color:var(--p6)">Phase 02</div>
+  <div class="phase-title">Neural Mathematics</div>
+  <div class="phase-sub">P8 – P14</div>
+</div>
+<div class="projects">
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(247,106,180,.15);color:var(--p6)">P8 · 3 WKS</div>
+    <div class="proj-meta"><h3>Transformer from Scratch</h3><div class="tagline">Multi-Head Attention · PyTorch raw tensors · BPE tokenizer · AdamW training loop</div></div>
+    <div class="proj-right"><div class="emoji-badge">🧬</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A GPT-style transformer built from raw tensor operations — tokenizer, attention, and training loop — with no framework shortcuts.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Custom BPE tokenizer from scratch — no tiktoken or sentencepiece</li><li>Multi-head causal attention: Q/K/V projections, causal mask, softmax</li><li>Feedforward block: 2-layer MLP with GELU, Pre-LayerNorm</li><li>AdamW training loop with gradient clipping and LR warmup</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>Q, K, V matrices: why this formulation enables attention</li><li>Causal masking: upper-triangular −∞ enforces autoregressive constraint</li><li>Residual connections and LayerNorm for gradient propagation</li><li>Cross-entropy loss and weight optimisation via AdamW</li></ul></div>
+    </div>
+    <div class="body-col" style="border-top:1px solid var(--border)"><div class="body-label">Week-by-Week</div>
+      <table class="week-table"><tbody>
+        <tr><td>WK 25</td><td><strong>Tokenizer + Embeddings</strong><p>Character-level + BPE tokenizer. Token embedding table. Sinusoidal positional encoding. Unit tests: encode→decode round-trip. Corpus: Shakespeare ~1MB.</p></td></tr>
+        <tr><td>WK 26</td><td><strong>Attention + Transformer Block</strong><p>Raw torch.matmul attention — NO nn.MultiheadAttention. Multi-head splitting with reshape/permute. Full decoder block. Stack N blocks. Validate forward pass shape.</p></td></tr>
+        <tr><td>WK 27</td><td><strong>Training Loop + Evaluation</strong><p>AdamW loop: forward → loss → backward → clip(1.0) → step. LR warmup 100 steps. 2,000 training steps. Loss curve. Attention heat maps. Validation perplexity.</p></td></tr>
+      </tbody></table>
+    </div>
+    <div class="chips"><span class="chip">Python</span><span class="chip">PyTorch</span><span class="chip">Tensor Math</span><span class="chip">BPE Core</span></div>
+    <div class="note-grid">
+      <div class="note note-warn"><div class="note-lbl">⚠ Caution</div>Do NOT use nn.MultiheadAttention — it hides the math. Implement as raw torch.matmul operations.</div>
+      <div class="note note-tip"><div class="note-lbl">💡 Tip</div>Train on Shakespeare. Small corpus (~1MB), trains on CPU in minutes, qualitatively evaluable output.</div>
+    </div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(160,247,106,.15);color:var(--p7)">P9 · 3 WKS</div>
+    <div class="proj-meta"><h3>Vector Indexing Engine</h3><div class="tagline">IVF k-means clustering · HNSW graph traversal · NumPy geometry · O(log N) complexity</div></div>
+    <div class="proj-right"><div class="emoji-badge">📐</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A hand-built approximate nearest neighbour search engine implementing IVF and HNSW to understand what powers every vector database.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Brute-force linear scan baseline — exact NN as ground truth</li><li>IVF index: Lloyds k-means → Voronoi cells → inverted lists per centroid</li><li>HNSW: hierarchical proximity graph, bidirectional edges, multi-layer insert</li><li>QPS vs recall benchmark chart across all three algorithms</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>Curse of dimensionality — why B-Tree collapses at 768+ dims</li><li>Voronoi decomposition as a space partitioning strategy</li><li>HNSW small-world properties → O(log N) average complexity</li><li>nprobe (IVF) and ef (HNSW) as configurable accuracy knobs</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python</span><span class="chip">NumPy</span><span class="chip">Matrix Geometry</span><span class="chip">k-means</span><span class="chip">HNSW</span></div>
+    <div class="note-grid">
+      <div class="note note-warn"><div class="note-lbl">⚠ Caution</div>Do NOT use faiss, annoy, or hnswlib. All vector arithmetic must be raw NumPy — you are reimplementing these libraries.</div>
+      <div class="note note-tip"><div class="note-lbl">💡 Tip</div>Start IVF with k=10 centroids on 1,000 vectors. Visualise Voronoi cells on 2D synthetic data before benchmarking.</div>
+    </div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(247,160,106,.15);color:var(--p8)">P10 · 4 WKS</div>
+    <div class="proj-meta"><h3>Quantization & Model Inference Engine</h3><div class="tagline">FP32→INT4 compression · KV Cache · Memory profiling · C++ dequant kernel</div></div>
+    <div class="proj-right"><div class="emoji-badge">💾</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A model compression and inference toolkit that shrinks transformer weights to INT4 and speeds up generation with a KV cache.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Symmetric INT8 quantization: scale=max(|W|)/127</li><li>Asymmetric INT4 with group-wise calibration (group size 128)</li><li>Per-channel calibration pipeline using representative data</li><li>KV Cache: pre-allocated tensor buffer [batch, n_layers, n_heads, max_seq, head_dim]</li><li>C++ INT4 dequant kernel callable via Python ctypes</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>FP32 → INT8/INT4 mapping: scale, zero-point, rounding drift</li><li>Memory-bandwidth-bound inference: LLMs are DRAM-limited, not FLOP-limited</li><li>KV Cache: why recomputing prefix attention every step is redundant</li><li>INT4 bit packing: 2 weights per byte, bit manipulation to unpack</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python / C++</span><span class="chip">KV Caching</span><span class="chip">Bit Mathematics</span><span class="chip">tracemalloc</span><span class="chip">ctypes</span></div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(124,106,247,.15);color:var(--p1)">P11 · 2 WKS</div>
+    <div class="proj-meta"><h3>Sparse Mixture of Experts (MoE) Transformer</h3><div class="tagline">Top-K gating · Auxiliary Load Balancing Loss · Expert routing · Routing collapse prevention</div></div>
+    <div class="proj-right"><div class="emoji-badge">🧠</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A sparse Mixture-of-Experts transformer that routes each token to only a few of many experts, with the loss term that keeps routing balanced.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>N=8 expert FFN modules as independent nn.Module instances</li><li>Gating network: linear→Softmax→top-K=2 selection per token</li><li>Auxiliary Load Balancing Loss with alpha coefficient</li><li>Ablation: alpha=0 → observe routing collapse within 50 steps</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>Sparse activation: K of N experts fire per token — reduces FLOPs</li><li>Aux Loss formula: dot product of selection frequency and routing probability</li><li>Routing collapse: why models ignore most experts without the loss term</li><li>Token capacity: why dropping is preferred over dynamic batching</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">PyTorch</span><span class="chip">Softmax Gating</span><span class="chip">Sparsity Math</span><span class="chip">Auxiliary Loss</span></div>
+    <div class="note-grid">
+      <div class="note note-warn"><div class="note-lbl">⚠ Caution</div>Routing collapse can happen within 50 training steps without Auxiliary Loss. Start alpha=0.01, increase to 0.1 if collapse observed.</div>
+      <div class="note note-tip"><div class="note-lbl">💡 Tip</div>Ground yourself in N=4 experts, K=1 routing, 200 training steps before scaling to N=8 and K=2.</div>
+    </div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(247,106,106,.15);color:var(--p2)">P12 · 2 WKS</div>
+    <div class="proj-meta"><h3>Speculative Decoding Engine</h3><div class="tagline">Draft-verify loop · Residual acceptance sampling · Throughput benchmarking · Dual-model inference</div></div>
+    <div class="proj-right"><div class="emoji-badge">⚡</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A dual-model inference engine that speeds up generation by having a small model draft tokens for a larger model to verify.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Draft phase: 1B model generates γ lookahead tokens with prob distributions</li><li>Verify phase: 7B target evaluates all γ tokens in ONE forward pass</li><li>Acceptance loop: P_accept = min(1, P_target / P_draft) — residual correction</li><li>Throughput benchmark: γ=2,4,8 vs sequential baseline</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>Sequential decoding is memory-bandwidth-bound — weight reloading per token</li><li>Residual sampling: rejection correction maintains exact target distribution</li><li>Optimal γ: more lookahead is not always better — acceptance rate decays</li><li>Output is provably identical to target-only — not an approximation</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python</span><span class="chip">Ollama Hooks</span><span class="chip">Batch Verification</span><span class="chip">Logprobs API</span></div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(59,158,255,.15);color:var(--p3)">P13 · 2 WKS</div>
+    <div class="proj-meta"><h3>Automated Evaluation (LLM-as-a-Judge) Framework</h3><div class="tagline">Pass@K metrics · Docker sandboxed execution · Chain-of-thought grading · Regression dashboard</div></div>
+    <div class="proj-right"><div class="emoji-badge">🧪</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">An automated grading harness that scores LLM outputs on coding and reasoning tasks using sandboxed execution and LLM-as-judge rubrics.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>30-task benchmark: 15 coding (hidden unit tests), 15 reasoning tasks</li><li>Docker SDK sandboxed code execution: isolated Python container, no network</li><li>Pass@K unbiased estimator: 1 − C(n−c, K) / C(n, K)</li><li>LLM-as-judge: structured 4-criteria rubric, chain-of-thought, JSON score</li><li>PostgreSQL regression dashboard: detect score drops ≥10%</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>Pass@K vs Pass@1: unbiased estimator for k-shot pass probability</li><li>Docker SDK: container lifecycle, temp dir mount, stdout/stderr capture</li><li>Structured CoT grading and judge consistency measurement</li><li>Regression testing AI systems like versioned software releases</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Docker SDK</span><span class="chip">Python</span><span class="chip">Pass@K</span><span class="chip">PostgreSQL</span><span class="chip">Chain-of-Thought</span></div>
+    <div class="connects">🔗 Run P13 on the BASE MODEL before P14 fine-tuning — P13 is the measurement instrument for the P14 experiment.</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(247,196,106,.15);color:var(--p4)">P14 · 3 WKS</div>
+    <div class="proj-meta"><h3>Knowledge Distillation & Fine-Tuning Pipeline</h3><div class="tagline">LoRA adapters · PEFT · Adapter merging · Synthetic dataset · 6GB VRAM budget</div></div>
+    <div class="proj-right"><div class="emoji-badge">💾</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A LoRA fine-tuning pipeline that distills a larger teacher model's behaviour into a small model on a single consumer GPU.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>500+ synthetic instruction-response pairs from teacher model API</li><li>LoRA config: r=8, alpha=16, target_modules=[q_proj, v_proj], &lt;1% trainable params</li><li>SFTTrainer: gradient accumulation=8, gradient_checkpointing=True</li><li>Adapter merge: W_merged = W + B×A×(alpha/r)</li><li>P13 evaluation: measure Pass@K improvement over baseline</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>LoRA math: B×A with small r approximates full weight update at 1% cost</li><li>Frozen base weights: gradient stops at frozen params, only A and B update</li><li>Knowledge distillation: teacher-generated data outperforms raw web data</li><li>VRAM budget: gradient checkpointing + paged AdamW + mixed precision</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Hugging Face</span><span class="chip">PEFT</span><span class="chip">LoRA</span><span class="chip">SFTTrainer</span><span class="chip">bitsandbytes</span></div>
+  </div>
+</div>
+
+</div><div id="ph3" class="phase-header">
+  <div class="phase-num" style="background:rgba(106,247,196,.15);color:var(--p5)">Phase 03</div>
+  <div class="phase-title">Hardware Systems</div>
+  <div class="phase-sub">P15 – P19</div>
+</div>
+<div class="projects">
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(106,247,196,.15);color:var(--p5)">P15 · 3 WKS</div>
+    <div class="proj-meta"><h3>GPU SRAM Flash-Attention Simulator</h3><div class="tagline">HBM vs SRAM IO analysis · Tiling architecture · Online softmax · O(N²)→O(N) IO reduction</div></div>
+    <div class="proj-right"><div class="emoji-badge">💾</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A from-scratch simulation of Flash-Attention's tiling and online-softmax tricks, proving why modern attention is IO-bound, not compute-bound.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Standard attention with IO instrumentation: count every HBM read/write, verify O(N²)</li><li>Tiling algorithm: Q/K/V into SRAM-resident blocks, process block pairs</li><li>Online softmax: running m_i, l_i per K/V tile — N×N matrix never materialised</li><li>4-panel IO dashboard: comparison, savings %, tile sensitivity, memory lifecycle</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>SRAM ~192KB on-chip fast vs HBM ~80GB/s off-chip slow</li><li>Online log-sum-exp: stable softmax without materialising full row</li><li>IO complexity: O(N²)→O(N) by restructuring computation order</li><li>Modern transformers are IO-limited, not FLOP-limited on GPU</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python</span><span class="chip">NumPy Memory</span><span class="chip">Tiling Logic</span><span class="chip">IO Instrumentation</span></div>
+    <div class="note-grid">
+      <div class="note note-warn"><div class="note-lbl">⚠ Caution</div>Read Flash-Attention paper (Dao et al., 2022) Sections 3–4. Online softmax m_i/l_i update with rescaling is non-obvious.</div>
+      <div class="note note-tip"><div class="note-lbl">💡 Tip</div>Build intuition for online softmax before touching the tiling loop. The "correct output without seeing all scores at once" is the conceptual breakthrough.</div>
+    </div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(247,106,180,.15);color:var(--p6)">P16 · 3 WKS</div>
+    <div class="proj-meta"><h3>Heterogeneous Memory Layer & Model Offloader</h3><div class="tagline">PyTorch forward hooks · PCIe async pre-fetching · CPU/VRAM sharding · VRAM Floor Cap</div></div>
+    <div class="proj-right"><div class="emoji-badge">⚙️</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A PyTorch hook-based system that offloads transformer layers between CPU and GPU to run models larger than available VRAM.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Layer partitioner: assign each layer to CUDA or CPU based on VRAM_BUDGET_GB</li><li>pre_forward_hook: layer.cuda() before forward pass</li><li>post_forward_hook: layer.cpu() after forward pass</li><li>Async pre-fetcher: background CUDA stream transfer of layer i+1 during layer i</li><li>4-panel benchmark: VRAM vs config, tokens/sec, PCIe latency, layer timeline</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>PCIe 4.0 x16 ≈ 16 GB/s — this governs offloading feasibility</li><li>CUDA streams: non-blocking transfers overlap with compute</li><li>VRAM Floor Cap: minimum = two largest consecutive layers</li><li>Attach hooks to LEAF modules only — not Sequential, not ModuleList</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python</span><span class="chip">PyTorch Hooks</span><span class="chip">CUDA Streams</span><span class="chip">Async Multi-Threading</span></div>
+    <div class="connects">🔗 Connects: KV Cache (P10) + quantization (P10) + Flash-Attention (P15) + offloading (P16) = complete hardware memory toolkit.</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(160,247,106,.15);color:var(--p7)">P17 · 3 WKS</div>
+    <div class="proj-meta"><h3>High-Throughput Timeseries Chunk Compressor</h3><div class="tagline">Zstd dictionary training · Lossless streams · Error-bounded lossy quantizers · Binary serialization</div></div>
+    <div class="proj-right"><div class="emoji-badge">💾</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A domain-specific compressor for time-series telemetry, combining Zstd dictionaries with error-bounded lossy pre-processing.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Zstd dictionary synthesizer: compile repeating JSON schemas into binary index</li><li>Error-bounded lossy pre-processor: delta prediction, 0.01% max reconstruction error</li><li>Streaming binary serialization: sliding-window loop feeding compressed bytes to network buffers</li><li>Benchmark: throughput MB/s vs window size and dictionary size</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>Why compression fails on isolated small packets — cold start problem</li><li>Zstd dictionary training: ZDICT_trainFromBuffer algorithm</li><li>Storage volume vs CPU time tradeoff at the compression-compute frontier</li><li>Binary serialization: memory alignment and zero-copy streaming</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python / C++</span><span class="chip">libzstd</span><span class="chip">Dictionary Training</span><span class="chip">Lossy Processing</span></div>
+    <div class="connects">🔗 Capstone 02 uses P17 to compress IoT telemetry. Capstone 01 uses P17 Zstd dictionaries to compress KV-Cache transfers over PCIe from P16.</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(247,160,106,.15);color:var(--p8)">P18 · 3 WKS</div>
+    <div class="proj-meta"><h3>Distributed High-Availability Job Scheduler</h3><div class="tagline">Optimistic row-level locking · Redis ZSET indexes · Lease-based worker ownership · Heartbeat trackers</div></div>
+    <div class="proj-right"><div class="emoji-badge">⚙️</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A distributed job scheduler with optimistic locking and lease-based ownership that guarantees each job runs exactly once across many workers.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Multi-node scheduler: PostgreSQL jobs table indexed via Redis ZSETs</li><li>CAS lock: UPDATE WHERE status=SCHEDULED — rows_affected=1 confirms exclusive claim</li><li>Heartbeat monitor: detect stale leases, release and re-queue orphaned jobs</li><li>Dead-letter queue: jobs exceeding retry_count=5 routed to failed_jobs table</li><li>Load test: 1M jobs across 10 workers — assert zero duplicate executions</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>The scheduling paradox: at-least-once delivery vs exactly-once execution</li><li>Optimistic CAS vs SELECT FOR UPDATE under high concurrency</li><li>Redis ZSET as time index: ZADD with Unix timestamp, ZRANGEBYSCORE O(log N)</li><li>Idempotency: make all job handlers safe to run twice — last line of defence</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Go / TypeScript</span><span class="chip">Redis ZSET</span><span class="chip">PostgreSQL</span><span class="chip">CAS Locks</span></div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(124,106,247,.15);color:var(--p1)">P19 · 6 WKS</div>
+    <div class="proj-meta"><h3>Distributed Multi-GPU Tensor Parallelism Engine</h3><div class="tagline">Column vs Row parallelism · NCCL collective kernels · All-Reduce sync · torch.distributed</div></div>
+    <div class="proj-right"><div class="emoji-badge">🧬</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A hand-rolled tensor-parallel training engine implementing column/row weight sharding and manual ring-AllReduce across multiple GPUs.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Column parallelism: slice W vertically → each device computes Y_i = X * W_i</li><li>Row parallelism: slice W horizontally → partial outputs need All-Reduce sum</li><li>Manual ring-All-Reduce using dist.send / dist.recv — not dist.all_reduce</li><li>4-panel interconnect profiling: latency vs device count, bandwidth, scaling efficiency</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>Column math: concatenate outputs. Row math: sum outputs via All-Reduce</li><li>Ring-AllReduce: O(1) bandwidth per node regardless of node count</li><li>NCCL collective: all processes must call in same order — deadlock otherwise</li><li>TP vs PP: intra-layer splits vs inter-layer splits and when to combine</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python</span><span class="chip">PyTorch Distributed</span><span class="chip">NCCL Kernels</span><span class="chip">Matrix Sharding</span></div>
+    <div class="note-grid">
+      <div class="note note-warn"><div class="note-lbl">⚠ Caution</div>All processes in a comm group must call collectives in the same order. A single process that skips an All-Reduce deadlocks the entire group indefinitely.</div>
+      <div class="note note-tip"><div class="note-lbl">💡 Tip</div>No multiple GPUs? Use CPU process groups with gloo backend. Communication patterns and ring-AllReduce math are identical — only bandwidth numbers differ.</div>
+    </div>
+  </div>
+</div>
+
+</div><div id="ph4" class="phase-header">
+  <div class="phase-num" style="background:rgba(247,106,106,.15);color:var(--p2)">Phase 04</div>
+  <div class="phase-title">MLOps & Streaming</div>
+  <div class="phase-sub">P20 – P25</div>
+</div>
+<div class="projects">
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(247,106,106,.15);color:var(--p2)">P20 · 3 WKS</div>
+    <div class="proj-meta"><h3>CI/CD Pipeline for ML Models</h3><div class="tagline">MLflow versioning · Drift detection · A/B traffic routing · Prometheus + Grafana telemetry</div></div>
+    <div class="proj-right"><div class="emoji-badge">⚙️</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A CI/CD pipeline purpose-built for ML models, with drift-triggered retraining, canary rollout, and full four-golden-signals observability.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>MLflow model versioning with automated retraining triggers on data drift</li><li>A/B routing proxy: 10% new model / 90% production baseline</li><li>Canary rollback: auto-revert if validation benchmarks show accuracy regression</li><li>Prometheus + Grafana: four golden signals — latency, traffic, errors, saturation</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>Model lifecycle: experiment → staging → production → deprecated</li><li>Data drift detection: statistical tests on input feature distributions</li><li>SLO design: 99.9% availability, p95 latency &lt;200ms — alerting when at risk</li><li>Canary deployment: gradual traffic shift with automatic rollback gates</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">MLflow</span><span class="chip">Prometheus</span><span class="chip">Grafana</span><span class="chip">GitHub Actions</span><span class="chip">Docker</span></div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(59,158,255,.15);color:var(--p3)">P21 · 3 WKS</div>
+    <div class="proj-meta"><h3>Feature Store & Data Versioning Architecture</h3><div class="tagline">Point-in-time correctness · Feast store splits · DVC dataset layers · Training-serving skew prevention</div></div>
+    <div class="proj-right"><div class="emoji-badge">📊</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A feature store with strict point-in-time correctness, preventing the training-serving skew that silently breaks production models.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Offline/online feature store split: historical lake vs low-latency serving cache</li><li>Point-in-time correct retrieval: no future data leakage into training</li><li>DVC git-integrated dataset versioning for multi-GB dataset matrices</li><li>Feature validation pipeline before models process any data</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>Training-serving skew: mismatched feature definitions between train and serve</li><li>Point-in-time joins: joining events to feature values as of event timestamp</li><li>Feature freshness: TTL-based online store staleness management</li><li>Dataset lineage: tracking which data version produced which model version</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Feast</span><span class="chip">DVC</span><span class="chip">PostgreSQL</span><span class="chip">Redis</span><span class="chip">Python</span></div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(106,247,196,.15);color:var(--p5)">P22 · 3 WKS</div>
+    <div class="proj-meta"><h3>FSDP Distributed Training Engine</h3><div class="tagline">Fully Sharded Data Parallelism · Gradient sharding · Memory profiling · DDP vs FSDP comparison</div></div>
+    <div class="proj-right"><div class="emoji-badge">🧬</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A distributed training engine implementing Fully Sharded Data Parallelism, benchmarked directly against standard DDP.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>FSDP on P8 transformer: shard params, gradients, optimiser states across workers</li><li>Gradient accumulation: large effective batch on limited hardware</li><li>DDP vs FSDP memory profile comparison at 2, 4, 8 workers</li><li>Mixed-precision training: BF16/FP32 for throughput without stability loss</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>DDP: gradient sync only. FSDP: full parameter sharding — different memory footprint</li><li>Gradient accumulation: accumulate N steps before optimizer.step()</li><li>All-Gather in FSDP: assemble the full parameter before each forward pass</li><li>Reduce-Scatter: distribute gradients after backward pass</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">PyTorch FSDP</span><span class="chip">torch.distributed</span><span class="chip">DeepSpeed</span><span class="chip">Mixed Precision</span></div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(247,196,106,.15);color:var(--p4)">P23 · 4 WKS</div>
+    <div class="proj-meta"><h3>Kafka Real-Time Streaming Pipeline</h3><div class="tagline">Partitioned delivery · Sliding-window aggregation · TimescaleDB · Dead-letter topic queues</div></div>
+    <div class="proj-right"><div class="emoji-badge">⚡</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A real-time Kafka streaming pipeline that ingests high-frequency events and computes sliding-window aggregations into TimescaleDB.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Kafka producer: stock ticks and IoT sensor events at high frequency</li><li>Kafka Streams consumers: sliding-window aggregations (moving averages, Z-scores)</li><li>Dead-letter topic: isolate malformed events from core processing</li><li>TimescaleDB: time-partitioned PostgreSQL for historical aggregations</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>Kafka partitions: ordered delivery within a partition, no order across partitions</li><li>Consumer groups: horizontal scaling of consumers on the same topic</li><li>Exactly-once semantics: transactional producers and idempotent consumers</li><li>Sliding window vs tumbling window: continuous vs discrete time aggregation</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Apache Kafka</span><span class="chip">Kafka Streams</span><span class="chip">TimescaleDB</span><span class="chip">Redis</span></div>
+    <div class="connects">🔗 This is the missing infrastructure layer beneath Capstone 02 (Industrial Copilot). MQTT sensors feed Kafka; Kafka feeds your AI pipeline.</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(124,106,247,.15);color:var(--p1)">P24 · 2 WKS</div>
+    <div class="proj-meta"><h3>Zero-Trust API Security Layer</h3><div class="tagline">OAuth 2.0 + PKCE · RS256 JWT middleware · RBAC · Vault secrets rotation · Audit logging</div></div>
+    <div class="proj-right"><div class="emoji-badge">🔒</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A zero-trust API security layer combining OAuth 2.0/PKCE, RS256 JWTs, RBAC, and Vault-managed secret rotation.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Keycloak identity provider with OAuth 2.0 + PKCE flow</li><li>JWT RS256 asymmetric signing middleware — public key verification</li><li>Fine-grained RBAC: roles map to resource + action pairs</li><li>HashiCorp Vault: secrets rotation, PKI, database credential leasing</li><li>Redis token-bucket rate limiter + immutable PostgreSQL audit log</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>OAuth 2.0 PKCE: why S256 code challenge prevents auth code interception</li><li>RS256 vs HS256: asymmetric (anyone can verify, only server signs) vs symmetric</li><li>Token expiry and refresh: short-lived access tokens + long-lived refresh tokens</li><li>Constant-time comparison: prevents timing attacks on HMAC verification</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Keycloak</span><span class="chip">HashiCorp Vault</span><span class="chip">OAuth 2.0</span><span class="chip">JWT RS256</span><span class="chip">Redis</span></div>
+    <div class="note-grid">
+      <div class="note note-warn"><div class="note-lbl">⚠ Priority</div>The Arveend Terminal handles financial data. The Industrial Copilot handles plant floor data. Neither should exist without this.</div>
+    </div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(247,106,180,.15);color:var(--p6)">P25 · 4 WKS</div>
+    <div class="proj-meta"><h3>Manufacturing Digital Twin Engine</h3><div class="tagline">OPC-UA / MQTT · Real-time state machines · Local vision model · TimescaleDB storage · Industry 4.0</div></div>
+    <div class="proj-right"><div class="emoji-badge">🏭</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A manufacturing digital twin that mirrors real machine state from OPC-UA/MQTT sensors and runs edge vision inference for defect detection.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>OPC-UA / MQTT sensor feeds driving real-time machine state machine (idle, running, faulted, maintenance)</li><li>REST API for current and historical plant state queries</li><li>P10 INT4 quantized vision model for defect classification — local, no cloud</li><li>P18 job scheduler for maintenance task routing and log rotation</li><li>TimescaleDB for time-series storage</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>Digital twin: software-defined replica of a physical process with real-time sync</li><li>OPC-UA: industrial protocol for device interoperability across vendors</li><li>State machine design: explicit states, transitions, guards, and actions</li><li>Edge inference: P10 INT4 quantization makes vision models run on constrained hardware</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">OPC-UA</span><span class="chip">MQTT</span><span class="chip">TimescaleDB</span><span class="chip">Edge AI</span><span class="chip">Python</span></div>
+    <div class="note-grid">
+      <div class="note note-tip"><div class="note-lbl">💡 Your Edge</div>You have MES domain knowledge that most AI engineers lack. A deployed digital twin backed by local INT4 vision inference is an extraordinarily rare portfolio item in Malaysia.</div>
+      <div class="note note-tip"><div class="note-lbl">💡 PETRONAS</div>This project maps directly to PETRONAS Digital's Net Zero 2050 predictive maintenance roadmap. Lead with your MES background in the cover letter.</div>
+    </div>
+  </div>
+</div>
+
+</div><div id="ph5" class="phase-header">
+  <div class="phase-num" style="background:rgba(160,247,106,.15);color:var(--p7)">Phase 05</div>
+  <div class="phase-title">Compilers & Alignment</div>
+  <div class="phase-sub">P26 – P31</div>
+</div>
+<div class="projects">
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(160,247,106,.15);color:var(--p7)">P26 · 3 WKS</div>
+    <div class="proj-meta"><h3>MLIR / Triton Custom GPU Kernel</h3><div class="tagline">Fused softmax · SRAM memory maps · Nsight profiling · FLOP utilisation</div></div>
+    <div class="proj-right"><div class="emoji-badge">⚙️</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A hand-written Triton/CUDA kernel for fused softmax, profiled against native PyTorch to show real GPU occupancy and bandwidth gains.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Triton kernel: fused softmax — no materialised N×N matrix, all in SRAM</li><li>Naïve matrix multiply kernel in CUDA — profile with Nsight Compute</li><li>Tiled matrix multiply using shared memory — show memory bandwidth improvement</li><li>Compare: your kernel vs PyTorch native vs P15 NumPy Flash-Attention</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>Kernel fusion: combining adjacent operations into one GPU dispatch</li><li>Shared memory tiling: keeping data on-chip to avoid HBM round-trips</li><li>Occupancy: the ratio of active warps to maximum — why it bounds throughput</li><li>Memory coalescing: accessing adjacent bytes in one transaction</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Triton</span><span class="chip">MLIR Core</span><span class="chip">Nsight Profiler</span><span class="chip">CUDA Programming</span></div>
+    <div class="note-grid">
+      <div class="note note-tip"><div class="note-lbl">💡 No GPU?</div>Use Google Colab T4 (free). NVIDIA interviewers accept Colab-based kernel projects. Profile with Nsight Compute in Colab — it works.</div>
+      <div class="note note-tip"><div class="note-lbl">💡 NVIDIA Path</div>A Triton kernel with Nsight profiling output (FLOP utilisation, memory bandwidth, occupancy) is the portfolio item for NVIDIA system software roles.</div>
+    </div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(247,106,106,.15);color:var(--p2)">P27 · 3 WKS</div>
+    <div class="proj-meta"><h3>Operator Fusion & Graph Compiler</h3><div class="tagline">torch.fx capture · Pattern-matching fusion · Custom Triton kernel dispatch</div></div>
+    <div class="proj-right"><div class="emoji-badge">💾</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A miniature graph compiler that captures a model's computation graph and automatically fuses adjacent operators into custom kernels.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>torch.fx graph capture of a full model computation graph</li><li>Pattern matcher: identify adjacent elementwise ops (ReLU + Bias + LayerNorm)</li><li>Code generator: emit fused Triton kernels for identified fusion candidates</li><li>Benchmark: fused vs unfused execution time and memory traffic</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>IR (Intermediate Representation): why compilers use graphs not source code</li><li>Operator fusion: replacing N kernel launches with 1 — eliminates DRAM round-trips</li><li>torch.compile: what it does under the hood (this project is a mini version)</li><li>Pattern-match rewriting: the core algorithm of every graph optimizer</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">torch.fx</span><span class="chip">torch.compile</span><span class="chip">Triton IR</span><span class="chip">Python Core</span></div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(59,158,255,.15);color:var(--p3)">P28 · 2 WKS</div>
+    <div class="proj-meta"><h3>PPO Reinforcement Learning Engine</h3><div class="tagline">Clipped surrogate objectives · GAE · Policy entropy · Value function</div></div>
+    <div class="proj-right"><div class="emoji-badge">🤖</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A from-scratch PPO reinforcement learning agent with GAE and clipped surrogate objectives, trained on classic control environments.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>PPO from scratch: policy network + value network in raw PyTorch</li><li>GAE (Generalised Advantage Estimation) for reward trajectory profiles</li><li>Clipped surrogate objective: PPO's key stability mechanism</li><li>Train on CartPole → LunarLander. Chart: reward, policy entropy, KL divergence</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>Policy gradient: why directly optimising the policy works</li><li>Value function: estimating expected return from a state for advantage computation</li><li>Clipping: prevents destructive parameter updates when new policy diverges too far</li><li>Entropy bonus: encourages exploration — prevents premature policy convergence</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">PyTorch Core</span><span class="chip">GAE Math</span><span class="chip">Gymnasium</span><span class="chip">Tensor Physics</span></div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(106,247,196,.15);color:var(--p5)">P29 · 2 WKS</div>
+    <div class="proj-meta"><h3>RLHF Alignment Pipeline</h3><div class="tagline">Preference pair reward models · PPO transformer tuning · KL divergence penalties</div></div>
+    <div class="proj-right"><div class="emoji-badge">🧬</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A full RLHF pipeline — preference data, reward model, PPO fine-tuning — that aligns a model's outputs to human preference.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>1,000 preference pairs: chosen/rejected responses from Constitutional AI critique loop</li><li>Reward model: trained on preference pairs using Bradley-Terry loss</li><li>PPO fine-tuning loop: reward model as automated grading signal</li><li>P13 evaluation: PPO-tuned model vs SFT baseline — prove improvement</li><li>Publish dataset to Hugging Face — direct portfolio signal to Anthropic/OpenAI</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>Constitutional AI: model critiques and revises its own outputs against written principles</li><li>Bradley-Terry loss: pairwise preference learning from chosen/rejected pairs</li><li>KL penalty: prevents the RL policy from diverging too far from the SFT baseline</li><li>RLHF loop: SFT → reward model → PPO → evaluate with P13</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">PyTorch</span><span class="chip">RLHF Core</span><span class="chip">PPO Loop</span><span class="chip">Model Alignment</span></div>
+    <div class="connects">🔗 Publishing the preference dataset + training code to Hugging Face is a direct portfolio signal visible to Anthropic and OpenAI recruiters.</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(247,196,106,.15);color:var(--p4)">P30 · 2 WKS</div>
+    <div class="proj-meta"><h3>Hybrid Retrieval Engine (Dense + BM25)</h3><div class="tagline">pgvector cosine · BM25 sparse indexing · Reciprocal Rank Fusion · Recall@10 benchmarking</div></div>
+    <div class="proj-right"><div class="emoji-badge">🔍</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A hybrid retrieval engine that fuses dense vector search with BM25 keyword search via Reciprocal Rank Fusion.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Dense retrieval: P1 pgvector cosine similarity</li><li>Sparse BM25 retrieval: Elasticsearch or Tantivy keyword-based index</li><li>Reciprocal Rank Fusion: merge dense + sparse score lists into one ranking</li><li>Benchmark: hybrid vs dense-only Recall@10 — show where sparse wins</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>BM25: term frequency saturation and document length normalisation</li><li>Why dense fails on exact keywords: embeddings compress semantic meaning</li><li>RRF formula: 1/(k + rank_i) per result — merge without needing score normalisation</li><li>Recall@10: fraction of true relevant docs appearing in top-10 results</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Elasticsearch</span><span class="chip">pgvector</span><span class="chip">RRF Math</span><span class="chip">Recall Benchmarks</span></div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(124,106,247,.15);color:var(--p1)">P31 · 1 WK</div>
+    <div class="proj-meta"><h3>Knowledge Graph + GraphRAG System</h3><div class="tagline">spaCy NER · Neo4j relational maps · Multi-hop reasoning context builders</div></div>
+    <div class="proj-right"><div class="emoji-badge">🕸️</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A GraphRAG system that extracts entity relationships into a graph database to answer multi-hop questions flat chunk retrieval can't.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>spaCy entity-relation extraction: Subject–Predicate–Object triples from text</li><li>Neo4j graph store with Cypher queries for relationship traversal</li><li>Multi-hop GraphRAG: traverse graph before constructing context window</li><li>Benchmark: GraphRAG vs flat chunk RAG on multi-document reasoning questions</li></ul></div>
+      <div class="body-col"><div class="body-label">Core Concepts</div><ul><li>Why flat chunk RAG fails on multi-hop reasoning: requires connecting entities across docs</li><li>Cypher: the graph query language — MATCH (a)-[:RELATED_TO]->(b) patterns</li><li>Entity disambiguation: the same entity name appearing differently across documents</li><li>GraphRAG hallucination reduction: grounding in explicit entity relationships</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Neo4j</span><span class="chip">spaCy NER</span><span class="chip">Cypher Queries</span><span class="chip">GraphRAG Core</span></div>
+  </div>
+</div>
+
+</div><div id="ph6" class="phase-header">
+  <div class="phase-num" style="background:rgba(201,124,255,.15);color:var(--cs)">Phase 06</div>
+  <div class="phase-title">CS Fundamentals — Build to Understand</div>
+  <div class="phase-sub">P32 – P38</div>
+</div>
+<div class="projects">
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(201,124,255,.15);color:var(--cs)">P32 · 1 WK</div>
+    <div class="proj-meta"><h3>Hash Map from Scratch</h3><div class="tagline">Separate chaining · Open addressing · Dynamic resizing · Amortised O(1)</div></div>
+    <div class="proj-right"><div class="emoji-badge">🗂️</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A hash map built from raw arrays, implementing both chaining and open addressing to see exactly where Python's amortised O(1) dict comes from.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Hash map with separate chaining (linked lists per bucket)</li><li>Linear probing variant — same API, different collision strategy</li><li>Dynamic resizing: double bucket count at 0.75 load factor, rehash all keys</li><li>Benchmark: your hash map vs Python dict at 10K, 100K, 1M keys</li></ul></div>
+      <div class="body-col"><div class="body-label">What You'll Learn</div><ul><li>Open addressing vs separate chaining tradeoffs</li><li>Load factor and rehashing — why 75% capacity triggers resize</li><li>Amortised O(1): why it differs from O(1) guaranteed</li><li>Why Python dicts are O(n) worst case despite O(1) average</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python or Go</span><span class="chip">Hash functions</span><span class="chip">Amortised analysis</span></div>
+    <div class="connects">🔗 Explains Redis internals (P2), pgvector index buckets (P9), and Python performance limits</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(201,124,255,.15);color:var(--cs)">P33 · 2 WKS</div>
+    <div class="proj-meta"><h3>Memory Allocator (malloc from scratch)</h3><div class="tagline">Free list · Coalescing · Buddy system · Internal vs external fragmentation</div></div>
+    <div class="proj-right"><div class="emoji-badge">🧱</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A malloc-style memory allocator with a free list, splitting, and coalescing, built to feel fragmentation, not just read about it.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>mmap() / sbrk() to request raw memory pages from the OS</li><li>Free list allocator: header block per allocation with size and status</li><li>First-fit allocation: scan free list, return first fitting block</li><li>Block splitting and coalescing: merge adjacent free blocks on free()</li><li>Benchmark: your allocator vs glibc malloc on 1M random alloc/free ops</li></ul></div>
+      <div class="body-col"><div class="body-label">What You'll Learn</div><ul><li>Heap fragmentation: why you can run out of allocatable memory with free space</li><li>First-fit vs best-fit vs buddy system allocation strategies</li><li>Internal vs external fragmentation distinction</li><li>Why Rust's ownership model exists — you'll feel the problem it solves</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">C / Python</span><span class="chip">mmap</span><span class="chip">Free list</span><span class="chip">Fragmentation</span></div>
+    <div class="connects">🔗 Makes P10 quantization memory layout, P16 VRAM offloading, and P15 SRAM tiling conceptually grounded</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(201,124,255,.15);color:var(--cs)">P34 · 2 WKS</div>
+    <div class="proj-meta"><h3>Garbage Collector (Mark-and-Sweep)</h3><div class="tagline">Tri-colour invariant · Generational GC · Stop-the-world · Reference counting comparison</div></div>
+    <div class="proj-right"><div class="emoji-badge">♻️</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A mark-and-sweep garbage collector with generational collection, built on a tiny VM to understand what Python/Go/Java hide from you.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Tiny VM with managed heap: objects allocated in contiguous arena</li><li>Mark phase: from root set, recursively mark all reachable objects</li><li>Sweep phase: scan heap, free unmarked objects, reset marks</li><li>Generational collection: young + old generation, collect young more frequently</li><li>Instrument: GC pause time, frequency, live object count over simulated workload</li></ul></div>
+      <div class="body-col"><div class="body-label">What You'll Learn</div><ul><li>Tri-colour invariant and write barriers in concurrent GC</li><li>Generational hypothesis: most objects die young</li><li>Stop-the-world vs concurrent: the latency tradeoff in Go vs Java GC design</li><li>Reference counting vs tracing: why Swift uses ARC, Python uses refcount</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python</span><span class="chip">GC</span><span class="chip">Mark-and-sweep</span><span class="chip">Generational</span></div>
+    <div class="connects">🔗 Explains Python GIL, Go GC tuning, and why Rust avoids GC entirely</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(201,124,255,.15);color:var(--cs)">P35 · 2 WKS</div>
+    <div class="proj-meta"><h3>B-Tree Index from Scratch</h3><div class="tagline">Node splitting · Disk-based data structures · Clustered vs non-clustered · O(log n) guarantee</div></div>
+    <div class="proj-right"><div class="emoji-badge">🌳</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A disk-persisted B-Tree index with node splitting, built to understand why every real database uses it instead of a binary tree.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>B-Tree node: ordered array of keys with child pointers between them</li><li>Search: recurse down from root, binary search within each node</li><li>Insertion with node splitting: propagate splits to root when needed</li><li>Persistence: serialize each node to a fixed-size 4KB page on disk</li><li>Verify: insert 1M random integers, confirm all findable, compare vs linear scan</li></ul></div>
+      <div class="body-col"><div class="body-label">What You'll Learn</div><ul><li>Why B-Tree, not binary tree: fat nodes match disk block size</li><li>Why the number of disk reads — not comparisons — determines B-Tree performance</li><li>Clustered vs non-clustered index: rows in order vs row pointer index</li><li>Why pgvector needs HNSW not B-Tree — you will feel this from building both</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python</span><span class="chip">Disk-based</span><span class="chip">Node splitting</span><span class="chip">B-Tree</span></div>
+    <div class="connects">🔗 Directly motivates why P9 Vector Indexing Engine uses HNSW instead of B-Tree — now you know why from first principles</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(201,124,255,.15);color:var(--cs)">P36 · 2 WKS</div>
+    <div class="proj-meta"><h3>Write-Ahead Log (WAL) & Recovery</h3><div class="tagline">ARIES protocol · Redo/undo · LSN · Checkpointing · ACID at implementation level</div></div>
+    <div class="proj-right"><div class="emoji-badge">📝</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">An ARIES-style write-ahead log and crash-recovery engine — the same redo/undo protocol underneath every production database.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>WAL log file: append-only binary, each entry has LSN, txn ID, operation, before/after image</li><li>Buffer pool: in-memory page cache with dirty tracking</li><li>Transaction begin/commit/abort with WAL bracketing</li><li>Crash recovery: scan WAL forward to redo committed txns, backward to undo uncommitted</li><li>Checkpointing: flush dirty pages, write checkpoint record, truncate old WAL</li></ul></div>
+      <div class="body-col"><div class="body-label">What You'll Learn</div><ul><li>ARIES: the standard WAL recovery protocol in nearly every production database</li><li>Write-ahead rule: log entry MUST be flushed before data page is modified</li><li>Redo vs undo recovery phases after a crash</li><li>LSN: monotonically increasing counter ordering all log entries</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python</span><span class="chip">WAL</span><span class="chip">ARIES</span><span class="chip">ACID</span><span class="chip">Recovery</span></div>
+    <div class="connects">🔗 Makes PostgreSQL WAL, Redis AOF persistence, and P2 atomic write path completely transparent</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(201,124,255,.15);color:var(--cs)">P37 · 1 WK</div>
+    <div class="proj-meta"><h3>Sorting Algorithm Profiler</h3><div class="tagline">Cache locality · Branch prediction · Timsort insight · Constant factors vs Big-O</div></div>
+    <div class="proj-right"><div class="emoji-badge">📊</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A benchmark harness for nine sorting algorithms that reveals why constant factors and cache locality beat Big-O in practice.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Implement all 9: bubble, selection, insertion, merge, quicksort (3 pivot strategies), heapsort, radix, counting sort</li><li>Benchmark harness: random, sorted, reverse-sorted, nearly-sorted × 100/10K/1M</li><li>Plot: time vs input type per algorithm — the insertion sort surprise on nearly-sorted data</li><li>Timsort insight: insertion sort for runs under 64 elements, merge sort for rest</li></ul></div>
+      <div class="body-col"><div class="body-label">What You'll Learn</div><ul><li>Why quicksort beats merge sort in practice despite same O(n log n): cache locality</li><li>Why insertion sort beats quicksort on small arrays: Python timsort switches at n=64</li><li>Radix and counting sort: O(n) non-comparison sorting and when it applies</li><li>Branch prediction: why sorted-array benchmarks are misleading</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python</span><span class="chip">Profiling</span><span class="chip">Cache locality</span><span class="chip">Timsort</span></div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(201,124,255,.15);color:var(--cs)">P38 · 2 WKS</div>
+    <div class="proj-meta"><h3>Query Optimiser (Rule-Based)</h3><div class="tagline">Relational algebra · Predicate pushdown · Join ordering · Cardinality estimation</div></div>
+    <div class="proj-right"><div class="emoji-badge">🔍</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A rule-based SQL query optimizer implementing predicate pushdown and join reordering, to make EXPLAIN ANALYZE finally make sense.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>SQL parser for subset: SELECT, FROM, WHERE, JOIN, ORDER BY, GROUP BY</li><li>Relational algebra tree: Scan, Filter, Project, Join, Sort, Aggregate nodes</li><li>Predicate pushdown: move Filter nodes below Join nodes in the tree</li><li>Join reordering: try all permutations of up to 4 tables, pick lowest estimated cost</li><li>Cardinality estimation: row count statistics per table, estimate output size per operator</li></ul></div>
+      <div class="body-col"><div class="body-label">What You'll Learn</div><ul><li>Relational algebra: the mathematical foundation of SQL query representation</li><li>Predicate pushdown: why filters should be applied before joins</li><li>Join ordering: why table order in a multi-join query affects performance dramatically</li><li>Why ANALYZE in PostgreSQL matters — cardinality estimates drive plan selection</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python</span><span class="chip">Relational algebra</span><span class="chip">AST rewriting</span><span class="chip">Cardinality</span></div>
+    <div class="connects">🔗 Makes EXPLAIN ANALYZE output in PostgreSQL fully readable and your P1 pgvector query tuning intuitive</div>
+  </div>
+</div>
+
+</div><div id="ph7" class="phase-header">
+  <div class="phase-num" style="background:rgba(56,189,248,.15);color:var(--net)">Phase 07</div>
+  <div class="phase-title">Systems Craft — Networking, OS, Compilers & Crypto</div>
+  <div class="phase-sub">P39 – P45</div>
+</div>
+<div class="projects">
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(56,189,248,.15);color:var(--net)">P39 · 2 WKS</div>
+    <div class="proj-meta"><h3>HTTP/1.1 Server from Raw Sockets</h3><div class="tagline">TCP socket API · HTTP parsing · Persistent connections · Chunked transfer encoding</div></div>
+    <div class="proj-right"><div class="emoji-badge">🌐</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">An HTTP/1.1 server built directly on raw TCP sockets, hand-parsing requests and implementing keep-alive and chunked encoding.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Raw TCP socket: accept connections, parse HTTP request bytes manually</li><li>HTTP response serialisation: status line, headers, blank line, body as raw bytes</li><li>Routing: dict mapping paths to handler functions</li><li>Persistent connections: keep TCP open if Connection: keep-alive present</li><li>Benchmark: your server vs Express — requests per second using wrk</li></ul></div>
+      <div class="body-col"><div class="body-label">What You'll Learn</div><ul><li>TCP connection lifecycle: SYN, SYN-ACK, ACK, data, FIN</li><li>HTTP/1.1 keep-alive: persistent connections and web performance history</li><li>Chunked transfer encoding: how servers send unknown-length responses</li><li>Blocking vs non-blocking I/O: the foundation of Node.js event loop and Nginx</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python or Go</span><span class="chip">TCP sockets</span><span class="chip">HTTP/1.1</span><span class="chip">Socket API</span></div>
+    <div class="connects">🔗 Makes your P4 Socket.io WebSocket server, P5 agent streaming, and every Nginx config you read completely transparent</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(56,189,248,.15);color:var(--net)">P40 · 2 WKS</div>
+    <div class="proj-meta"><h3>Load Balancer from Scratch</h3><div class="tagline">Round-robin · Least-connections · Health checks · Connection draining · L7 routing</div></div>
+    <div class="proj-right"><div class="emoji-badge">⚖️</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">An L7 reverse proxy load balancer with round-robin and least-connections routing, health checks, and connection draining.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>L7 HTTP reverse proxy in Go: accept requests, forward to backend pool, return response</li><li>Round-robin: rotate through backends, skip unhealthy</li><li>Least-connections: track active count per backend, route to lowest</li><li>Health checking: GET /health every 5s, mark unhealthy after 3 consecutive failures</li><li>Connection draining: allow in-flight requests to complete before removing a backend</li></ul></div>
+      <div class="body-col"><div class="body-label">What You'll Learn</div><ul><li>L4 vs L7 load balancing: routing TCP vs routing HTTP requests</li><li>Sticky sessions: why they exist and why they violate stateless design</li><li>Health checking: active vs passive, gradual failure handling</li><li>Connection draining: how to remove backends without dropping requests</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Go</span><span class="chip">Reverse proxy</span><span class="chip">Health checks</span><span class="chip">L7 routing</span></div>
+    <div class="connects">🔗 Makes Capstone 01 Prefill/Decode routing, P18 job scheduler, and every Kubernetes Ingress config concrete</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(251,146,60,.15);color:var(--os)">P41 · 2 WKS</div>
+    <div class="proj-meta"><h3>Unix Shell from Scratch</h3><div class="tagline">fork/exec · Pipes · File descriptor redirection · Signal handling · Job control</div></div>
+    <div class="proj-right"><div class="emoji-badge">💻</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A Unix shell built with fork/exec, pipes, and signal handling — the systems programming behind every terminal you use.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>REPL: read a line, tokenise, parse, execute</li><li>Command execution: fork() → child calls execvp() with parsed args</li><li>Piping: cmd1 | cmd2 — create pipe(), redirect child stdout/stdin via dup2</li><li>I/O redirection: cmd &gt; file and cmd &lt; file using dup2</li><li>Built-ins: cd, exit, export — must modify shell's own state, can't be external processes</li></ul></div>
+      <div class="body-col"><div class="body-label">What You'll Learn</div><ul><li>fork() and exec(): how a shell spawns child processes at OS level</li><li>Pipes: pair of file descriptors connecting stdout of one to stdin of another</li><li>Signal handling: SIGINT (Ctrl+C), SIGTSTP (Ctrl+Z), SIGHUP meanings</li><li>Job control: foreground vs background, & operator, jobs built-in</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">C or Python</span><span class="chip">fork/exec</span><span class="chip">Pipes</span><span class="chip">File descriptors</span></div>
+    <div class="connects">🔗 Makes Docker container isolation, Python subprocess, and P16 CUDA stream threading model intuitive</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(52,211,153,.15);color:var(--comp)">P42 · 2 WKS</div>
+    <div class="proj-meta"><h3>Lisp Interpreter</h3><div class="tagline">Lexer · Parser · AST · Environment chains · Closures · Tail recursion</div></div>
+    <div class="proj-right"><div class="emoji-badge">🔤</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A Lisp interpreter with lexer, parser, closures, and tail-call optimization, built to make lexical scoping click.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Tokeniser: split Lisp source into atoms (symbols, numbers) and delimiters</li><li>Recursive parser: token stream → nested Python lists as AST</li><li>Environment class: dict with parent pointer — implements lexical scoping</li><li>Eval: dispatch on expression type — symbol lookup, literal, if, define, lambda, call</li><li>Standard library: car, cdr, cons, list, +, -, *, /, =, &lt; in Lisp itself</li><li>Tail call optimisation: replace recursive eval with a loop to prevent stack overflow</li></ul></div>
+      <div class="body-col"><div class="body-label">What You'll Learn</div><ul><li>Lexing: characters → tokens. Parsing: tokens → AST. Eval: AST → value</li><li>Environment chains: how lexical scoping and closures work as data structures</li><li>Eval/Apply cycle: the mutual recursion at the heart of every interpreter</li><li>Tail call optimisation: why Lisp can have infinite recursion without stack overflow</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python</span><span class="chip">AST</span><span class="chip">Closures</span><span class="chip">Tail recursion</span><span class="chip">Environments</span></div>
+    <div class="connects">🔗 Makes Python scope rules, JavaScript closures, and your P8 BPE tokenizer design feel obvious</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(52,211,153,.15);color:var(--comp)">P43 · 3 WKS</div>
+    <div class="proj-meta"><h3>Bytecode Virtual Machine</h3><div class="tagline">Stack-based VM · Instruction set design · Call frames · Upvalues · JIT motivation</div></div>
+    <div class="proj-right"><div class="emoji-badge">⚙️</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A stack-based bytecode virtual machine with call frames and closures, compiling down from the P42 Lisp interpreter.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Bytecode instruction set: PUSH, POP, ADD, JUMP, JUMP_IF_FALSE, CALL, RETURN, LOAD/STORE_LOCAL</li><li>Compiler: from P42 Lisp AST to bytecode format</li><li>VM execution loop: fetch → decode opcode → execute → advance IP</li><li>Call frames: local variable slots + return address per function call</li><li>Closures: function wrapped with captured upvalue references</li><li>Disassembler: print human-readable bytecode for debugging</li></ul></div>
+      <div class="body-col"><div class="body-label">What You'll Learn</div><ul><li>Stack-based vs register-based VM architectures</li><li>Call frames: how function calls are represented at the VM level</li><li>Upvalues: how closures capture outer scope variables in GC-safe way</li><li>Why JIT compilation exists: bytecode interpretation overhead + inlining eliminates it</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python</span><span class="chip">Bytecode</span><span class="chip">Stack VM</span><span class="chip">Call frames</span><span class="chip">Upvalues</span></div>
+    <div class="connects">🔗 Makes CPython performance, JVM JIT, and your P8 transformer forward-pass evaluation loop structurally familiar</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(129,140,248,.15);color:var(--crypt)">P44 · 1 WK</div>
+    <div class="proj-meta"><h3>SHA-256 & HMAC from Scratch</h3><div class="tagline">Merkle-Damgård construction · One-way hash · Length extension attack · JWT implementation</div></div>
+    <div class="proj-right"><div class="emoji-badge">🔐</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A from-spec implementation of SHA-256 and HMAC, ending in a minimal working JWT signer/verifier.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>SHA-256 from FIPS 180-4 spec: constants, message schedule, compression function, final hash</li><li>NIST test vector verification — one wrong bit fails the test</li><li>HMAC-SHA256: key padding, inner hash, outer hash</li><li>Minimal JWT: header.payload.signature — signature is HMAC-SHA256</li><li>Constant-time comparison for HMAC verification — prevents timing attacks</li></ul></div>
+      <div class="body-col"><div class="body-label">What You'll Learn</div><ul><li>Merkle-Damgård: how SHA-256 processes arbitrary-length input in 512-bit blocks</li><li>Why hash functions are one-way: irreversibility from information loss in compression</li><li>Length extension attack: why SHA-256(secret + message) is not a safe MAC</li><li>HMAC construction: inner and outer padding that prevents length extension</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python</span><span class="chip">SHA-256</span><span class="chip">HMAC</span><span class="chip">JWT</span><span class="chip">Constant-time</span></div>
+    <div class="connects">🔗 Makes P24 JWT RS256 security layer and every HTTPS handshake you inspect concrete and transparent</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(251,113,133,.15);color:var(--fun)">P45 · 3 DAYS</div>
+    <div class="proj-meta"><h3>Game of Life & Cellular Automaton Simulator</h3><div class="tagline">Emergence · Hashlife quadtree · Sparse representation · Canvas rendering</div></div>
+    <div class="proj-right"><div class="emoji-badge">🎮</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A cellular automaton simulator that scales from a naive 2D array to a memoised Hashlife quadtree for near-infinite universes.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Naïve version: 2D boolean array, update loop applying 4 rules, canvas renderer</li><li>Profile bottleneck at 10K, 1M, 10M cells</li><li>Hashlife algorithm: memoised quadtree — identical sub-patterns computed once</li><li>Famous patterns: R-pentomino, Gosper Glider Gun, Langton's Ant</li><li>React/Canvas frontend: start/pause/step/speed/zoom/pan/click-to-toggle</li></ul></div>
+      <div class="body-col"><div class="body-label">What You'll Learn</div><ul><li>Emergence: complex patterns from 4 trivially simple rules</li><li>Sparse representation: why a 2D array is wrong for large universes</li><li>Spatial hashing: representing 10^18 cells efficiently</li><li>Hashlife: memoised computation that makes infinite universes run in finite time</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">React/Canvas</span><span class="chip">Quadtree</span><span class="chip">Spatial hashing</span><span class="chip">Hashlife</span></div>
+    <div class="connects">🔗 Pure joy. Also teaches sparse optimisation thinking used in P9 IVF index and P15 Flash-Attention tiling.</div>
+  </div>
+</div>
+
+</div><div id="ph8" class="phase-header">
+  <div class="phase-num" style="background:rgba(249,115,22,.15);color:var(--faang)">Phase 08</div>
+  <div class="phase-title">Career Target Projects — Malaysia Tiers & FAANG</div>
+  <div class="phase-sub">P46 – P51</div>
+</div>
+<div class="projects">
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(96,165,250,.15);color:var(--my1)">P46 · 4 WKS</div>
+    <div class="proj-meta"><h3>SEA-Scale Ride/Delivery Matching Engine</h3><div class="tagline">Geohashing · Redis geospatial · Surge pricing · Real-time WebSocket · 10M concurrent scale</div></div>
+    <div class="proj-right"><div class="emoji-badge">🚗</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A Grab-style real-time ride/delivery matching engine using Redis geospatial queries and surge pricing under simulated 10M-user load.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Location service: drivers publish GPS every 3s via WebSocket → Redis GEOADD</li><li>Matching engine: GEORADIUS query → score by distance + rating + acceptance rate → dispatch</li><li>Surge pricing: if requests exceed supply 2x in 5-min geohash window, multiply fare by 1.5x</li><li>Load test: 10,000 concurrent ride requests × 50,000 active drivers — measure match latency p95</li></ul></div>
+      <div class="body-col"><div class="body-label">Why This Unlocks Grab</div><ul><li>This is a Grab system design interview question verbatim: "Design real-time driver-rider matching at 10M concurrent users"</li><li>Grab processes billions of transactions across 8 regulatory environments simultaneously</li><li>Redis geospatial + WebSocket at this scale = exactly their production architecture</li><li>Having a working implementation changes your answer from theoretical to demonstrated</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Go or Node.js</span><span class="chip">Redis GEORADIUS</span><span class="chip">WebSocket</span><span class="chip">Geohashing</span><span class="chip">Priority queues</span></div>
+    <div class="connects">🔗 Target: Grab Malaysia (RM 18k–28k/mo). Grab's 5-round interview: HR → HackerRank OA → live coding → system design → culture.</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(96,165,250,.15);color:var(--my1)">P47 · 3 WKS</div>
+    <div class="proj-meta"><h3>E-Commerce Flash Sale Order Pipeline</h3><div class="tagline">Flash-sale inventory · Kafka order events · Circuit breaker · State machine · 50,000 concurrent buyers</div></div>
+    <div class="proj-right"><div class="emoji-badge">🛒</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A Shopee-style flash-sale order pipeline with atomic inventory locks, a full order state machine, and Kafka-driven fulfillment.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Flash-sale gate using P3 Lua atomic: 1,000 units, 50,000 concurrent requests</li><li>Order lifecycle state machine: RESERVED→PAYMENT_PENDING→PAID→FULFILLING→SHIPPED→DELIVERED</li><li>Circuit breaker on payment gateway: open if error rate &gt;5% in 30s — queue for retry</li><li>Kafka: every state transition publishes an event — logistics, notifications, analytics consume independently</li></ul></div>
+      <div class="body-col"><div class="body-label">Why This Unlocks Shopee</div><ul><li>Shopee 11.11 flash sale is their defining engineering challenge</li><li>Shopee interview explicitly asks: "Design the 11.11 flash sale for 10M concurrent users"</li><li>Sea Group's coding rounds are strict: aim for 150+ LeetCode problems, focus on medium/hard</li><li>Domain-relevant system design — generic answers do not suffice at Shopee</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">TypeScript</span><span class="chip">Kafka</span><span class="chip">Redis Lua</span><span class="chip">BullMQ</span><span class="chip">PostgreSQL</span></div>
+    <div class="connects">🔗 Target: Shopee / Sea Group Malaysia (RM 15k–25k/mo). Extends P3 directly.</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(74,222,128,.15);color:var(--my2)">P48 · 3 WKS</div>
+    <div class="proj-meta"><h3>Financial Fraud Detection & AML System</h3><div class="tagline">Real-time scoring · Rule engine · BNM compliance · Explainability · Case management</div></div>
+    <div class="proj-right"><div class="emoji-badge">🏦</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A real-time financial fraud detection engine with an explainable, hot-reloadable rule scoring system built for BNM compliance.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Transaction scoring: risk score 0–100 in under 50ms per transaction</li><li>Rule engine: configurable rules in PostgreSQL, hot-reloadable without restart</li><li>Explainability: human-readable reason list per flagged transaction (BNM requirement)</li><li>Case management: flagged transactions → review queue → analyst approve/reject → monthly model retraining</li></ul></div>
+      <div class="body-col"><div class="body-label">Why This Unlocks Maybank / CIMB</div><ul><li>Maybank is actively building AI fraud detection — black-box models are prohibited by BNM</li><li>Explainability is a compliance requirement, not a nice-to-have</li><li>"Design a fraud detection system for 2M daily transactions" is a real Maybank interview question</li><li>CIMB TechVentures salary: RM 10k–18k/mo for AI engineers with domain knowledge</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python</span><span class="chip">PostgreSQL rule engine</span><span class="chip">Real-time scoring</span><span class="chip">BNM compliance</span></div>
+    <div class="connects">🔗 Target: Maybank / CIMB TechVentures (RM 10k–18k/mo). Your MES background explains the domain quickly.</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(74,222,128,.15);color:var(--my2)">P49 · 4 WKS</div>
+    <div class="proj-meta"><h3>Industrial IoT Predictive Maintenance Platform</h3><div class="tagline">MQTT ingestion · TimescaleDB · Anomaly Z-score · LSTM failure prediction · OPC-UA bridge</div></div>
+    <div class="proj-right"><div class="emoji-badge">🏭</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">An industrial IoT predictive maintenance platform combining MQTT sensor ingestion, anomaly detection, and edge-deployed failure prediction.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>100 sensors → MQTT → TimescaleDB: vibration, temperature, pressure at 1 reading/sec</li><li>Rolling Z-score anomaly: alert when reading exceeds 3σ from 24h baseline</li><li>LSTM / isolation forest: predict time-to-failure from vibration signature degradation</li><li>OPC-UA bridge: read industrial tags → feed into MQTT pipeline</li><li>Edge inference: P10 INT4 quantized model on Raspberry Pi — no cloud required</li></ul></div>
+      <div class="body-col"><div class="body-label">Why This Unlocks PETRONAS Digital</div><ul><li>PETRONAS Digital is building AI for Net Zero 2050 — specifically predictive maintenance on oil & gas equipment</li><li>Offshore platforms have poor connectivity — edge inference without cloud is a real requirement</li><li>Your MES background means you understand this problem better than any pure software engineer</li><li>PETRONAS Digital senior AI salary: RM 16k–24k/mo</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">Python</span><span class="chip">MQTT</span><span class="chip">TimescaleDB</span><span class="chip">OPC-UA</span><span class="chip">Edge AI</span></div>
+    <div class="connects">🔗 Target: PETRONAS Digital (RM 16k–24k/mo). Your unique edge — MES + edge AI + OPC-UA in one project.</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(249,115,22,.15);color:var(--faang)">P50 · 3 WKS</div>
+    <div class="proj-meta"><h3>Mechanistic Interpretability Explorer</h3><div class="tagline">Activation patching · Attention head analysis · Sparse autoencoders · TransformerLens · IOI circuit</div></div>
+    <div class="proj-right"><div class="emoji-badge">🔬</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A mechanistic interpretability toolkit that reproduces a known transformer circuit and probes model internals with sparse autoencoders.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Reproduce the Indirect Object Identification (IOI) circuit from Anthropic's interpretability paper using TransformerLens</li><li>Activation patching tool: swap activations between clean and corrupted forward passes</li><li>Sparse autoencoder: decompose residual stream activations into interpretable features</li><li>Published technical report / blog post explaining findings</li></ul></div>
+      <div class="body-col"><div class="body-label">Why This Unlocks Anthropic</div><ul><li>Anthropic hires engineers who understand AI safety and interpretability — this is their core mission</li><li>Interpretability work is almost never in candidate portfolios — immediate differentiation</li><li>Anthropic interviewers explicitly ask: "What draws you to AI safety?" — a published analysis is the most credible answer</li><li>Publishing on HuggingFace / Substack puts your name in front of Anthropic researchers</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">TransformerLens</span><span class="chip">Activation patching</span><span class="chip">Sparse autoencoders</span><span class="chip">PyTorch</span></div>
+    <div class="connects">🔗 Target: Anthropic (global remote). Combined with P29 RLHF + published HF dataset = direct Anthropic recruiter signal.</div>
+  </div>
+</div>
+
+<div class="proj">
+  <div class="proj-head" onclick="tog(this)">
+    <div class="proj-id" style="background:rgba(249,115,22,.15);color:var(--faang)">P51 · 4 WKS</div>
+    <div class="proj-meta"><h3>CUDA Kernel Engineering Portfolio</h3><div class="tagline">Naïve CUDA → tiled GEMM → fused softmax · Nsight Compute profiling · Memory coalescing</div></div>
+    <div class="proj-right"><div class="emoji-badge">🎮</div><div class="chevron">▼</div></div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-intro">A hand-written CUDA kernel portfolio — naive to tiled to fused — profiled with Nsight Compute to prove real hardware understanding.</div>
+    <div class="body-grid">
+      <div class="body-col"><div class="body-label">What You're Building</div><ul><li>Kernel 1: naïve matrix multiply — profile with Nsight: global memory efficiency, occupancy, SM utilisation</li><li>Kernel 2: tiled matrix multiply with shared memory — show bandwidth improvement</li><li>Kernel 3: fused softmax in CUDA (from P15 math, now in CUDA) — compare vs PyTorch native</li><li>Kernel 4: vectorised element-wise ops with float4 loads — demonstrate memory coalescing</li><li>Nsight Compute output: global load efficiency, achieved occupancy, memory throughput vs theoretical peak</li></ul></div>
+      <div class="body-col"><div class="body-label">Why This Unlocks NVIDIA</div><ul><li>NVIDIA interviews explicitly test CUDA, memory hierarchy, and kernel optimisation</li><li>Your P15 Flash-Attention is NumPy — translating to CUDA is the gap to NVIDIA-level work</li><li>The Nsight profiling output IS the interview — it proves you understand hardware constraints</li><li>NVIDIA Malaysia (Penang) R&D hub is actively hiring hardware-aware engineers</li></ul></div>
+    </div>
+    <div class="chips"><span class="chip">CUDA</span><span class="chip">Shared memory</span><span class="chip">Nsight Compute</span><span class="chip">float4</span><span class="chip">Memory coalescing</span></div>
+    <div class="connects">🔗 Target: NVIDIA Malaysia Penang / global. Use Google Colab T4 (free) for GPU access — NVIDIA accepts Colab-based projects.</div>
+  </div>
+</div>
+
+</div><div id="cap" style="margin-top:56px;margin-bottom:8px;">
+  <div class="phase-header" style="margin-top:0">
+    <div class="phase-num" style="background:rgba(124,106,247,.15);color:var(--p1)">Capstone</div>
+    <div class="phase-title">Enterprise Production Capstone Suites</div>
+    <div class="phase-sub">1 Year Per Suite</div>
+  </div>
+</div>
+
+<div class="capstone">
+  <div class="cap-banner">
+    <div class="cap-id-col" style="background:linear-gradient(135deg,#1a2a4a,#0f1a2e)">
+      <div class="cap-id-badge" style="background:rgba(124,106,247,.2);color:var(--p1)">CAPSTONE 01</div>
+      <div class="cap-id-num" style="color:var(--p1)">C1</div>
+      <div class="cap-id-dur" style="color:var(--muted)">1 Year Runtime</div>
+    </div>
+    <div class="cap-info">
+      <div class="cap-title">The Hydra Engine: Disaggregated Multi-Tenant Inference Cluster</div>
+      <div class="cap-sub">Phase isolation (Prefill vs Decode) · Distributed PagedAttention VRAM management · Continuous Batching · NIXL transport connectors</div>
+      <div class="chips" style="padding:0;border:none;background:none"><span class="chip">Go / C++ Core</span><span class="chip">vLLM Architecture</span><span class="chip">Continuous Batching</span><span class="chip">PagedAttention Pool</span><span class="chip">Fused Kernels</span></div>
+    </div>
+  </div>
+  <div class="cap-body">
+    <div class="proj-intro">A disaggregated, multi-tenant LLM inference cluster that separates prefill and decode across nodes and streams KV-cache over RDMA — the architecture behind vLLM-scale serving.</div>
+    <div class="body-label">Platform Scale & Architecture</div>
+    <ul style="list-style:none;margin-bottom:16px">
+      <li style="display:flex;gap:8px;padding:5px 0;font-size:12px;color:var(--muted);border-bottom:1px solid rgba(255,255,255,.04)"><span style="color:var(--dim)">›</span>Production serving platform separating compute-bound Prefill clusters from memory-bound Decode nodes over low-latency networks</li>
+      <li style="display:flex;gap:8px;padding:5px 0;font-size:12px;color:var(--muted);border-bottom:1px solid rgba(255,255,255,.04)"><span style="color:var(--dim)">›</span>Continuous Batching controller: automated request scheduling that maximises GPU utilisation by filling decode slots dynamically</li>
+      <li style="display:flex;gap:8px;padding:5px 0;font-size:12px;color:var(--muted)"><span style="color:var(--dim)">›</span>Distributed KV-Cache streaming engine powered by NIXL connectors and RDMA memory transfers between Prefill and Decode tiers</li>
+    </ul>
+    <div class="body-label">Underlying Component Integrations</div>
+    <table class="cap-int-table">
+      <tbody>
+        <tr><td>Frontend Gateway</td><td>P4 Terminal + P5 Agent canvas monitor live generation streams via WebSocket channels</td></tr>
+        <tr><td>Prefill Layer</td><td>P30 Hybrid Retrieval + P31 GraphRAG extract document context · P26/P27 fused Triton kernels accelerate matrix multiplications</td></tr>
+        <tr><td>Decode Pool</td><td>P10 INT4 quantized weight configs · P12 speculative lookahead passes · P19 Multi-GPU tensor parallelism for token delivery at scale</td></tr>
+        <tr><td>Data Transport</td><td>KV-Cache allocations serialized, compressed via P17 Zstd dictionaries, streamed over P16 PCIe bus pathways</td></tr>
+        <tr><td>Security & Scheduling</td><td>P24 Zero-Trust auth for multi-tenant isolation · P18 lease-based scheduler for request routing across Prefill/Decode nodes</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="capstone">
+  <div class="cap-banner">
+    <div class="cap-id-col" style="background:linear-gradient(135deg,#0f2a1a,#0a1a0f)">
+      <div class="cap-id-badge" style="background:rgba(106,247,196,.2);color:var(--p5)">CAPSTONE 02</div>
+      <div class="cap-id-num" style="color:var(--p5)">C2</div>
+      <div class="cap-id-dur" style="color:var(--muted)">1 Year Runtime</div>
+    </div>
+    <div class="cap-info">
+      <div class="cap-title">Industrial AI Operations Copilot for Manufacturing</div>
+      <div class="cap-sub">Edge computer vision · Industrial Kafka / MQTT stream buses · Timeseries anomaly filters · Fault-tolerant local execution</div>
+      <div class="chips" style="padding:0;border:none;background:none"><span class="chip">Python / Go Core</span><span class="chip">Kafka Streams</span><span class="chip">OPC-UA / MQTT</span><span class="chip">Digital Twin</span><span class="chip">Edge Vision</span></div>
+    </div>
+  </div>
+  <div class="cap-body">
+    <div class="proj-intro">A production-grade industrial AI copilot that fuses digital twin state, edge computer vision, and fault-tolerant streaming into one manufacturing operations platform.</div>
+    <div class="body-label">Platform Scale & Architecture</div>
+    <ul style="list-style:none;margin-bottom:16px">
+      <li style="display:flex;gap:8px;padding:5px 0;font-size:12px;color:var(--muted);border-bottom:1px solid rgba(255,255,255,.04)"><span style="color:var(--dim)">›</span>Fault-tolerant local automation platform routing factory equipment signals over replicated MQTT broker nodes</li>
+      <li style="display:flex;gap:8px;padding:5px 0;font-size:12px;color:var(--muted);border-bottom:1px solid rgba(255,255,255,.04)"><span style="color:var(--dim)">›</span>Real-time edge machine vision models evaluating manufacturing assembly output for geometric defects — no cloud dependency</li>
+      <li style="display:flex;gap:8px;padding:5px 0;font-size:12px;color:var(--muted)"><span style="color:var(--dim)">›</span>Distributed coordination pipeline linking telemetry alerts to localised engineering dispatch loops instantly</li>
+    </ul>
+    <div class="body-label">Underlying Component Integrations</div>
+    <table class="cap-int-table">
+      <tbody>
+        <tr><td>Telemetry Backbone</td><td>Physical sensors → P23 Kafka Streams sliding-window aggregation · P17 Zstd compression for high-density telemetry histories</td></tr>
+        <tr><td>Asset State Tracking</td><td>P25 Digital Twin engine maintains live machine status logs and traces industrial signal variances in real-time</td></tr>
+        <tr><td>Edge AI Analytics</td><td>P10 INT4 quantized vision model weights run computer-vision classifications entirely on-device without cloud round-trips</td></tr>
+        <tr><td>Execution Coordination</td><td>P18 lease-based job scheduler distributes factory inspection sequences and log rotation across edge nodes safely</td></tr>
+        <tr><td>Fault-Tolerant Cache</td><td>P2 Cache-Aside + P3 atomic mutex preserve factory log data and sensor state during sudden site network outages</td></tr>
+      </tbody>
+    </table>
+    <div class="note-grid" style="margin-top:16px">
+      <div class="note note-tip"><div class="note-lbl">💡 Your Unique Edge</div>No other engineer targeting this space has MES + Power Automate + digital twin + edge AI in one portfolio. This is the project that makes your IT Executive background a competitive advantage, not a liability.</div>
+      <div class="note note-tip"><div class="note-lbl">💡 PETRONAS Target</div>Capstone 02 is a direct demonstration of PETRONAS Digital's Net Zero 2050 AI roadmap. Deploy it with OPC-UA integration and real sensor data if possible.</div>
+    </div>
+  </div>
+</div>
+
+<div class="summary">
+  <h2>// Total Educational Footprint Overview</h2>
+  <div class="summary-grid">
+    <div class="sum-box">
+      <div class="sum-val" style="color:var(--p1)">59</div>
+      <div class="sum-lbl">Core Projects Shipped</div>
+      <div class="sum-desc">Spanning distributed systems, neural mathematics, hardware kernels, CS fundamentals, cryptography, compilers, career-targeted builds, and an 8-project active portfolio suite (P52–P59) for Malaysian Tier 1/2 and FAANG companies.</div>
+    </div>
+    <div class="sum-box">
+      <div class="sum-val" style="color:var(--p5)">2</div>
+      <div class="sum-lbl">Capstone Suites</div>
+      <div class="sum-desc">The Hydra Engine (hyperscale AI inference) and Industrial AI Copilot (MES + edge AI). Each integrates all prior projects into a production-grade platform. One year each.</div>
+    </div>
+    <div class="sum-box">
+      <div class="sum-val" style="color:var(--p4)">Principal</div>
+      <div class="sum-lbl">Target Capacity Level</div>
+      <div class="sum-desc">Mastering performance boundaries at distributed application, neural architecture, and bare-metal hardware levels simultaneously. Rare in the industry. Immediately distinguishable in interviews.</div>
+    </div>
+  </div>
+</div>
+
+</div></body>
+</html>
