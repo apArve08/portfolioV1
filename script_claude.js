@@ -180,6 +180,7 @@ rag/
       pitch: 'Redis · Cache invalidation · Event-driven · Race condition protection',
       tag: '⚡ Backend',
       github: GH,
+      projectUrl: 'https://aparve08.github.io/portfolioV1/proj/cache-aside.html',
       overview: {
         blurb: 'A two-tier data layer that protects a relational database from read-heavy traffic without letting the cache and the source of truth drift apart.',
         features: [
@@ -222,7 +223,7 @@ rag/
         { caption: 'Cache hit/miss log', text: 'Screenshot+2' },
         { caption: 'k6 latency graph', text: 'Screenshot+3' },
       ],
-      readme: `# Distributed Cache-Aside System
+      readme: `# Distributed Cache-Aside System\n\nPostgreSQL-backed store fronted by Redis with atomic invalidation.\n\n## Stack\n\n- Express (Node.js) for the API layer\n- Redis 7 as the read-through cache\n- PostgreSQL 16 as the system of record\n- k6 for load testing\n\n## Middleware sketch\n\n\`\`\`\nasync function cacheAside(key, ttl, loader) {\n  const hit = await redis.get(key);\n  if (hit) return JSON.parse(hit);\n  const fresh = await loader();\n  await redis.set(key, JSON.stringify(fresh), "EX", ttl);\n  return fresh;\n}\n\`\`\`\n\n## Run\n\n\`\`\`\ndocker compose up\nnpm run dev\nk6 run tests/load.js\n\`\`\`\n`,\n    },
 
 PostgreSQL-backed store fronted by Redis with atomic invalidation.
 
@@ -879,6 +880,7 @@ open index.html          # works offline, straight from file://
       pitch: 'AI agent for investigating and recovering manufacturing systems',
       tag: '🏆 Hackathon · Google Cloud',
       github: GH,
+      projectUrl: 'https://devpost.com/software/factory-guardian?ref_content=user-portfolio&ref_feature=in_progress',
       overview: {
         blurb: 'Hackathon submission to the Google Cloud hackathon: an AI agent that investigates faults in factory systems and helps them recover. Recovery brought latency down from 6,834 ms to 199 ms.',
         concepts: [
@@ -887,14 +889,7 @@ open index.html          # works offline, straight from file://
         ],
         stack: ['Google Cloud', 'Gemini', 'Python'],
       },
-      readme: `# Factory Guardian
-
-Submission to the Google Cloud hackathon (2026).
-
-## Result
-
-- Latency recovered from 6,834 ms to 199 ms
-`,
+      readme: `# Factory Guardian\n\nSubmission to the Google Cloud hackathon (2026).\n\n## Result\n\n- Latency recovered from 6,834 ms to 199 ms\n`,
     },
     {
       code: 'H2', slug: 'glasshouse', year: 2026, type: 'personal', hackathon: true,
