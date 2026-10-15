@@ -872,10 +872,68 @@ open index.html          # works offline, straight from file://
 \`\`\`
 `,
     },
+    {
+      code: 'H1', slug: 'factory-guardian', year: 2026, type: 'work', hackathon: true,
+      title: 'Factory Guardian',
+      org: 'Google Cloud Hackathon', duration: 'Hackathon 2026',
+      pitch: 'AI agent for investigating and recovering manufacturing systems',
+      tag: '🏆 Hackathon · Google Cloud',
+      github: GH,
+      overview: {
+        blurb: 'Hackathon submission to the Google Cloud hackathon: an AI agent that investigates faults in factory systems and helps them recover. Recovery brought latency down from 6,834 ms to 199 ms.',
+        concepts: [
+          'LLM agent that investigates issues across manufacturing systems',
+          'Measured recovery: latency 6,834 ms → 199 ms',
+        ],
+        stack: ['Google Cloud', 'Gemini', 'Python'],
+      },
+      readme: `# Factory Guardian
+
+Submission to the Google Cloud hackathon (2026).
+
+## Result
+
+- Latency recovered from 6,834 ms to 199 ms
+`,
+    },
+    {
+      code: 'H2', slug: 'glasshouse', year: 2026, type: 'personal', hackathon: true,
+      title: 'Glasshouse',
+      org: 'OpenAI Build Week', duration: 'Hackathon 2026',
+      pitch: 'OpenAI Build Week submission',
+      tag: '🏆 Hackathon · OpenAI',
+      github: GH,
+      overview: {
+        blurb: 'Hackathon submission to OpenAI Build Week (2026).',
+        concepts: ['Details coming soon'],
+        stack: ['OpenAI'],
+      },
+      readme: `# Glasshouse
+
+Submission to OpenAI Build Week (2026).
+`,
+    },
+    {
+      code: 'H3', slug: 'nadi', year: 2026, type: 'personal', hackathon: true,
+      title: 'Nadi',
+      org: 'Google DeepMind Hackathon · Kuala Lumpur', duration: 'Hackathon 2026',
+      pitch: 'Google DeepMind hackathon submission, with a Run Analyzer pillar spun out of RunTrack',
+      tag: '🏆 Hackathon · Google DeepMind',
+      github: GH,
+      overview: {
+        blurb: 'Hackathon submission to the Google DeepMind hackathon in Kuala Lumpur. Its Run Analyzer pillar is a natural spin-off of RunTrack.',
+        concepts: ['Run Analyzer pillar builds on RunTrack'],
+        stack: ['Gemini', 'Google ADK'],
+      },
+      readme: `# Nadi
+
+Submission to the Google DeepMind hackathon, Kuala Lumpur (2026).
+`,
+    },
   ];
 
-  // Sort newest first for the rail (mirrors a timeline read top-down).
-  PROJECTS.sort(function (a, b) { return b.year - a.year; });
+  // Sort hackathons first, then newest first for the rail.
+  PROJECTS.sort(function (a, b) { return (b.hackathon ? 1 : 0) - (a.hackathon ? 1 : 0) || b.year - a.year; });
 
   const GITHUB_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.18-1.49 3.14-1.18 3.14-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>';
 
@@ -974,9 +1032,10 @@ open index.html          # works offline, straight from file://
   let query = '';
 
   function projectMatches(p) {
-    if (activeType !== 'all' && p.type !== activeType) return false;
+    if (activeType === 'hackathon') { if (!p.hackathon) return false; }
+    else if (activeType !== 'all' && p.type !== activeType) return false;
     if (query) {
-      const hay = (p.title + ' ' + p.pitch + ' ' + p.org + ' ' + (p.overview.stack || []).join(' ')).toLowerCase();
+      const hay = (p.title + ' ' + p.pitch + ' ' + p.org + ' ' + (p.overview.stack || []).join(' ') + (p.hackathon ? ' hackathon' : '')).toLowerCase();
       if (hay.indexOf(query.toLowerCase()) === -1) return false;
     }
     return true;
@@ -991,6 +1050,7 @@ open index.html          # works offline, straight from file://
           '<span class="row-top"><span class="row-code">' + p.code + '</span><span class="row-year">' + p.year + '</span></span>' +
           '<span class="row-title">' + escapeHtml(p.title) + '</span>' +
           '<span class="row-org">' + escapeHtml(p.org) + '</span>' +
+          (p.hackathon ? '<span class="row-badge">🏆 Hackathon</span>' : '') +
         '</span>' +
       '</button>';
     });
@@ -1057,13 +1117,15 @@ open index.html          # works offline, straight from file://
       (p.overview.features ? '<h4>Features</h4><ul class="bullet-list">' + p.overview.features.map(function (f) { return '<li>' + escapeHtml(f) + '</li>'; }).join('') + '</ul>' : '') +
       '<h4>Core Concepts</h4><ul class="bullet-list">' + p.overview.concepts.map(function (c) { return '<li>' + escapeHtml(c) + '</li>'; }).join('') + '</ul>' +
       weeksHtml +
-      '<div class="callout-grid">' +
+      (p.problem ? '<div class="callout-grid">' +
         '<div class="callout"><span class="callout-label">Problem</span><div class="callout-body"><p>' + escapeHtml(p.problem) + '</p></div></div>' +
         '<div class="callout"><span class="callout-label">Solution</span><div class="callout-body"><p>' + escapeHtml(p.solution) + '</p></div></div>' +
-      '</div>' +
+      '</div>' : '') +
       '<ul class="tag-list tag-strip">' + stackTags + '</ul>';
 
-    const archHtml = '<h4>System Architecture</h4><div class="arch-diagram">' + renderArchitecture(p.architecture) + '</div>';
+    const archHtml = p.architecture
+      ? '<h4>System Architecture</h4><div class="arch-diagram">' + renderArchitecture(p.architecture) + '</div>'
+      : '<div class="demo-empty">Architecture write-up coming soon.</div>';
 
     const demoHtml = p.images && p.images.length
       ? '<h4>Screenshots &amp; Demo</h4><div class="image-gallery">' + p.images.map(function (img, i) {
@@ -1087,6 +1149,7 @@ open index.html          # works offline, straight from file://
           '<span class="detail-code">' + p.code + '</span>' +
           '<span class="detail-type-tag">' + p.tag + '</span>' +
           '<a class="detail-github" href="' + p.github + '" target="_blank" rel="noopener">' + GITHUB_SVG + '<span>GitHub</span></a>' +
+          (p.projectUrl ? '<a class="detail-github detail-project-link" href="' + p.projectUrl + '" target="_blank" rel="noopener"><span>View project ↗</span></a>' : '') +
         '</div>' +
         '<h3 class="detail-title">' + escapeHtml(p.title) + '</h3>' +
         '<p class="detail-pitch">' + escapeHtml(p.pitch) + '</p>' +
