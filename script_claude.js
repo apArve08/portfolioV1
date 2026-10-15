@@ -2,11 +2,6 @@
   const root = document.documentElement;
   const GH = 'https://github.com/aparve08';
 
-  /* ========================================================================
-     PROJECT DATA — single source of truth.
-     Add a new object to PROJECTS and it appears in the rail + gets its own
-     detail panel automatically. Nothing else needs to change.
-     ======================================================================== */
   const PROJECTS = [
     {
       code: 'P7', slug: 'runtrack', year: 2026, type: 'personal',
@@ -60,42 +55,8 @@
         { caption: 'Run detail with Mapbox route', text: 'Run+Detail' },
         { caption: 'AI-generated progress report', text: 'AI+Report' },
       ],
-      readme: `# RunTrack
-
-A running analytics platform that turns raw Strava / Suunto data into actionable training insight.
-
-## Stack
-
-- **Frontend**: Next.js (Vercel)
-- **Backend**: FastAPI
-- **Database**: Supabase (Postgres + Auth + Storage)
-- **LLM**: Gemini Flash (run analysis, reports, schedules)
-- **Maps**: Mapbox + Leaflet
-- **Integrations**: Strava API, Suunto API
-
-## Features
-
-- Daily / weekly / monthly / yearly dashboards
-- Run detail pages with route maps
-- AI-powered run analysis (Gemini Flash)
-- Activity filtering and Excel export
-- AI-generated progress reports
-- Automatic PR detection
-- Training zone breakdowns
-- Strava & Suunto sync
-
-## Run locally
-
-\`\`\`
-# backend
-uvicorn app.main:app --reload
-
-# frontend
-pnpm dev
-\`\`\`
-`,
+      readme: `# RunTrack\n\nA running analytics platform that turns raw Strava / Suunto data into actionable training insight.\n\n## Stack\n\n- **Frontend**: Next.js (Vercel)\n- **Backend**: FastAPI\n- **Database**: Supabase (Postgres + Auth + Storage)\n- **LLM**: Gemini Flash (run analysis, reports, schedules)\n- **Maps**: Mapbox + Leaflet\n- **Integrations**: Strava API, Suunto API\n\n## Features\n\n- Daily / weekly / monthly / yearly dashboards\n- Run detail pages with route maps\n- AI-powered run analysis (Gemini Flash)\n- Activity filtering and Excel export\n- AI-generated progress reports\n- Automatic PR detection\n- Training zone breakdowns\n- Strava & Suunto sync\n\n## Run locally\n\n\`\`\`\n# backend\nuvicorn app.main:app --reload\n\n# frontend\npnpm dev\n\`\`\`\n`,
     },
-
     {
       code: 'P5', slug: 'local-rag', year: 2026, type: 'personal',
       title: 'Local AI Evaluator & RAG Pipeline',
@@ -148,31 +109,8 @@ pnpm dev
         { caption: 'Benchmark run — llama3.2 vs phi3 across 20 eval prompts', src: 'img/P1_2.png' },
         { caption: 'Benchmark dashboard — time-to-first-token and words/sec per model', src: 'img/P1_3.png' },
       ],
-      readme: `# Local AI Evaluator & RAG Pipeline
-
-A fully local retrieval-augmented generation pipeline for evaluating open-source LLMs against your own documents.
-
-## Quick start
-
-\`\`\`
-docker compose up -d            # postgres + pgvector
-pip install -r requirements.txt
-python ingest.py ./docs/        # chunk + embed
-python benchmark.py --model nomic-embed-text
-\`\`\`
-
-## Layout
-
-\`\`\`
-rag/
-  ingest.py        chunking & embedding
-  retrieve.py      similarity search
-  benchmark/       eval harness
-  dashboard/       Next.js UI
-\`\`\`
-`,
+      readme: `# Local AI Evaluator & RAG Pipeline\n\nA fully local retrieval-augmented generation pipeline for evaluating open-source LLMs against your own documents.\n\n## Quick start\n\n\`\`\`\ndocker compose up -d            # postgres + pgvector\npip install -r requirements.txt\npython ingest.py ./docs/        # chunk + embed\npython benchmark.py --model nomic-embed-text\n\`\`\`\n\n## Layout\n\n\`\`\`\nrag/\n  ingest.py        chunking & embedding\n  retrieve.py      similarity search\n  benchmark/       eval harness\n  dashboard/       Next.js UI\n\`\`\`\n`,
     },
-
     {
       code: 'P6', slug: 'cache-aside', year: 2026, type: 'personal',
       title: 'Distributed Cache-Aside System',
@@ -223,39 +161,8 @@ rag/
         { caption: 'Cache hit/miss log', text: 'Screenshot+2' },
         { caption: 'k6 latency graph', text: 'Screenshot+3' },
       ],
-      readme: `# Distributed Cache-Aside System\n\nPostgreSQL-backed store fronted by Redis with atomic invalidation.\n\n## Stack\n\n- Express (Node.js) for the API layer\n- Redis 7 as the read-through cache\n- PostgreSQL 16 as the system of record\n- k6 for load testing\n\n## Middleware sketch\n\n\`\`\`\nasync function cacheAside(key, ttl, loader) {\n  const hit = await redis.get(key);\n  if (hit) return JSON.parse(hit);\n  const fresh = await loader();\n  await redis.set(key, JSON.stringify(fresh), "EX", ttl);\n  return fresh;\n}\n\`\`\`\n\n## Run\n\n\`\`\`\ndocker compose up\nnpm run dev\nk6 run tests/load.js\n\`\`\`\n`,\n    },
-
-PostgreSQL-backed store fronted by Redis with atomic invalidation.
-
-## Stack
-
-- Express (Node.js) for the API layer
-- Redis 7 as the read-through cache
-- PostgreSQL 16 as the system of record
-- k6 for load testing
-
-## Middleware sketch
-
-\`\`\`
-async function cacheAside(key, ttl, loader) {
-  const hit = await redis.get(key);
-  if (hit) return JSON.parse(hit);
-  const fresh = await loader();
-  await redis.set(key, JSON.stringify(fresh), "EX", ttl);
-  return fresh;
-}
-\`\`\`
-
-## Run
-
-\`\`\`
-docker compose up
-npm run dev
-k6 run tests/load.js
-\`\`\`
-`,
+      readme: `# Distributed Cache-Aside System\n\nPostgreSQL-backed store fronted by Redis with atomic invalidation.\n\n## Stack\n\n- Express (Node.js) for the API layer\n- Redis 7 as the read-through cache\n- PostgreSQL 16 as the system of record\n- k6 for load testing\n\n## Middleware sketch\n\n\`\`\`\nasync function cacheAside(key, ttl, loader) {\n  const hit = await redis.get(key);\n  if (hit) return JSON.parse(hit);\n  const fresh = await loader();\n  await redis.set(key, JSON.stringify(fresh), "EX", ttl);\n  return fresh;\n}\n\`\`\`\n\n## Run\n\n\`\`\`\ndocker compose up\nnpm run dev\nk6 run tests/load.js\n\`\`\`\n`,
     },
-
     {
       code: 'P1', slug: 'e-appraisal', year: 2025, type: 'work',
       title: 'E-Appraisal System',
@@ -299,26 +206,8 @@ k6 run tests/load.js
         { caption: 'Appraisal dashboard', text: 'Screenshot+1' },
         { caption: 'Review form', text: 'Screenshot+2' },
       ],
-      readme: `# E-Appraisal
-
-Internal HR system for managing employee performance appraisal cycles at YBS International Berhad.
-
-## Stack
-
-- PHP (backend)
-- MySQL (data layer)
-- REST APIs (internal integration)
-- Docker (deployment)
-
-## Features
-
-- Role-based access (staff / manager / HR)
-- Configurable appraisal cycles
-- Review forms with scoring rubrics
-- Reporting dashboard for HR
-`,
+      readme: `# E-Appraisal\n\nInternal HR system for managing employee performance appraisal cycles at YBS International Berhad.\n\n## Stack\n\n- PHP (backend)\n- MySQL (data layer)\n- REST APIs (internal integration)\n- Docker (deployment)\n\n## Features\n\n- Role-based access (staff / manager / HR)\n- Configurable appraisal cycles\n- Review forms with scoring rubrics\n- Reporting dashboard for HR\n`,
     },
-
     {
       code: 'P2', slug: 'it-request', year: 2025, type: 'work',
       title: 'IT Request System Management',
@@ -366,26 +255,8 @@ Internal HR system for managing employee performance appraisal cycles at YBS Int
         { caption: 'ManageEngine integration', text: 'Screenshot+2' },
         { caption: 'Power BI report', text: 'Screenshot+3' },
       ],
-      readme: `# IT Request System Management
-
-Internal IT ticketing platform used across YBS International Berhad plants, extended with ML-driven auto-completion during my internship at Spritzer Berhad.
-
-## Stack
-
-- React + TypeScript (frontend)
-- ASP.NET / C# (backend & ManageEngine API integration)
-- Power Automate (workflow)
-- Power BI + Excel (reporting)
-- scikit-learn / ML.NET (auto-fill predictions)
-
-## Highlights
-
-- ML auto-complete predicts missing/incorrect ticket fields, reducing data inconsistencies.
-- ManageEngine API integrated through C# services.
-- Reporting dashboards surface trends across plants.
-`,
+      readme: `# IT Request System Management\n\nInternal IT ticketing platform used across YBS International Berhad plants, extended with ML-driven auto-completion during my internship at Spritzer Berhad.\n\n## Stack\n\n- React + TypeScript (frontend)\n- ASP.NET / C# (backend & ManageEngine API integration)\n- Power Automate (workflow)\n- Power BI + Excel (reporting)\n- scikit-learn / ML.NET (auto-fill predictions)\n\n## Highlights\n\n- ML auto-complete predicts missing/incorrect ticket fields, reducing data inconsistencies.\n- ManageEngine API integrated through C# services.\n- Reporting dashboards surface trends across plants.\n`,
     },
-
     {
       code: 'P3', slug: 'it-asset', year: 2025, type: 'work',
       title: 'IT Asset Management System',
@@ -431,26 +302,8 @@ Internal IT ticketing platform used across YBS International Berhad plants, exte
         { caption: 'Asset list view', text: 'Screenshot+1' },
         { caption: 'Asset detail page', text: 'Screenshot+2' },
       ],
-      readme: `# IT Asset Management
-
-Centralised inventory of IT assets across YBS International Berhad manufacturing plants.
-
-## Stack
-
-- PHP (backend)
-- MySQL (data layer)
-- REST APIs
-- Docker
-
-## Features
-
-- Asset inventory with lifecycle tracking
-- Assignment to staff and locations
-- Audit history per asset
-- CRUD workflows tied to support tickets
-`,
+      readme: `# IT Asset Management\n\nCentralised inventory of IT assets across YBS International Berhad manufacturing plants.\n\n## Stack\n\n- PHP (backend)\n- MySQL (data layer)\n- REST APIs\n- Docker\n\n## Features\n\n- Asset inventory with lifecycle tracking\n- Assignment to staff and locations\n- Audit history per asset\n- CRUD workflows tied to support tickets\n`,
     },
-
     {
       code: 'P4', slug: 'mobile-app', year: 2023, type: 'personal',
       title: 'Cross-Platform Mobile App (FlutterFlow)',
@@ -496,26 +349,8 @@ Centralised inventory of IT assets across YBS International Berhad manufacturing
         { caption: 'Home screen', text: 'Screenshot+2' },
         { caption: 'Detail view', text: 'Screenshot+3' },
       ],
-      readme: `# Cross-Platform Mobile App
-
-A FlutterFlow mobile app built for a freelance client, integrated with Firebase for backend services.
-
-## Stack
-
-- FlutterFlow (UI & app shell)
-- Firebase Authentication
-- Firebase Realtime Database
-- Firebase Cloud Functions
-
-## Features
-
-- User signup / login
-- Live data sync via Realtime Database
-- Cloud Functions for backend logic
-- Cross-platform (iOS & Android)
-`,
+      readme: `# Cross-Platform Mobile App\n\nA FlutterFlow mobile app built for a freelance client, integrated with Firebase for backend services.\n\n## Stack\n\n- FlutterFlow (UI & app shell)\n- Firebase Authentication\n- Firebase Realtime Database\n- Firebase Cloud Functions\n\n## Features\n\n- User signup / login\n- Live data sync via Realtime Database\n- Cloud Functions for backend logic\n- Cross-platform (iOS & Android)\n`,
     },
-
     {
       code: 'P52', slug: 'nanolake', year: 2026, type: 'personal',
       title: 'NanoLake — Browser-Native SQL Analytics',
@@ -567,28 +402,8 @@ A FlutterFlow mobile app built for a freelance client, integrated with Firebase 
         { caption: 'Ingesting a 500MB CSV without blocking the UI', text: 'Screenshot+2' },
         { caption: 'Parquet export from a query result', text: 'Screenshot+3' },
       ],
-      readme: `# NanoLake
-
-A local-first analytics workspace running SQL directly on huge CSV/JSON files in the browser.
-
-## Stack
-
-- Next.js (static export)
-- DuckDB-Wasm (in-tab SQL engine)
-- IndexedDB (local persistence)
-- Hand-written Canvas/SVG charts
-
-## Modules
-
-\`\`\`
-ui/          table tree · SQL editor · charts
-ingest/      drag-and-drop streaming ingestion
-wasm/        DuckDB-Wasm worker
-export/      Parquet compression pipeline
-\`\`\`
-`,
+      readme: `# NanoLake\n\nA local-first analytics workspace running SQL directly on huge CSV/JSON files in the browser.\n\n## Stack\n\n- Next.js (static export)\n- DuckDB-Wasm (in-tab SQL engine)\n- IndexedDB (local persistence)\n- Hand-written Canvas/SVG charts\n\n## Modules\n\n\`\`\`\nui/          table tree · SQL editor · charts\ningest/      drag-and-drop streaming ingestion\nwasm/        DuckDB-Wasm worker\nexport/      Parquet compression pipeline\n\`\`\`\n`,
     },
-
     {
       code: 'P53', slug: 'flexsql-workbench', year: 2026, type: 'personal',
       title: 'FlexSQL Workbench',
@@ -639,25 +454,8 @@ export/      Parquet compression pipeline
         { caption: 'Dependency graph resolving table generation order', text: 'Screenshot+2' },
         { caption: 'Streaming generator producing a large mock dataset', text: 'Screenshot+3' },
       ],
-      readme: `# FlexSQL Workbench
-
-Turns raw CREATE TABLE scripts into realistic, relationally-consistent mock datasets.
-
-## Stack
-
-- Next.js
-- TypeScript
-- Local Storage API (saved scripts)
-
-## Pipeline
-
-\`\`\`
-DDL input → AST lexer → dependency graph → topological sort
-          → async generator → .sql / .csv export
-\`\`\`
-`,
+      readme: `# FlexSQL Workbench\n\nTurns raw CREATE TABLE scripts into realistic, relationally-consistent mock datasets.\n\n## Stack\n\n- Next.js\n- TypeScript\n- Local Storage API (saved scripts)\n\n## Pipeline\n\n\`\`\`\nDDL input → AST lexer → dependency graph → topological sort\n          → async generator → .sql / .csv export\n\`\`\`\n`,
     },
-
     {
       code: 'P57', slug: 'token-lens', year: 2026, type: 'personal',
       title: 'token · lens — Transformer Internals Explorer',
@@ -711,25 +509,8 @@ DDL input → AST lexer → dependency graph → topological sort
         { caption: 'Per-token surprise heatmap over generated text', text: 'Screenshot+2' },
         { caption: 'SVG attention arcs / matrix view', text: 'Screenshot+3' },
       ],
-      readme: `# token · lens
-
-A zero-dependency, single-HTML-file transformer trained live in the browser at page load.
-
-## Stack
-
-- Plain HTML/CSS/JS — no framework, no ML library
-- Hand-written BPE tokenizer (203 merges)
-- Hand-written 1-layer, 2-head transformer with manual backprop + Adam
-
-## Open it
-
-\`\`\`
-open index.html
-# trains on load, then explore tokenization / prediction / attention live
-\`\`\`
-`,
+      readme: `# token · lens\n\nA zero-dependency, single-HTML-file transformer trained live in the browser at page load.\n\n## Stack\n\n- Plain HTML/CSS/JS — no framework, no ML library\n- Hand-written BPE tokenizer (203 merges)\n- Hand-written 1-layer, 2-head transformer with manual backprop + Adam\n\n## Open it\n\n\`\`\`\nopen index.html\n# trains on load, then explore tokenization / prediction / attention live\n\`\`\`\n`,
     },
-
     {
       code: 'P58', slug: 'glasshouse', year: 2026, type: 'personal',
       title: 'GlassHouse — Cross-Agent Observability Layer',
@@ -783,26 +564,8 @@ open index.html
         { caption: 'Hash-chain integrity check output', text: 'Screenshot+2' },
         { caption: 'Cross-agent event schema comparison', text: 'Screenshot+3' },
       ],
-      readme: `# GlassHouse
-
-A local-first observability layer for Claude Code, Codex CLI, and Gemini CLI.
-
-## Stack
-
-- Node.js / TypeScript
-- Native hooks: Claude Code, Codex CLI, Gemini CLI
-- SHA-256 hash-chained JSONL session log
-
-## CLI
-
-\`\`\`
-glasshouse init      # detect installed agents, write hook config
-glasshouse serve      # tail session.jsonl into a live WS replay viewer
-glasshouse verify     # re-run the hash-chain integrity check offline
-\`\`\`
-`,
+      readme: `# GlassHouse\n\nA local-first observability layer for Claude Code, Codex CLI, and Gemini CLI.\n\n## Stack\n\n- Node.js / TypeScript\n- Native hooks: Claude Code, Codex CLI, Gemini CLI\n- SHA-256 hash-chained JSONL session log\n\n## CLI\n\n\`\`\`\nglasshouse init      # detect installed agents, write hook config\nglasshouse serve      # tail session.jsonl into a live WS replay viewer\nglasshouse verify     # re-run the hash-chain integrity check offline\n\`\`\`\n`,
     },
-
     {
       code: 'P59', slug: 'arveend-os', year: 2026, type: 'personal',
       title: 'arveend_OS — Personal Command Center',
@@ -856,22 +619,7 @@ glasshouse verify     # re-run the hash-chain integrity check offline
         { caption: 'WIP-limited kanban board', text: 'Screenshot+2' },
         { caption: 'Brain-dump inbox and icebox', text: 'Screenshot+3' },
       ],
-      readme: `# arveend_OS
-
-A personal command center — dashboard, project matrix, kanban, inbox, icebox — as one static file.
-
-## Stack
-
-- Vanilla JS, no build step
-- localStorage (source of truth)
-- Firebase Auth + Firestore (optional sync)
-
-## Run
-
-\`\`\`
-open index.html          # works offline, straight from file://
-\`\`\`
-`,
+      readme: `# arveend_OS\n\nA personal command center — dashboard, project matrix, kanban, inbox, icebox — as one static file.\n\n## Stack\n\n- Vanilla JS, no build step\n- localStorage (source of truth)\n- Firebase Auth + Firestore (optional sync)\n\n## Run\n\n\`\`\`\nopen index.html          # works offline, straight from file://\n\`\`\`\n`,
     },
     {
       code: 'H1', slug: 'factory-guardian', year: 2026, type: 'work', hackathon: true,
@@ -903,10 +651,7 @@ open index.html          # works offline, straight from file://
         concepts: ['Details coming soon'],
         stack: ['OpenAI'],
       },
-      readme: `# Glasshouse
-
-Submission to OpenAI Build Week (2026).
-`,
+      readme: `# Glasshouse\n\nSubmission to OpenAI Build Week (2026).\n`,
     },
     {
       code: 'H3', slug: 'nadi', year: 2026, type: 'personal', hackathon: true,
@@ -920,33 +665,28 @@ Submission to OpenAI Build Week (2026).
         concepts: ['Run Analyzer pillar builds on RunTrack'],
         stack: ['Gemini', 'Google ADK'],
       },
-      readme: `# Nadi
-
-Submission to the Google DeepMind hackathon, Kuala Lumpur (2026).
-`,
+      readme: `# Nadi\n\nSubmission to the Google DeepMind hackathon, Kuala Lumpur (2026).\n`,
     },
   ];
 
-  // Sort hackathons first, then newest first for the rail.
   PROJECTS.sort(function (a, b) { return (b.hackathon ? 1 : 0) - (a.hackathon ? 1 : 0) || b.year - a.year; });
 
   const GITHUB_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.18-1.49 3.14-1.18 3.14-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>';
 
-  /* ---------------- tiny markdown -> HTML renderer for README tab ---------------- */
   function escapeHtml(s) {
     return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
   function inlineMd(s) {
     s = escapeHtml(s);
     s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
-    s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    s = s.replace(/\\*\\*([^*]+)\\*\\*/g, '<strong>$1</strong>');
     return s;
   }
   function renderMarkdown(md) {
-    const lines = md.replace(/\r\n/g, '\n').split('\n');
+    const lines = md.replace(/\\r\\n/g, '\\n').split('\\n');
     let html = '';
     let i = 0;
-    let listBuffer = null; // 'ul' | 'ol' | null
+    let listBuffer = null;
 
     function flushList() {
       if (listBuffer) { html += '</' + listBuffer + '>'; listBuffer = null; }
@@ -954,18 +694,16 @@ Submission to the Google DeepMind hackathon, Kuala Lumpur (2026).
 
     while (i < lines.length) {
       const line = lines[i];
-
       if (/^```/.test(line)) {
         flushList();
         const codeLines = [];
         i++;
         while (i < lines.length && !/^```/.test(lines[i])) { codeLines.push(lines[i]); i++; }
-        html += '<pre><code>' + escapeHtml(codeLines.join('\n')) + '</code></pre>';
+        html += '<pre><code>' + escapeHtml(codeLines.join('\\n')) + '</code></pre>';
         i++;
         continue;
       }
-
-      const h = line.match(/^(#{1,3})\s+(.*)$/);
+      const h = line.match(/^(#{1,3})\\s+(.*)$/);
       if (h) {
         flushList();
         const level = h[1].length;
@@ -973,25 +711,21 @@ Submission to the Google DeepMind hackathon, Kuala Lumpur (2026).
         i++;
         continue;
       }
-
-      const ol = line.match(/^\d+\.\s+(.*)$/);
+      const ol = line.match(/^\\d+\\.\\s+(.*)$/);
       if (ol) {
         if (listBuffer !== 'ol') { flushList(); html += '<ol>'; listBuffer = 'ol'; }
         html += '<li>' + inlineMd(ol[1]) + '</li>';
         i++;
         continue;
       }
-
-      const ul = line.match(/^[-*]\s+(.*)$/);
+      const ul = line.match(/^[-*]\\s+(.*)$/);
       if (ul) {
         if (listBuffer !== 'ul') { flushList(); html += '<ul>'; listBuffer = 'ul'; }
         html += '<li>' + inlineMd(ul[1]) + '</li>';
         i++;
         continue;
       }
-
       if (line.trim() === '') { flushList(); i++; continue; }
-
       flushList();
       html += '<p>' + inlineMd(line) + '</p>';
       i++;
@@ -999,9 +733,6 @@ Submission to the Google DeepMind hackathon, Kuala Lumpur (2026).
     flushList();
     return html;
   }
-
-  /* ---------------- generic architecture layer renderer ---------------- */
-  const ARROW_DOWN_SVG = '<svg width="16" height="20" viewBox="0 0 16 20" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="8" y1="1" x2="8" y2="15"/><path d="M3 11 L8 17 L13 11" fill="none"/></svg>';
 
   function renderArchitecture(layers) {
     let out = '';
@@ -1012,13 +743,12 @@ Submission to the Google DeepMind hackathon, Kuala Lumpur (2026).
       });
       out += '</div></div>';
       if (idx < layers.length - 1) {
-        out += '<div class="arch-connector">' + ARROW_DOWN_SVG + '</div>';
+        out += '<div class="arch-connector"><svg width="16" height="20" viewBox="0 0 16 20" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="8" y1="1" x2="8" y2="15"/><path d="M3 11 L8 17 L13 11" fill="none"/></svg></div>';
       }
     });
     return out;
   }
 
-  /* ---------------- render project rail ---------------- */
   const rail = document.getElementById('project-rail');
   const detail = document.getElementById('project-detail');
   const search = document.getElementById('project-search');
@@ -1077,7 +807,6 @@ Submission to the Google DeepMind hackathon, Kuala Lumpur (2026).
     } else if (existing) {
       existing.remove();
     }
-    // If active selection got filtered out, jump to first visible.
     const activeBtn = rail.querySelector('.project-row.is-active');
     if (!activeBtn || activeBtn.classList.contains('is-hidden')) {
       const firstVisible = rail.querySelector('.project-row:not(.is-hidden)');
@@ -1097,15 +826,13 @@ Submission to the Google DeepMind hackathon, Kuala Lumpur (2026).
     const tab = currentTab(p.code);
     const stackTags = (p.overview.stack || []).map(function (s) { return '<li>' + escapeHtml(s) + '</li>'; }).join('');
 
-    const weeksHtml = p.overview.weeks ? (
-      '<h4>Week-by-Week Breakdown</h4><ol class="week-list-plain" style="display:flex;flex-direction:column;gap:10px;">' +
+    const weeksHtml = p.overview.weeks ? ('<h4>Week-by-Week Breakdown</h4><ol class="week-list-plain" style="display:flex;flex-direction:column;gap:10px;">' +
       p.overview.weeks.map(function (w) {
         return '<li style="display:grid;grid-template-columns:70px 1fr;gap:16px;padding:12px 14px;background:var(--bg-alt);border:1px solid var(--border);border-radius:8px;font-size:14px;">' +
           '<span style="font-family:var(--font-mono);font-size:11.5px;color:var(--fg-faint);padding-top:2px;">' + w.tag + '</span>' +
           '<div><strong style="color:var(--fg);font-weight:600;">' + escapeHtml(w.title) + '</strong><p style="color:var(--fg-muted);font-size:13px;margin-top:4px;">' + escapeHtml(w.body) + '</p></div>' +
         '</li>';
-      }).join('') + '</ol>'
-    ) : '';
+      }).join('') + '</ol>') : '';
 
     const overviewHtml =
       '<p style="color:var(--fg-muted);font-size:15px;">' + escapeHtml(p.overview.blurb) + '</p>' +
@@ -1114,7 +841,7 @@ Submission to the Google DeepMind hackathon, Kuala Lumpur (2026).
       weeksHtml +
       (p.problem ? '<div class="callout-grid">' +
         '<div class="callout"><span class="callout-label">Problem</span><div class="callout-body"><p>' + escapeHtml(p.problem) + '</p></div></div>' +
-        '<div class="callout"><span class="callout-label">Solution</span><div class="callout-body"><p>' + escapeHtml(p.solution) + '</p></div></div>' +
+        '<div class="callout"><span class="callout-label">Solution</span><div class="callout-body"><p>' + escapeHml(p.solution) + '</p></div></div>' +
       '</div>' : '') +
       '<ul class="tag-list tag-strip">' + stackTags + '</ul>';
 
@@ -1216,7 +943,6 @@ Submission to the Google DeepMind hackathon, Kuala Lumpur (2026).
     }
   }
 
-  /* ---------------- lightbox (shared) ---------------- */
   const lightbox = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightbox-img');
   const lbCap = document.getElementById('lightbox-caption');
@@ -1243,7 +969,6 @@ Submission to the Google DeepMind hackathon, Kuala Lumpur (2026).
     if (e.key === 'Escape' && lightbox && lightbox.classList.contains('is-open')) closeLightbox();
   });
 
-  /* ---------------- theme toggle ---------------- */
   const toggle = document.getElementById('theme-toggle');
   const STORAGE_KEY = 'portfolio-claude-theme';
 
@@ -1268,7 +993,6 @@ Submission to the Google DeepMind hackathon, Kuala Lumpur (2026).
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  /* ---------------- experience / academics expanders ---------------- */
   document.querySelectorAll('.expandable').forEach(function (item) {
     const trigger = item.querySelector('.expander');
     if (!trigger) return;
@@ -1278,7 +1002,6 @@ Submission to the Google DeepMind hackathon, Kuala Lumpur (2026).
     });
   });
 
-  /* ---------------- timeline scroll-highlight ---------------- */
   const timelineItems = document.querySelectorAll('.timeline .timeline-item');
   if (timelineItems.length && 'IntersectionObserver' in window) {
     const obs = new IntersectionObserver(function (entries) {
