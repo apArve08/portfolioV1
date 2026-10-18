@@ -457,6 +457,159 @@
       readme: `# FlexSQL Workbench\n\nTurns raw CREATE TABLE scripts into realistic, relationally-consistent mock datasets.\n\n## Stack\n\n- Next.js\n- TypeScript\n- Local Storage API (saved scripts)\n\n## Pipeline\n\n\`\`\`\nDDL input → AST lexer → dependency graph → topological sort\n          → async generator → .sql / .csv export\n\`\`\`\n`,
     },
     {
+      code: 'P54', slug: 'titandb', year: 2026, type: 'personal',
+      title: 'TitanDB — Slotted-Page Storage Engine & B+Tree',
+      org: 'Personal · Systems', duration: '4 weeks',
+      pitch: 'Slotted-page storage · Disk-backed B+Tree · WAL durability · ACID from scratch',
+      tag: '💾 Database Systems',
+      github: GH,
+      overview: {
+        blurb: 'A from-scratch, disk-backed database storage engine implementing the same B+Tree, WAL, and page-buffer architecture as SQLite and Postgres.',
+        features: [
+          'AST parser tokenizing SQL into logical execution commands',
+          'Buffer Pool manager + slotted-page layout on 4KB binary byte arrays',
+          'Write-Ahead Log (WAL) with LSN tracking for crash recovery and ACID durability',
+          'Disk-backed B+Tree mapping primary keys to page numbers with node splitting and rebalancing',
+          'Zero-fragmentation variable-length tuple storage with slot offset directory',
+        ],
+        concepts: [
+          'Low-level binary: Uint8Array and DataView byte-precise I/O',
+          'ACID durability: crash recovery, LSN, atomic fsync sync',
+          'Slotted pages for variable-length rows with slot directory',
+          'B+Tree node splitting, merging, and page allocation',
+        ],
+        stack: ['TypeScript', 'Node.js', 'Uint8Array', 'DataView', 'Node fs/promises', 'IndexedDB / OPFS'],
+      },
+      problem: 'Most software engineers treat SQL databases as opaque black boxes. When locking conflicts, write-ahead log stalls, or index bloat impact high-throughput production workloads, developers lack the low-level intuition on disk layouts, byte offsets, and buffer-pool caching to diagnose I/O bottlenecks.',
+      solution: 'TitanDB implements the storage and durability foundation of SQLite and Postgres from scratch in TypeScript. It organizes disk records into 4KB slotted binary pages to eliminate fragmentation, maintains an append-only Write-Ahead Log (WAL) with Log Sequence Numbers (LSN) for ACID durability, and indexes row keys via a disk-backed B+Tree that handles page splits and merges.',
+      architecture: [
+        { label: 'Parser & Execution', nodes: [
+          { title: 'SQL Lexer & Parser', sub: 'AST tokenization' },
+          { title: 'Query Execution Engine', sub: 'Iterator / Volcano model' },
+        ]},
+        { label: 'Buffer & Index', nodes: [
+          { title: 'Disk-backed B+Tree', sub: 'Page split & merge index' },
+          { title: 'Buffer Pool Manager', sub: 'LRU clock eviction & pin count' },
+        ]},
+        { label: 'Storage & Durability', nodes: [
+          { title: 'Write-Ahead Log (WAL)', sub: 'LSN append-only redo log' },
+          { title: 'Slotted Page Engine', sub: '4KB binary arrays (DataView)' },
+          { title: 'Disk / OPFS', sub: 'Atomic fsync & binary file I/O' },
+        ]},
+      ],
+      images: [
+        { caption: '4KB slotted-page binary layout with slot directory', text: 'Slotted+Page' },
+        { caption: 'B+Tree node split and page balancing visualization', text: 'B+Tree+Split' },
+        { caption: 'WAL replay path and crash recovery execution', text: 'WAL+Recovery' },
+      ],
+      readme: `# TitanDB\n\nA from-scratch, disk-backed database storage engine implementing the same B+Tree, WAL, and page-buffer architecture as SQLite and Postgres.\n\n## Architecture\n\n- **Slotted-Page Storage**: 4KB fixed binary pages with header, slot array, and variable-length record data.\n- **Disk-backed B+Tree**: Multi-level index mapping row keys to Page Numbers, supporting node splits and merges.\n- **Write-Ahead Log (WAL)**: Append-only log with Log Sequence Numbers (LSN) guaranteeing crash recovery before dirty page flush.\n- **Buffer Pool**: Memory manager with LRU clock eviction and page pin tracking.\n\n## Stack\n\n- TypeScript / Node.js\n- Low-level byte manipulation: Uint8Array & DataView\n- Node fs/promises & IndexedDB / OPFS\n`,
+    },
+    {
+      code: 'P55', slug: 'devlog-catalyst', year: 2026, type: 'personal',
+      title: 'DevLog Catalyst — Offline-First Developer Journal',
+      org: 'Personal', duration: '4 weeks',
+      pitch: 'Offline-first PWA · Markdown parser · Contribution grid · OPFS + Supabase sync',
+      tag: '⚡ Offline PWA',
+      github: GH,
+      overview: {
+        blurb: 'An offline-first developer journal that turns Markdown notes into a GitHub-style contribution graph of personal engineering learning.',
+        features: [
+          'Modular sidebar configuring personal vs coding project learning streams',
+          'Fast Markdown processor scanning tasks, timestamps, and hashtags into structured records',
+          'Interactive SVG contribution matrix visualizing daily learning streaks',
+          'Dual-layer persistence: local IndexedDB cache with transparent Supabase cloud backup',
+          'Origin Private File System (OPFS) integration for high-performance offline document access',
+        ],
+        concepts: [
+          'Offline-First: write to browser first, always responsive without network',
+          'Origin Private File System (OPFS) for fast local binary file access',
+          'Text marker parsing converting raw markdown into relational graphs',
+        ],
+        stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'IndexedDB', 'OPFS', 'Supabase', 'PWA'],
+      },
+      problem: 'Developer learning logs and project notes are scattered across private markdown files and hosted SaaS tools. When offline, remote note-taking apps fail completely, and simple static files lack streak tracking and cross-topic knowledge discovery.',
+      solution: 'DevLog Catalyst functions as an offline-first PWA using the Origin Private File System (OPFS) and IndexedDB to deliver instant writes and full local access without an active internet connection. It parses hashtags and timestamps in real time into an interactive SVG contribution heatmap, and seamlessly synchronizes state to Supabase when reconnected.',
+      architecture: [
+        { label: 'UI Layer', nodes: [
+          { title: 'Next.js PWA', sub: 'Tailwind · Service Worker' },
+          { title: 'Contribution Grid', sub: 'Interactive SVG matrix' },
+        ]},
+        { label: 'Parsing & Indexing', nodes: [
+          { title: 'Markdown Parser', sub: 'Hashtag & timestamp extractor' },
+          { title: 'Local Search Index', sub: 'Fast in-browser fuzzy search' },
+        ]},
+        { label: 'Local & Remote Sync', nodes: [
+          { title: 'OPFS / IndexedDB', sub: 'Zero-latency local persistence' },
+          { title: 'Supabase Sync Engine', sub: 'Background delta sync' },
+        ]},
+      ],
+      images: [
+        { caption: 'Contribution matrix tracking engineering learning streaks', text: 'Contribution+Grid' },
+        { caption: 'Markdown editor with hashtag auto-linking and task parsing', text: 'Markdown+Editor' },
+        { caption: 'Offline sync status and local OPFS file tree', text: 'Offline+Sync' },
+      ],
+      readme: `# DevLog Catalyst\n\nAn offline-first developer journal that turns Markdown notes into a GitHub-style contribution graph of your own learning.\n\n## Stack\n\n- Next.js (PWA)\n- TypeScript & Tailwind CSS\n- Origin Private File System (OPFS) & IndexedDB\n- Supabase (cloud backup & sync)\n\n## Features\n\n- Zero-latency local editing\n- Real-time Markdown parser for tasks and tags\n- Interactive SVG contribution heatmap\n- Seamless offline-to-cloud sync\n`,
+    },
+    {
+      code: 'P56', slug: 'resume-portfolio', year: 2026, type: 'personal',
+      title: 'Resume-to-Portfolio Generator',
+      org: 'Personal · AI', duration: '6 weeks',
+      pitch: 'pdf.js extraction · AI JSON structuring · Multi-theme renderer · Supabase deploy',
+      tag: '📄 AI Systems',
+      github: GH,
+      overview: {
+        blurb: 'A tool that turns a dropped-in resume PDF into a live, shareable developer portfolio site in minutes — the demo is the product.',
+        features: [
+          'Client-side PDF parser (pdf.js Web Worker) with live document preview',
+          'AI structuring engine converting raw text into a strictly validated JSON schema',
+          'Six-section themeable component tree with inline contentEditable editing',
+          'Multi-theme switcher (Terminal Dark, Sleek Minimalist, Modern Gradient)',
+          'Drag-and-drop section reordering powered by dnd-kit',
+          'Supabase deployment engine publishing instantly to public /p/[slug] routes',
+        ],
+        concepts: [
+          'Client-side WASM parsing for zero-upload document ingestion',
+          'Structured JSON extraction using LLMs with schema validation retry loops',
+          'Dynamic multi-theme component rendering and client-side site generation',
+        ],
+        weeks: [
+          { tag: 'WK 01', title: 'PDF Parser + Preview', body: 'pdf.js drag-and-drop zone with Web Worker extraction and multi-column layout preview.' },
+          { tag: 'WK 02', title: 'AI Structuring Engine', body: 'JSON schema definition, extraction prompt engineering, and validation retry on parse failure.' },
+          { tag: 'WK 03', title: 'First Theme + Tree', body: '6 section components, Terminal Dark theme, and contentEditable inline editing.' },
+          { tag: 'WK 04', title: 'Themes + Switcher', body: '4 additional themes, live theme switcher, and dnd-kit section reordering.' },
+          { tag: 'WK 05', title: 'Supabase + Deploy', body: 'portfolios table with RLS, slug availability checker, and /p/[slug] edge rendering.' },
+          { tag: 'WK 06', title: 'Polish & Self-Host', body: 'View counter, export flow, and generating your own portfolio as the live demo.' },
+        ],
+        stack: ['Next.js', 'TypeScript', 'pdf.js', 'Gemini Flash', 'Supabase', 'dnd-kit', 'Tailwind CSS'],
+      },
+      problem: 'Software engineers spend weeks coding personal portfolio websites from scratch or battling bulky CMS templates, repetitively re-formatting the exact same experience, project, and education details already refined on their resumes.',
+      solution: 'Resume-to-Portfolio Generator parses any uploaded resume PDF directly inside the browser using a pdf.js Web Worker, uses an LLM to extract and validate the contents into a structured JSON schema, renders the data across polished themes with inline editing, and deploys it to a permanent Supabase-hosted URL in seconds.',
+      architecture: [
+        { label: 'Ingestion & Worker', nodes: [
+          { title: 'Dropzone & pdf.js', sub: 'Web Worker text extraction' },
+          { title: 'Document Preview', sub: 'Canvas PDF viewer' },
+        ]},
+        { label: 'AI Structuring', nodes: [
+          { title: 'Schema Validator', sub: 'Strict TypeScript JSON schema' },
+          { title: 'AI Extraction Engine', sub: 'Gemini / Ollama prompt parser' },
+        ]},
+        { label: 'Theme Renderer', nodes: [
+          { title: 'Component Tree', sub: 'Terminal, Minimal, Modern' },
+          { title: 'Inline Editor', sub: 'dnd-kit section reordering' },
+        ]},
+        { label: 'Cloud Publishing', nodes: [
+          { title: 'Supabase DB & RLS', sub: 'Portfolios table & slug check' },
+          { title: 'Edge Deployment', sub: 'Live public route /p/[slug]' },
+        ]},
+      ],
+      images: [
+        { caption: 'Resume PDF dropzone and side-by-side text extraction', text: 'PDF+Extraction' },
+        { caption: 'Live portfolio preview with theme selector and inline editing', text: 'Theme+Editor' },
+        { caption: 'One-click deployed public portfolio with custom slug', text: 'Deployed+Site' },
+      ],
+      readme: `# Resume-to-Portfolio Generator\n\nA tool that turns a dropped-in resume PDF into a live, shareable developer portfolio site in minutes.\n\n## Stack\n\n- **Frontend**: Next.js 14, TypeScript, Tailwind CSS\n- **PDF Extraction**: pdf.js (Web Worker)\n- **AI Structuring**: Gemini Flash / Ollama\n- **Interactivity**: dnd-kit (drag-and-drop reordering)\n- **Storage & Deploy**: Supabase (Postgres + Auth + Storage)\n\n## Pipeline\n\n\`\`\`\nResume PDF → pdf.js Worker → Raw Text → AI Structuring Engine → JSON Schema\n          → Live Theme Preview → Inline Editing → One-click Supabase Deploy\n\`\`\`\n`,
+    },
+    {
       code: 'P57', slug: 'token-lens', year: 2026, type: 'personal',
       title: 'token · lens — Transformer Internals Explorer',
       org: 'Personal', duration: '3 weeks',
@@ -623,49 +776,206 @@
     },
     {
       code: 'H1', slug: 'factory-guardian', year: 2026, type: 'work', hackathon: true,
-      title: 'Factory Guardian',
-      org: 'Google Cloud Hackathon', duration: 'Hackathon 2026',
-      pitch: 'AI agent for investigating and recovering manufacturing systems',
-      tag: '🏆 Hackathon · Google Cloud',
+      title: 'Factory Guardian — Autonomous Incident Investigator',
+      org: 'Agentic Cinema · Grafana Labs Track', duration: 'Hackathon 2026',
+      pitch: 'Grafana Labs track submission · Google ADK · Gemini 2.5 · Root-cause causal tracing',
+      tag: '🏆 Hackathon · Grafana Labs & Google Cloud',
       github: GH,
       projectUrl: 'https://devpost.com/software/factory-guardian?ref_content=user-portfolio&ref_feature=in_progress',
       overview: {
-        blurb: 'Hackathon submission to the Google Cloud hackathon: an AI agent that investigates faults in factory systems and helps them recover. Recovery brought latency down from 6,834 ms to 199 ms.',
-        concepts: [
-          'LLM agent that investigates issues across manufacturing systems',
-          'Measured recovery: latency 6,834 ms → 199 ms',
+        blurb: 'An AI incident investigator for a factory production line built on the Grafana Labs track. When an alert fires on high API latency (a symptom), Factory Guardian traces system states across metrics, logs, and traces to pinpoint the real root cause four layers upstream at a degrading physical motor.',
+        features: [
+          'Reads Grafana alerts, querying Mimir metrics, Loki logs, and Tempo traces in unified multi-modal investigations',
+          'Walks the causal stack to determine which signal moved first — cited evidence, never a guess',
+          'Proposes targeted remediation, waits for human confirmation, then re-queries to empirically verify recovery',
+          'Deterministic approval gate built directly into FunctionTool.run_async before remediation execution',
+          'Engineered pacing and 9-tool filtering working within Gemini free-tier 250k tokens/min budget',
+          'Verified recovery: API latency 6,834 ms → 199 ms, Error rate 14.8% → 0.20%, Motor temp 97.8°C → 66.7°C',
         ],
-        stack: ['Google Cloud', 'Gemini', 'Python'],
+        concepts: [
+          'Agentic telemetry workflows using local mcp-grafana over stdio',
+          'Causal dependency graph traversal across distributed traces',
+          'Human-in-the-loop safety gating inside async tool execution',
+          'Deterministic plant simulator: 1 hidden variable driving 7 derived signals',
+        ],
+        stack: ['Google ADK', 'Gemini 2.5', 'Grafana Cloud', 'Mimir', 'Loki', 'Tempo', 'OpenTelemetry', 'MCP', 'Python'],
       },
-      readme: `# Factory Guardian\n\nSubmission to the Google Cloud hackathon (2026).\n\n## Result\n\n- Latency recovered from 6,834 ms to 199 ms\n`,
+      problem: 'When production alerts fire on API latency or saturation spikes, on-call teams scramble through disconnected monitoring dashboards trying to find what broke. API slowdowns are often secondary symptoms caused by deep physical hardware failures (e.g. motor overheating or thread pool starvation) that raw log search alone cannot correlate.',
+      solution: 'Factory Guardian orchestrates Gemini 2.5 through Google ADK and an in-process InMemoryRunner to query Grafana Cloud via local stdio MCP. It analyzes time offsets across metrics, logs, and traces to identify the exact initial failure point, presents evidence-backed root cause diagnosis to a human operator, and upon approval triggers remediation and validates system stabilization.',
+      architecture: [
+        { label: 'Telemetry & Ingestion', nodes: [
+          { title: 'Grafana Alert', sub: 'Webhook trigger' },
+          { title: 'OpenTelemetry', sub: 'Mimir · Loki · Tempo' },
+          { title: 'Plant Simulator', sub: 'simulator.py (1 var → 7 signals)' },
+        ]},
+        { label: 'Agent Core & Reasoning', nodes: [
+          { title: 'Google ADK', sub: 'InMemoryRunner loop' },
+          { title: 'Gemini 2.5', sub: 'Multi-modal root cause analysis' },
+          { title: 'Token Pacer', sub: '9-tool filter & result truncation' },
+        ]},
+        { label: 'Tooling & Safety', nodes: [
+          { title: 'mcp-grafana', sub: 'Local stdio MCP server' },
+          { title: 'Approval Gate', sub: 'FunctionTool.run_async human check' },
+          { title: 'Remediation Executor', sub: 'Motor cool-down & pool reset' },
+        ]},
+      ],
+      images: [
+        { caption: 'Grafana Cloud telemetry dashboard during peak incident', text: 'Telemetry+Peak' },
+        { caption: 'Gemini root-cause trace analysis and cited evidence', text: 'Root+Cause+Analysis' },
+        { caption: 'Verified recovery metrics: Latency 6,834ms → 199ms', text: 'Recovery+Metrics' },
+      ],
+      readme: `# Factory Guardian\n\nSubmission to Agentic Cinema: The Blockbuster Hackathon (Grafana Labs track).\n\n## Verified Recovery Results\n\n| Metric | Peak Incident | After Remediation |\n| :--- | :--- | :--- |\n| **API latency** | 6,834 ms | **199 ms** |\n| **API error rate** | 14.8% | **0.20%** |\n| **DB pool in use** | 100% | **39.1%** |\n| **Motor temperature** | 97.8°C | **66.7°C** |\n| **Factory throughput** | 575 / hr | **966 / hr** |\n\n## Architecture Highlights\n\n- **Agent Framework**: Google ADK + Gemini 2.5 via in-process \`InMemoryRunner\`\n- **Tool Integration**: \`mcp-grafana\` connected over local \`stdio\`\n- **Safety Gate**: Approval check enforced directly inside \`FunctionTool.run_async\` before remediation executes\n- **Telemetry**: OpenTelemetry reporting to Grafana Cloud (Mimir metrics, Loki logs, Tempo distributed traces)\n`,
     },
     {
-      code: 'H2', slug: 'glasshouse', year: 2026, type: 'personal', hackathon: true,
-      title: 'Glasshouse',
+      code: 'H2', slug: 'glasshouse-hackathon', year: 2026, type: 'personal', hackathon: true,
+      title: 'Glasshouse — Cryptographic Agent Flight Recorder',
       org: 'OpenAI Build Week', duration: 'Hackathon 2026',
-      pitch: 'OpenAI Build Week submission',
+      pitch: 'OpenAI Build Week submission · SHA-256 hash-chained session log · Zero-backend offline replay',
       tag: '🏆 Hackathon · OpenAI',
       github: GH,
       overview: {
-        blurb: 'Hackathon submission to OpenAI Build Week (2026).',
-        concepts: ['Details coming soon'],
-        stack: ['OpenAI'],
+        blurb: 'A flight recorder for coding AI agents — captures what an agent actually did during a session (never its hidden reasoning), and links every event into a tamper-evident cryptographic chain you can replay and verify completely offline.',
+        features: [
+          'Records observable actions only: file reads/writes, commands, output, test runs — no private reasoning or secrets',
+          'Every event hash-chains to its predecessor: SHA256(prev_hash + timestamp + payload)',
+          'Editing, deleting, or reordering any event breaks the chain from that point forward',
+          'Replays as one self-contained ~29KB HTML file — zero backend, zero network, opens directly from file://',
+          'Codex CLI support via a wrapper around codex exec --json',
+          'Claude Code support via native settings.json hooks (PreToolUse, PostToolUse, Stop)',
+          'Agent-neutral format: any recorder emitting a valid chain replays in the same viewer',
+        ],
+        concepts: [
+          'Tamper-evident append-only cryptographic ledger mechanics',
+          'Agent-agnostic observability and normalized event schemas',
+          'Pure client-side zero-dependency SHA-256 implementation in JavaScript',
+        ],
+        stack: ['SHA-256 hash chain', 'Codex CLI', 'Claude Code Hooks', 'Next.js', 'pnpm monorepo', 'Self-contained HTML'],
       },
-      readme: `# Glasshouse\n\nSubmission to OpenAI Build Week (2026).\n`,
+      problem: 'AI coding agents execute dozens of terminal commands and file edits autonomously. When an unexpected file mutation or vulnerability occurs, reviewing flat logs is unreliable: logs can be tampered with or truncated, and reviewers cannot prove whether the agent executed what it claimed without tedious manual reproduction.',
+      solution: 'Glasshouse acts as an immutable flight recorder. By intercepting native agent hooks (Claude Code settings.json and Codex CLI JSON stream), it normalizes events into an append-only JSONL log where every entry is cryptographically SHA-256 hash-chained to the prior event. It packages the session into an ultra-compact ~29KB single-file HTML viewer that replays and validates the cryptographic chain completely offline.',
+      architecture: [
+        { label: 'Agent Hooks & Shims', nodes: [
+          { title: 'Claude Code Hooks', sub: 'PreToolUse · PostToolUse · Stop' },
+          { title: 'Codex CLI Shim', sub: 'codex exec --json wrapper' },
+          { title: 'AgentAdapter Contract', sub: 'Extensible agent connector' },
+        ]},
+        { label: 'Recorder Engine', nodes: [
+          { title: 'Action Normalizer', sub: 'GlasshouseEvent schema' },
+          { title: 'Hash Chainer', sub: 'SHA256(prev + time + data)' },
+          { title: 'Tamper-Evident Ledger', sub: 'session.jsonl' },
+        ]},
+        { label: 'Offline Replay & Verification', nodes: [
+          { title: 'Standalone HTML Viewer', sub: '~29KB zero-dependency bundle' },
+          { title: 'Hash Chain Verifier', sub: 'Offline integrity checker' },
+          { title: 'Local Replay Engine', sub: 'Step-by-step file & shell diffs' },
+        ]},
+      ],
+      images: [
+        { caption: 'Offline replay viewer demonstrating step-by-step tool execution', text: 'Glasshouse+Viewer' },
+        { caption: 'Tamper-evident SHA-256 cryptographic hash-chain inspection', text: 'Hash+Chain' },
+        { caption: 'Terminal session recorder hooking into Claude Code & Codex CLI', text: 'CLI+Hooks' },
+      ],
+      readme: `# Glasshouse\n\nSubmission to OpenAI Build Week (2026).\n\n## Overview\n\nA local-first, tamper-evident flight recorder for coding AI agents (Claude Code, Codex CLI, Gemini CLI).\n\n## Core Mechanics\n\n- **Observable Actions Only**: Records commands, file reads/writes, test results. Never records hidden thoughts or API keys.\n- **Cryptographic Hash Chain**: Every event is hashed with \`SHA256(prev_hash + timestamp + payload)\`. Any tampering breaks the chain.\n- **Zero-Backend Offline Replay**: Generates a self-contained ~29KB HTML file that opens from \`file://\` without any server.\n\n## CLI Usage\n\n\`\`\`bash\nglasshouse init      # detect installed agents, configure native hooks\nglasshouse serve     # tail session.jsonl into a live WS replay viewer\nglasshouse verify    # re-run hash-chain integrity check fully offline\n\`\`\`\n`,
     },
     {
       code: 'H3', slug: 'nadi', year: 2026, type: 'personal', hackathon: true,
-      title: 'Nadi',
-      org: 'Google DeepMind Hackathon · Kuala Lumpur', duration: 'Hackathon 2026',
-      pitch: 'Google DeepMind hackathon submission, with a Run Analyzer pillar spun out of RunTrack',
+      title: 'Nadi — Culturally-Aware AI Health Companion',
+      org: 'Google DeepMind & Google Cloud', duration: 'Hackathon 2026',
+      pitch: 'Build with AI: Gemini Hackathon · Kuala Lumpur · Nutrition & Training for Malaysia',
       tag: '🏆 Hackathon · Google DeepMind',
       github: GH,
       overview: {
-        blurb: 'Hackathon submission to the Google DeepMind hackathon in Kuala Lumpur. Its Run Analyzer pillar is a natural spin-off of RunTrack.',
-        concepts: ['Run Analyzer pillar builds on RunTrack'],
-        stack: ['Gemini', 'Google ADK'],
+        blurb: 'A culturally-aware AI health companion for Malaysia — addressing the highest obesity rate in Southeast Asia — built around the hidden caloric load in local staples like nasi lemak and roti canai, and the tropical heat that makes outdoor training grueling.',
+        features: [
+          'Meal AI: Gemini 2.5 Flash Vision identifies Malaysian dishes from photos with ingredient-aware nutrition breakdowns',
+          'Run Analyzer: processes Strava JSON for AI-powered performance insight, fatigue detection, and heat recovery advice',
+          'Health Dashboard: visualizes VO2 Max and weekly mileage to track "Nadi" (pulse) trends over time',
+          'Ingredient-level caloric breakdown accounting for santan (coconut milk) and palm oil density in local street foods',
+          'Heat-acclimated hydration and pacing guidance tailored to equatorial temperature and humidity',
+        ],
+        concepts: [
+          'Multimodal computer vision calibrated on Southeast Asian cuisine',
+          'Biometric timeseries modeling over Strava activity streams (spun out of RunTrack)',
+          'Culturally localized health algorithms vs one-size-fits-all Western fitness metrics',
+        ],
+        stack: ['Next.js', 'FastAPI', 'Python', 'Gemini 2.5 Flash', 'Supabase', 'Strava API', 'Chart.js'],
       },
-      readme: `# Nadi\n\nSubmission to the Google DeepMind hackathon, Kuala Lumpur (2026).\n`,
+      problem: 'Malaysia has the highest adult obesity rate in Southeast Asia. Western fitness applications fail locally because their food databases have zero understanding of local cooking (e.g. santan in nasi lemak, condensed milk in teh tarik), and their generic training recommendations do not account for high humidity and tropical thermal stress.',
+      solution: 'Nadi provides a 3-pillar health platform built for Malaysia: Meal AI uses Gemini 2.5 Flash Vision to identify complex local dishes and quantify hidden calories; Run Analyzer ingests Strava JSON to calculate heat-stress impact and fatigue; and Health Dashboard tracks long-term cardiovascular health ("Nadi") with actionable medical and training guidance.',
+      architecture: [
+        { label: 'Client Application', nodes: [
+          { title: 'Next.js Frontend', sub: 'PWA · Mobile-optimized' },
+          { title: 'Health Dashboard', sub: 'Chart.js · VO2 / Pace curves' },
+        ]},
+        { label: 'Backend API', nodes: [
+          { title: 'FastAPI Backend', sub: 'Python · Async service' },
+          { title: 'Strava Webhook Sync', sub: 'Activity stream pipeline' },
+        ]},
+        { label: 'AI Intelligence Layer', nodes: [
+          { title: 'Gemini 2.5 Flash Vision', sub: 'Malaysian food identification' },
+          { title: 'Run Analyzer Engine', sub: 'Heat fatigue & recovery insight' },
+        ]},
+        { label: 'Database & Storage', nodes: [
+          { title: 'Supabase Postgres', sub: 'User health history & metrics' },
+          { title: 'Supabase Storage', sub: 'Meal snapshot image store' },
+        ]},
+      ],
+      images: [
+        { caption: 'Meal AI identifying Malaysian food with nutrition breakdown', text: 'Meal+AI+Vision' },
+        { caption: 'Run Analyzer surfacing heat fatigue from Strava activity data', text: 'Run+Analyzer' },
+        { caption: 'Health dashboard tracking VO2 Max and cardiovascular Nadi score', text: 'Health+Dashboard' },
+      ],
+      readme: `# Nadi\n\nSubmission to Build with AI: Gemini Hackathon · Google DeepMind (Kuala Lumpur, 2026).\n\n## Three Core Pillars\n\n1. **Meal AI**: Gemini 2.5 Flash Vision identifies local dishes (nasi lemak, roti canai, mee goreng) from photos with ingredient-level nutrition breakdowns.\n2. **Run Analyzer**: Ingests Strava activity streams to detect cardiac strain, hydration deficits, and heat-induced fatigue.\n3. **Health Dashboard**: Visualizes VO2 Max and weekly mileage to track cardiovascular "Nadi" (pulse) over time.\n\n## Stack\n\n- **Frontend**: Next.js (React), Tailwind CSS, Chart.js\n- **Backend**: Python, FastAPI, Supabase (PostgreSQL + Auth + Storage)\n- **AI**: Google Gemini 2.5 Flash (Vision & Prompt Analysis)\n- **Integrations**: Strava API\n`,
+    },
+    {
+      code: 'H4', slug: 'agents-for-humans', year: 2026, type: 'personal', hackathon: true,
+      title: 'Agents for Humans — Autonomous Task Orchestrator',
+      org: 'Agents for Humans Hackathon · AWS', duration: 'Hackathon 2026',
+      pitch: 'AWS · Strands Agents SDK · Autonomous background workflows with human decision gates',
+      tag: '🏆 Hackathon · AWS & Strands',
+      github: GH,
+      overview: {
+        blurb: 'Built on AWS and the Strands Agents SDK: an autonomous agent that handles routine, repetitive tasks in the background and only surfaces when there is a genuine decision to make — not another chatbot wrapper.',
+        features: [
+          'Autonomous multi-step background task execution loop without conversational overhead',
+          'Interrupt engine alerting humans only when ambiguous decisions or approval gates occur',
+          'Strands Agents SDK workflow state persistence and resumption',
+          'Containerized deployment on AWS AgentCore with DynamoDB state backing',
+          'Public repo under MIT license with complete architecture specifications',
+        ],
+        concepts: [
+          'Asynchronous autonomous agent lifecycles vs interactive chat wrappers',
+          'Confidence-bounded exception escalation and human-in-the-loop gates',
+          'Stateful agent orchestration using Strands Agents SDK and AWS services',
+        ],
+        stack: ['AWS', 'Strands Agents SDK', 'AgentCore', 'Python', 'DynamoDB', 'Docker'],
+      },
+      problem: 'Most AI "agent" applications are conversational chatbot wrappers that force users to babysit every intermediate reasoning step, generating excessive token chatter instead of autonomously completing routine tasks.',
+      solution: 'This project utilizes the Strands Agents SDK on AWS AgentCore to run autonomous task loops in the background. It executes deterministic workflows independently and only interrupts the user when an explicit approval threshold or decision branch requires human oversight.',
+      architecture: [
+        { label: 'Trigger & Ingestion', nodes: [
+          { title: 'Event Triggers', sub: 'Webhook / Scheduled jobs' },
+          { title: 'Context Assembler', sub: 'Session history & parameters' },
+        ]},
+        { label: 'Agent Runtime', nodes: [
+          { title: 'Strands Agent Core', sub: 'Autonomous execution loop' },
+          { title: 'Confidence Guardrails', sub: 'Decision-boundary evaluator' },
+        ]},
+        { label: 'Human-in-the-Loop', nodes: [
+          { title: 'Interrupt Notification', sub: 'Surfaces only on ambiguity' },
+          { title: 'Approval Gate', sub: 'Human override & policy check' },
+        ]},
+        { label: 'Cloud Infrastructure', nodes: [
+          { title: 'AWS AgentCore', sub: 'Containerized agent host' },
+          { title: 'DynamoDB / S3', sub: 'Durable execution state' },
+        ]},
+      ],
+      images: [
+        { caption: 'Autonomous agent execution loop running background workflows', text: 'Agent+Loop' },
+        { caption: 'Human-in-the-loop decision gate surfacing upon confidence threshold', text: 'Approval+Gate' },
+        { caption: 'AWS AgentCore deployment and execution telemetry', text: 'AWS+AgentCore' },
+      ],
+      readme: `# Agents for Humans\n\nSubmission to Agents for Humans Hackathon (AWS & Strands Agents SDK).\n\n## Overview\n\nAn agent that handles routine, repetitive tasks autonomously in the background and only surfaces when there is a genuine decision to make — not another chatbot wrapper.\n\n## Stack\n\n- **Cloud**: AWS (AgentCore, DynamoDB, S3)\n- **Agent Framework**: Strands Agents SDK (Python)\n- **Architecture**: Autonomous execution loop with confidence-bounded interrupt gates\n`,
     },
   ];
 
@@ -841,7 +1151,7 @@
       weeksHtml +
       (p.problem ? '<div class="callout-grid">' +
         '<div class="callout"><span class="callout-label">Problem</span><div class="callout-body"><p>' + escapeHtml(p.problem) + '</p></div></div>' +
-        '<div class="callout"><span class="callout-label">Solution</span><div class="callout-body"><p>' + escapeHml(p.solution) + '</p></div></div>' +
+        '<div class="callout"><span class="callout-label">Solution</span><div class="callout-body"><p>' + escapeHtml(p.solution) + '</p></div></div>' +
       '</div>' : '') +
       '<ul class="tag-list tag-strip">' + stackTags + '</ul>';
 
@@ -918,6 +1228,7 @@
     rail.querySelectorAll('.project-row').forEach(function (btn) {
       btn.classList.toggle('is-active', btn.getAttribute('data-code') === code);
     });
+    setCurrentTab(p.code, 'overview');
     renderDetail(p);
   }
 
