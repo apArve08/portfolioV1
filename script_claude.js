@@ -989,31 +989,63 @@
   function inlineMd(s) {
     s = escapeHtml(s);
     s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
-    s = s.replace(/\\*\\*([^*]+)\\*\\*/g, '<strong>$1</strong>');
+    s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    s = s.replace(/\*([^*]+)\*/g, '<em>$1</em>');
     return s;
   }
   function renderMarkdown(md) {
-    const lines = md.replace(/\\r\\n/g, '\\n').split('\\n');
+    if (!md) return '';
+    const lines = md.replace(/\r\n/g, '\n').split('\n');
     let html = '';
     let i = 0;
     let listBuffer = null;
+    let inTable = false;
 
     function flushList() {
       if (listBuffer) { html += '</' + listBuffer + '>'; listBuffer = null; }
     }
+    function flushTable() {
+      if (inTable) { html += '</tbody></table></div>'; inTable = false; }
+    }
 
     while (i < lines.length) {
       const line = lines[i];
+
       if (/^```/.test(line)) {
         flushList();
+        flushTable();
         const codeLines = [];
         i++;
         while (i < lines.length && !/^```/.test(lines[i])) { codeLines.push(lines[i]); i++; }
-        html += '<pre><code>' + escapeHtml(codeLines.join('\\n')) + '</code></pre>';
+        html += '<pre><code>' + escapeHtml(codeLines.join('\n')) + '</code></pre>';
         i++;
         continue;
       }
-      const h = line.match(/^(#{1,3})\\s+(.*)$/);
+
+      // Markdown Tables (| header | header |)
+      if (/^\|(.+)\|$/.test(line.trim())) {
+        flushList();
+        const rawCells = line.trim().slice(1, -1).split('|').map(function (c) { return c.trim(); });
+
+        if (!inTable && i + 1 < lines.length && /^\|(\s*:?-+:?\s*\|)+$/.test(lines[i + 1].trim())) {
+          inTable = true;
+          html += '<div class="md-table-wrap"><table><thead><tr>';
+          rawCells.forEach(function (c) { html += '<th>' + inlineMd(c) + '</th>'; });
+          html += '</tr></thead><tbody>';
+          i += 2;
+          continue;
+        } else if (inTable) {
+          html += '<tr>';
+          rawCells.forEach(function (c) { html += '<td>' + inlineMd(c) + '</td>'; });
+          html += '</tr>';
+          i++;
+          continue;
+        }
+      } else {
+        flushTable();
+      }
+
+      const h = line.match(/^(#{1,4})\s+(.*)$/);
       if (h) {
         flushList();
         const level = h[1].length;
@@ -1021,26 +1053,36 @@
         i++;
         continue;
       }
-      const ol = line.match(/^\\d+\\.\\s+(.*)$/);
+
+      const ol = line.match(/^(\d+)\.\s+(.*)$/);
       if (ol) {
         if (listBuffer !== 'ol') { flushList(); html += '<ol>'; listBuffer = 'ol'; }
-        html += '<li>' + inlineMd(ol[1]) + '</li>';
+        html += '<li>' + inlineMd(ol[2]) + '</li>';
         i++;
         continue;
       }
-      const ul = line.match(/^[-*]\\s+(.*)$/);
+
+      const ul = line.match(/^[-*]\s+(.*)$/);
       if (ul) {
         if (listBuffer !== 'ul') { flushList(); html += '<ul>'; listBuffer = 'ul'; }
         html += '<li>' + inlineMd(ul[1]) + '</li>';
         i++;
         continue;
       }
-      if (line.trim() === '') { flushList(); i++; continue; }
+
+      if (line.trim() === '') {
+        flushList();
+        i++;
+        continue;
+      }
+
       flushList();
       html += '<p>' + inlineMd(line) + '</p>';
       i++;
     }
+
     flushList();
+    flushTable();
     return html;
   }
 

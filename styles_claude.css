@@ -357,8 +357,14 @@ button { font-family: inherit; }
 .readme-content li { color: var(--fg-muted); margin: 4px 0; }
 .readme-content code { font-family: var(--font-mono); font-size: 0.88em; background: var(--chip-bg); padding: 2px 6px; border-radius: 4px; color: var(--accent-strong); }
 .readme-content pre { margin: 14px 0; padding: 16px 18px; background: var(--code-bg); border-radius: 8px; overflow-x: auto; }
-.readme-content pre code { background: none; padding: 0; color: var(--code-fg); font-size: 13px; line-height: 1.6; }
 .readme-content strong { color: var(--fg); font-weight: 600; }
+.readme-content em { color: var(--fg-muted); font-style: italic; }
+.readme-content .md-table-wrap { overflow-x: auto; margin: 16px 0; border: 1px solid var(--border); border-radius: 8px; }
+.readme-content table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.readme-content th, .readme-content td { padding: 9px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+.readme-content th { background: var(--bg-alt); font-weight: 600; color: var(--fg); font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.04em; }
+.readme-content tr:last-child td { border-bottom: none; }
+.readme-content tr:nth-child(even) td { background: color-mix(in srgb, var(--bg-alt) 30%, transparent); }
 
 .tag-strip { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
 
